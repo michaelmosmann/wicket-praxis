@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<someXml xmlns:wicket="http://wicket.apache.org/">
+  <person>
+    <name wicket:id="name"></name>
+  </person>
+</someXml>

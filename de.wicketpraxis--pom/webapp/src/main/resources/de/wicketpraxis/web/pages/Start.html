@@ -1,0 +1,23 @@
+<wicket:extend>
+		<h1>Wicket Praxis</h1>
+		
+		<a wicket:id="registerNewUser">Register New User</a>
+		
+		
+		<wicket:remove>
+		<xwicket:container xwicket:id="userLogin"></xwicket:container>
+		
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr xwicket:id="userList">
+					<td><span xwicket:id="name"></span></td>
+				</tr>
+			</tbody>
+		</table>
+		</wicket:remove>
+</wicket:extend>

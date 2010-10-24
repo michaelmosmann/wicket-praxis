@@ -1,0 +1,23 @@
+div.autocomplete
+{
+	background-color: white;
+	border: 1px solid black;
+	padding: 0px;
+	margin: 0 0 0 0;
+	text-align:left;
+}
+ 
+div.autocomplete ul
+{
+	list-style:none;
+	padding: 2px;
+	margin:0px;
+}
+
+div.autocomplete ul li.selected
+{
+	background-color: #6060ff;
+	color:white;
+	padding: 2px;
+	margin:0px;
+}

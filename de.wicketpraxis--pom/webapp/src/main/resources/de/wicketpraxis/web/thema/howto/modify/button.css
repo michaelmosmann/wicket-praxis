@@ -1,0 +1,62 @@
+a.OK, a.INFO, a.CANCEL
+{
+	text-decoration: none;	
+	display:inline-table;
+}
+
+a.OK
+{
+  background-color:#529214;
+  border:1px solid #497024;
+  color:#fff;
+}
+
+a.OK:hover
+{
+  background-color:#E6EFC2;
+  border:1px solid #C6D880;
+  color:#529214;
+}
+
+a.INFO
+{
+	border:1px solid #d92;
+	background-color: #ff2;
+	color:#a60;
+}
+
+a.INFO:hover
+{
+	border:1px solid #fd0;
+	background-color: #ff8;
+	color:#c70;
+}
+
+a.CANCEL
+{
+  background-color:#d12f19;
+  border:1px solid #842013;
+  color:white;
+}
+
+a.CANCEL:hover
+{
+  background-color:#fbe3e4;
+  border:1px solid #fbc2c4;
+  color:#d12f19;
+}
+
+a.OK img, a.INFO img, a.CANCEL img
+{
+	border:0px;
+	padding:0px;
+	margin:0px;
+	display: block;
+}
+
+a.OK td, a.INFO td, a.CANCEL td
+{
+	padding:0px;
+	margin:0px;
+	vertical-align: middle;
+}

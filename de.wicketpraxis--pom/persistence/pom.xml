@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*****************************************
+Quelltexte zum Buch: Praxisbuch Wicket
+(http://www.hanser.de/978-3-446-41909-4)
+
+Autor: Michael Mosmann
+(michael@mosmann.de)
+*****************************************/
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>de.wicketpraxis</groupId>
+  	<artifactId>de.wicketpraxis--parentPom</artifactId>
+  	<version>1.0-SNAPSHOT</version>
+<!--
+		<relativePath>../de.wicketpraxis- -parentPom</relativePath>
+-->
+	</parent>
+
+  <artifactId>${pom.groupId}--persistence</artifactId>
+  <name>${pom.groupId}--${pom.artifactId} (Wicket Praxis - Persistence)</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>${pom.groupId}</groupId>
+      <artifactId>${pom.groupId}--dbconfig</artifactId>
+	  	<version>${pom.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${pom.groupId}</groupId>
+      <artifactId>${pom.groupId}--dbconfig-test</artifactId>
+	  	<version>${pom.version}</version>
+	  	<!-- Dieser Eintrag wurde auskommentiert, damit die Einstellungen
+	  	für die Testdatenbank auch beim Starten der Webanwendung benutzt werden.
+	  	 
+			<scope>test</scope>
+			 -->
+    </dependency>
+    <dependency>
+      <groupId>${pom.groupId}</groupId>
+      <artifactId>${pom.groupId}--dbconfig-schema-update</artifactId>
+	  	<version>${pom.version}</version>
+			<scope>test</scope>
+    </dependency>
+
+		<!-- Base -->
+    <dependency>
+      <groupId>${pom.groupId}</groupId>
+      <artifactId>${pom.groupId}--base</artifactId>
+	  	<version>${pom.version}</version>
+    </dependency>
+
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+<!--
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${springframework.version}</version>
+		</dependency> 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+-->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${springframework.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${springframework.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Hibernate -->
+		<!-- 
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>${hibernate-annotations.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+        </exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>${javassist.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-cglib-repack</artifactId>
+			<version>${cglib.version}</version>
+		</dependency> 
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>${cglib.version}</version>
+		</dependency> 
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt</artifactId>
+			<version>1.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.icu</groupId>
+			<artifactId>icu4j</artifactId>
+			<version>4.0.1</version>
+		</dependency>
+
+  </dependencies>
+
+	<properties>
+		<springframework.version>2.5.6</springframework.version>
+		<!-- 
+		<hibernate.version>3.3.0.CR1</hibernate.version>
+		 -->
+		<javassist.version>3.4.GA</javassist.version>
+		<hibernate-annotations.version>3.4.0.GA</hibernate-annotations.version>
+		<cglib.version>2.1_3</cglib.version>
+	</properties>
+
+</project>

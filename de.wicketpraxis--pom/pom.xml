@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*****************************************
+Quelltexte zum Buch: Praxisbuch Wicket
+(http://www.hanser.de/978-3-446-41909-4)
+
+Autor: Michael Mosmann
+(michael@mosmann.de)
+*****************************************/
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>de.wicketpraxis</groupId>
+	<artifactId>de.wicketpraxis--pom</artifactId>
+	<version>1.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>${pom.groupId}--${pom.artifactId} (Wicket Praxis - Pom)</name>
+	<url>http://wicket-praxis.de</url>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+<!--
+					<compilerArgument>-deprecation</compilerArgument>
+-->
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+	</dependencies>
+
+<!--
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+-->
+	<properties>
+		<junit.version>3.8.1</junit.version>
+		<slf4j.version>1.5.8</slf4j.version>
+	</properties>
+
+  <modules>
+		<module>base</module>
+		<module>dbconfig</module>
+		<module>dbconfig-test</module>
+		<module>dbconfig-schema-update</module>
+		<module>persistence</module>
+		<module>app</module>
+		<module>webapp</module>
+
+		<module>webapp-blog</module>
+	</modules>
+
+</project>

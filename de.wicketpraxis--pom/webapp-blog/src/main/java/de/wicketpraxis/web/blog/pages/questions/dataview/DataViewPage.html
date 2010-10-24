@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>DataTable Page</title>
+	</head>
+	<body>
+		
+		<form wicket:id="form">
+			<table>
+				<thead>
+					<tr>
+						<td colspan="3">
+							<span wicket:id="label"></span>
+							<span wicket:id="navigator"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>Vorname</th>
+						<th><a wicket:id="sortName">Name</a></th>
+						<th><a wicket:id="sortAlter">Alter</a></th>
+					</tr>
+					<tr>
+						<th><input wicket:id="vorname"></th>
+						<th><input wicket:id="name"></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr wicket:id="dataView">
+						<td><span wicket:id="vorname"></span></td>
+						<td><span wicket:id="name"></span></td>
+						<td><span wicket:id="alter"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		
+		</form>
+	</body>
+</html>

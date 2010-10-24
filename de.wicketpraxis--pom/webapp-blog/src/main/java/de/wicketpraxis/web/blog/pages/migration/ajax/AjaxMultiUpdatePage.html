@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>AjaxMultiUpdate</title>
+		<style type="text/css">
+			.block
+			{
+				border:1px solid dashed;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Ajax Test</h1>
+		<div wicket:id="feedback"></div>
+		
+		<div wicket:id="ajaxUpdate" class="block">
+			<span wicket:id="count">123</span> <a wicket:id="link">+1</a>
+			<div wicket:id="ajaxUpdate" class="block">
+				<span wicket:id="count">123</span> <a wicket:id="link">+1</a>
+				<div wicket:id="ajaxUpdate" class="block">
+					<span wicket:id="count">123</span> <a wicket:id="link">+1</a>
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

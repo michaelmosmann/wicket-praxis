@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<title>AjaxJavascript Overview</title>
+	</head>
+	<body>
+		<wicket:container wicket:id="mouse"></wicket:container>
+		<div id="boxA">
+			Hier steht Text drin.
+		</div>
+		<div id="boxB">
+		</div>
+		
+		<form id="formA">
+			<input type="text" name="Zahl" value="12">
+		</form>
+	</body>
+	
+	<script>
+		// Sucht ein Element oder Elemente mit einer ID
+		// dazu muss das Attribut id gesetzt sein.
+		boxA=Wicket.$('boxA');
+		boxes=Wicket.$('boxA','boxB');
+		boxC=Wicket.$('boxC');
+
+		// Log with prefix Info:
+		Wicket.Log.info("this example works");
+		// Log without any pre
+		Wicket.Log.log("log message");
+
+		// Log with prefix Error:
+		if (boxA==null) Wicket.Log.error("boxA not found");
+		if (boxes==null) Wicket.Log.error("boxes not found");
+		if (boxC==null) Wicket.Log.error("boxC not found");
+
+		// replace outer html
+		Wicket.replaceOuterHtml(boxes[1],"<div>replaced</div>");
+
+		// form 
+		formA=Wicket.$('formA');
+		formAser=Wicket.Form.serialize(formA,false);
+		
+	</script>
+</html>

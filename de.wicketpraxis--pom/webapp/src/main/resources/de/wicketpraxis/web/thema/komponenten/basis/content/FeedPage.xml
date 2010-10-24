@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:wicket="http://wicket.apache.org">
+  <author>
+    <name>Michael Mosmann</name>
+  </author>
+  <title wicket:id="Title">Titel des Weblogs</title>
+  <id wicket:id="ID">urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6</id>
+  <updated wicket:id="Updated">2003-12-14T10:20:09Z</updated>
+ 
+  <entry wicket:id="entries">
+    <title wicket:id="Title">Titel des Weblog-Eintrags</title>
+    <link wicket:id="Link" href="http://example.org/2003/12/13/atom-beispiel"/>
+    <id wicket:id="ID">urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a</id>
+    <updated wicket:id="Updated">2003-12-13T18:30:02Z</updated>
+    <summary type="html" wicket:id="Summary">Zusammenfassung des Weblog-Eintrags</summary>
+    <content type="html" wicket:id="Content">Volltext des Weblog-Eintrags</content>
+  </entry>
+</feed>

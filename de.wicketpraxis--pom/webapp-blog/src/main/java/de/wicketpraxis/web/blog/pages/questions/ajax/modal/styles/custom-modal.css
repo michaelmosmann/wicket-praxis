@@ -1,0 +1,31 @@
+div.wicket-modal div.w_content_3
+{
+	border:0px;
+}
+
+div.wicket-modal div.w_caption
+{
+	background-color: inherit;
+}
+
+div.wicket-modal a.w_close {	
+	top: 3px;
+}
+
+div.wicket-modal div.custom div.w_left,
+div.wicket-modal div.custom div.w_right {
+	background-image: url('frame-custom-2-alpha.png'); 
+	_background-image: url('frame-custom-2-ie.png');
+}
+
+
+div.wicket-modal div.custom div.w_top,
+div.wicket-modal div.custom div.w_bottom,
+div.wicket-modal div.custom div.w_topLeft,
+div.wicket-modal div.custom div.w_topRight,
+div.wicket-modal div.custom div.w_bottomRight,
+div.wicket-modal div.custom div.w_bottomLeft,
+div.wicket-modal div.custom a.w_close {
+	background-image: url('frame-custom-1-alpha.png'); 
+	_background-image: url('frame-custom-1-ie.png');
+}

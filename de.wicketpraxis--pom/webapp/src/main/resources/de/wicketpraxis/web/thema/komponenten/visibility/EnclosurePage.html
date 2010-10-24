@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>Enclosure Page</title>
+	</head>
+	<body style="width:450px;">
+		<!-- Mit Ajax besser ne Border -->
+		<wicket:enclosure>
+			<div style="border:1px dotted black;">
+				<span wicket:id="view"></span>
+			</div>
+		</wicket:enclosure>
+		
+		<wicket:enclosure>
+			<div style="border:1px solid black;">
+				<span wicket:id="hide"></span>
+			</div>
+		</wicket:enclosure>
+		
+		<wicket:enclosure child="hide2">
+			<div style="border:2px solid green;">
+				<span wicket:id="view2"></span><br>
+				<span wicket:id="hide2"></span>
+			</div>
+		</wicket:enclosure>
+		<!-- 
+		<a wicket:id="link">Licht an</a>
+		 -->
+	</body>
+</html>

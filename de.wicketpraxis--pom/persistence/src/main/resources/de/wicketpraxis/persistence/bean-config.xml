@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*****************************************
+Quelltexte zum Buch: Praxisbuch Wicket
+(http://www.hanser.de/978-3-446-41909-4)
+
+Autor: Michael Mosmann
+(michael@mosmann.de)
+*****************************************/
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+	">
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="annotatedClasses">
+			<list>
+				<value>de.wicketpraxis.persistence.beans.User</value>
+				<value>de.wicketpraxis.persistence.beans.Article</value>
+			</list>
+		</property>
+		<property name="hibernateProperties" ref="hibernateProperties"></property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+	
+	<bean id="userDao" class="de.wicketpraxis.persistence.dao.UserDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="articleDao" class="de.wicketpraxis.persistence.dao.ArticleDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+</beans>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*****************************************
+Quelltexte zum Buch: Praxisbuch Wicket
+(http://www.hanser.de/978-3-446-41909-4)
+
+Autor: Michael Mosmann
+(michael@mosmann.de)
+*****************************************/
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+	">
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+		<property name="url" value="jdbc:hsqldb:mem:test"/>
+		<property name="username" value="sa"/>
+		<property name="password" value=""/>
+	</bean>
+	
+	<util:map id="hibernateProperties" map-class="java.util.Properties" key-type="java.lang.String" value-type="java.lang.String">
+		<entry key="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"></entry>
+
+		<entry key="hibernate.connection.pool_size" value="10"></entry>			
+		<entry key="hibernate.statement_cache.size"  value="10"></entry>
+
+		<entry key="hibernate.hbm2ddl.auto" value="create-drop"></entry>
+
+		<entry key="hibernate.bytecode.use_reflection_optimizer" value="false"></entry>
+
+		<entry key="hibernate.show_sql" value="true"></entry>
+		<entry key="hibernate.format_sql" value="true"></entry>
+	</util:map>
+</beans>

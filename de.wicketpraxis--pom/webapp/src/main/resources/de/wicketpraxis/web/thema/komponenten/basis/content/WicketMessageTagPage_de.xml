@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="message.text"><![CDATA[Das ist der Text in <strong>Deutsch</strong>]]></entry>
+	<entry key="message.style">color:blue</entry>
+	<entry key="message2.style">color:green</entry>
+</properties>

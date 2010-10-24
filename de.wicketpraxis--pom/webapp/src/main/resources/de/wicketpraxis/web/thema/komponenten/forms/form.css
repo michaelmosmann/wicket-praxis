@@ -1,0 +1,36 @@
+ul.feedbackPanel
+{
+	padding-left:0px;
+}
+li.feedbackPanelINFO
+{
+	border:1px dashed green;
+	background-color:#ddffdd;
+	list-style-type: none;
+}
+li.feedbackPanelWARNING
+{
+	border:1px dotted #cccc00;
+	background-color:#ffffcc;
+	list-style-type: none;
+}
+li.feedbackPanelERROR
+{
+	border:1px solid red;
+	background-color:#ffcccc;
+	list-style-type: none;
+	color:red;
+	font-weight:bold;
+}
+
+div.ERROR
+{
+	border:1px solid red;
+	background-color:#ffcccc;
+}
+
+div.ERROR input
+{
+	border:1px solid red;
+	margin:4px;
+}

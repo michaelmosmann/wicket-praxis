@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>Simple Fragment Page</title>
+	</head>
+	<body style="width:450px;">
+		<wicket:fragment wicket:id="fragment1">
+			<div style="background-color: #ffcccc; border:1px solid #cc8888;">
+				<span wicket:id="message">Message</span>
+			</div>	
+		</wicket:fragment>
+		<wicket:fragment wicket:id="fragment2">
+			<div style="background-color: #ccffcc; border:1px solid #88cc88;">
+				<span wicket:id="message">Message</span>
+			</div>	
+		</wicket:fragment>
+		
+		<wicket:container wicket:id="p1"></wicket:container>
+		<wicket:container wicket:id="p2"></wicket:container>
+		<wicket:container wicket:id="p3"></wicket:container>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>Some Model Page</title>
+		<style>
+			table
+			{
+				border-collapse: collapse;
+			}
+			table td
+			{
+				border:1px solid #e0e0e0;
+				text-align: right;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Rechnung</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Posten</th>
+					<th>Betrag</th>
+					<th>MwSt Anteil</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr wicket:id="list">
+					<td><span wicket:id="name">Name</span></td>
+					<td><span wicket:id="betrag">12,0</span> &euro;</td>
+					<td><span wicket:id="mwst">2,0</span> &euro;</td>
+				</tr>
+				<tr>
+					<td><strong>Summe</strong></td>
+					<td><strong><span wicket:id="summe">Alles</span></strong></td>
+					<td><strong><span wicket:id="mwst">19% davon</span> &euro;</strong></td>					
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

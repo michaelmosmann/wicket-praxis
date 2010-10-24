@@ -1,0 +1,20 @@
+body
+{
+	background-color:#a5a5a5;
+}
+
+.page
+{
+	background-color:#f0f0f0;
+}
+
+.head
+{
+	background-color:#e0e0e0;
+}
+
+.box
+{
+	border:1px dashed red;
+	margin:4px;
+}

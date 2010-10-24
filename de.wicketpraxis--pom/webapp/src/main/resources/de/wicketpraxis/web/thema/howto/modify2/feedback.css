@@ -1,0 +1,36 @@
+.feedback div
+{
+	border: 1px solid black;
+	padding:4px;
+	margin-bottom:2px;
+}
+
+.feedback div.info
+{
+  background-color:#E6EFC2;
+  border:1px solid #529214;
+  color:#325202;
+}
+
+.feedback div.warning
+{
+	border:1px solid #c70;
+	background-color: #ff8;
+	color:#830;
+}
+
+.feedback div.error
+{
+  background-color:#fbe3e4;
+  border:1px solid #e57677;
+  color:#d12f19;
+  font-weight: bold;
+}
+
+.feedback div.debug
+{
+  background-color:#C2EFE6;
+  border:1px solid #149252;
+  color:#025232;
+}
+

@@ -1,0 +1,56 @@
+.content
+{
+	width:1024px;
+	margin:auto;
+	background-color:#e0e0e0;
+}
+.nav
+{
+	width:200px;
+	background-color:#d0d0d0;
+	float:left;
+}
+
+.main
+{
+	width:800px;
+	height:600px;
+	margin-left:200px;
+	padding-left:20px;
+	background-color:#f0f0f0;
+}
+
+.clear
+{
+	clear:both;
+}
+
+.nav ul
+{
+	margin:0px;
+	padding:0px;
+}
+
+.nav ul li
+{
+	margin:0px;
+	padding:0px;
+	padding-bottom:4px;
+	padding-top:4px;
+	list-style: none;
+}
+
+li a.level1
+{
+	padding-left:10px;
+}
+
+li a.level2
+{
+	padding-left:20px;
+}
+
+.active
+{
+	font-weight:bold;
+}

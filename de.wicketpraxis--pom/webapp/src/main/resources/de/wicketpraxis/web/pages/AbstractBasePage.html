@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title wicket:id="pageTitle">Wicket Praxis</title>
+	<!-- http://developer.yahoo.com/yui/grids/#start -->
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css">
+</head>
+	<body>
+		<div id="doc" class="yui-t4"> 
+			<div id="hd">
+				<div class="yui-g"> 
+					<div class="yui-b first">
+						<h1 wicket:id="title">Wicket Praxis Head</h1>
+					</div>
+					<div class="yui-b">
+						<wicket:container wicket:id="head"></wicket:container>
+					</div>
+				</div>
+			</div> 
+			<div id="bd"> 
+				<div class="yui-b nav">What</div> 
+				<div id="yui-main"> 
+					<div class="yui-b"><wicket:child></wicket:child></div> 
+				</div> 
+			</div> 
+			<div id="ft">
+				Footer
+			</div> 
+		</div> 
+
+	</body>
+</html>

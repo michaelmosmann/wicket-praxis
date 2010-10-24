@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*****************************************
+Quelltexte zum Buch: Praxisbuch Wicket
+(http://www.hanser.de/978-3-446-41909-4)
+
+Autor: Michael Mosmann
+(michael@mosmann.de)
+*****************************************/
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+	">
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost/wicketpraxis?characterEncoding=utf-8"/>
+		<property name="username" value="wicketpraxis"/>
+		<property name="password" value="wicketpraxis"/>
+	</bean>
+	
+	<util:map id="hibernateProperties" map-class="java.util.Properties" key-type="java.lang.String" value-type="java.lang.String">
+		<entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"></entry>
+		<!-- 
+		<entry key="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"></entry>
+ -->
+		<entry key="hibernate.connection.pool_size" value="10"></entry>			
+		<entry key="hibernate.statement_cache.size"  value="10"></entry>
+	</util:map>
+	
+ </beans>

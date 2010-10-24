@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>FilterDataTable Page</title>
+		<style>
+			table.liste
+			{
+				border-collapse: collapse;
+				width:400px;
+			}
+			table.liste tbody td
+			{
+				border:1px solid #a0a0a0;
+			}
+			table.liste tbody tr.even td
+			{
+				background-color:#f0f0f0;
+			}
+			.wicket_orderUp
+			{
+				border-top: 2px solid red;
+			}
+			.wicket_orderDown
+			{
+				border-bottom: 2px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<form wicket:id="form">
+			<input type="hidden" wicket:id="focus-tracker">
+			<wicket:container wicket:id="focus-restore"></wicket:container>
+			<table wicket:id="list" class="liste">
+			</table>
+		</form>
+	</body>
+</html>

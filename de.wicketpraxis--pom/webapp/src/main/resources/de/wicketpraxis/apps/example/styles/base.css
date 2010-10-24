@@ -1,0 +1,79 @@
+body
+{
+	background-color:#e5e5e5;
+}
+
+.page
+{
+	background-color:#f0f0f0;
+}
+
+.nav
+{
+	background-color:white;
+}
+
+.content
+{
+	background-color:white;
+}
+
+
+.logoDiv
+{
+	border:1px solid white; 
+	background-color:red; 
+	text-align: center; 
+	vertical-align: middle;
+	color:white;
+	font-size: 30px;
+	height: 70px;
+	width: auto;
+}
+
+.menu
+{
+	border:1px solid red;
+}
+
+.menu ul
+{
+	margin-bottom:0px;
+}
+
+.menu a
+{
+	color:black;
+}
+
+.menu_main
+{
+	display: block;
+	background-color: #f0f0f0;
+}
+
+.menu li
+{
+	list-style: none;
+	list-style-position: inside;
+	margin: 0px;
+}
+
+
+.menu_sub
+{
+	display: block;
+	padding-left:10px;
+	background-color: #fcfcfc;
+}
+
+.active
+{
+	font-weight:bold;
+}
+
+.debug
+{
+	border:1px dashed red;
+	
+}
