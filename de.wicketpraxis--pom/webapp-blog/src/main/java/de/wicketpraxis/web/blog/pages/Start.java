@@ -40,6 +40,7 @@ import de.wicketpraxis.web.blog.pages.questions.listview.ajax.ListViewAjaxRefres
 import de.wicketpraxis.web.blog.pages.questions.listview.model.ListViewModelChangePage;
 import de.wicketpraxis.web.blog.pages.questions.migration.forms.KomplexFormPage;
 import de.wicketpraxis.web.blog.pages.questions.migration.forms.MinimalFormPage;
+import de.wicketpraxis.web.blog.pages.questions.seo.ajax.SeoAjaxLinksPage;
 import de.wicketpraxis.web.blog.pages.questions.transparent.TransparentResolverPage;
 import de.wicketpraxis.web.blog.pages.questions.transparent.lazy.NoTransparentResolverPage;
 import de.wicketpraxis.web.blog.wicketstuff.StuffPage;
@@ -75,6 +76,7 @@ public class Start extends WebPage {
 		pages.add(ModalWindowPage.class);
 		pages.add(ParameterizedAjaxPage.class);
 		pages.add(ComponentFactoryPage.class);
+		pages.add(SeoAjaxLinksPage.class);
 
 		add(new ListView<Class<? extends WebPage>>("list", pages) {
 
