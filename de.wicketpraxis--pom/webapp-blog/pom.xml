@@ -253,7 +253,7 @@ Autor: Michael Mosmann
   </dependencies>
 
 	<properties>
-		<wicket.version>1.4.8</wicket.version>
-		<wicketstuff.version>1.4.8</wicketstuff.version>
+		<wicket.version>1.4.14</wicket.version>
+		<wicketstuff.version>1.4.14</wicketstuff.version>
 	</properties>
 </project>
