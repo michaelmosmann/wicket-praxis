@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.thema.howto.mount;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,20 +20,18 @@ import org.apache.wicket.protocol.http.WebRequest;
 import org.apache.wicket.protocol.http.request.WebClientInfo;
 import org.apache.wicket.request.ClientInfo;
 
-public class SessionTimeoutPage extends WebPage
-{
-	public SessionTimeoutPage()
-	{
+public class SessionTimeoutPage extends WebPage {
+
+	public SessionTimeoutPage() {
 		// nicht sicher, wann das zündet und welcher referer das ist..
-		
+
 		WebRequest wicketRequest = (WebRequest) getRequest();
 		HttpServletRequest request = wicketRequest.getHttpServletRequest();
 		String referer = request.getHeader("Referer");
-		
+
 		boolean cookies = true;
 		ClientInfo clientInfo = Session.get().getClientInfo();
-		if (clientInfo instanceof WebClientInfo)
-		{
+		if (clientInfo instanceof WebClientInfo) {
 			WebClientInfo wc = (WebClientInfo) clientInfo;
 			cookies = wc.getProperties().isCookiesEnabled();
 		}
@@ -44,14 +42,14 @@ public class SessionTimeoutPage extends WebPage
 		WebMarkupContainer text = new WebMarkupContainer("text");
 		text.add(link);
 
-		BookmarkablePageLink<? extends WebPage> start = new BookmarkablePageLink<WebPage>("start", Application.get().getHomePage());
+		BookmarkablePageLink<? extends WebPage> start = new BookmarkablePageLink<WebPage>("start",
+				Application.get().getHomePage());
 		add(start);
 
-		if ((referer != null) && (referer.indexOf("wicket:") == -1))
-		{
+		if ((referer != null) && (referer.indexOf("wicket:") == -1)) {
 			start.setVisible(false);
-		}
-		else text.setVisible(false);
+		} else
+			text.setVisible(false);
 
 		add(text);
 	}

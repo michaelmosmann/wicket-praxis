@@ -17,14 +17,13 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 
-public class ListViewAjaxRefreshPage extends WebPage
-{
+public class ListViewAjaxRefreshPage extends WebPage {
+
 	String search;
 
 	FileSearchService fileSearchService = new FileSearchService();
 
-	public ListViewAjaxRefreshPage()
-	{
+	public ListViewAjaxRefreshPage() {
 
 		final Form<Void> form = new Form<Void>("search");
 		add(form);
@@ -36,11 +35,10 @@ public class ListViewAjaxRefreshPage extends WebPage
 		final WebMarkupContainer resultcontainer = new WebMarkupContainer("resultcontainer");
 		add(resultcontainer.setOutputMarkupId(true));
 
-		final ListView<CustomFileDescription> files = new ListView<CustomFileDescription>("files", results)
-		{
+		final ListView<CustomFileDescription> files = new ListView<CustomFileDescription>("files", results) {
+
 			@Override
-			protected void populateItem(ListItem<CustomFileDescription> item)
-			{
+			protected void populateItem(ListItem<CustomFileDescription> item) {
 				final CustomFileDescription fileDesc = item.getModelObject();
 				item.setModel(new CompoundPropertyModel<CustomFileDescription>(fileDesc));
 				item.add(new Label("name"));
@@ -50,12 +48,10 @@ public class ListViewAjaxRefreshPage extends WebPage
 		// files.setReuseItems(true);
 		resultcontainer.add(files);
 
-		final IndicatingAjaxButton buttquery = new IndicatingAjaxButton("submit", form)
-		{
+		final IndicatingAjaxButton buttquery = new IndicatingAjaxButton("submit", form) {
 
 			@Override
-			protected void onSubmit(AjaxRequestTarget target, Form<?> form)
-			{
+			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				final List<CustomFileDescription> results = fileSearchService.search(query.getDefaultModelObjectAsString());
 				System.out.println(results.size());
 				files.setDefaultModelObject(results);
@@ -66,33 +62,29 @@ public class ListViewAjaxRefreshPage extends WebPage
 
 	}
 
-	static class CustomFileDescription implements Serializable
-	{
+	static class CustomFileDescription implements Serializable {
+
 		String _name;
 
 		long _lastModified;
 
-		public CustomFileDescription(String name, long last)
-		{
+		public CustomFileDescription(String name, long last) {
 			_name = name;
 			_lastModified = last;
 		}
 
-		public String getName()
-		{
+		public String getName() {
 			return _name;
 		}
 
-		public long getLastModified()
-		{
+		public long getLastModified() {
 			return _lastModified;
 		}
 	}
 
-	static class FileSearchService
-	{
-		public List<CustomFileDescription> search(String defaultModelObjectAsString)
-		{
+	static class FileSearchService {
+
+		public List<CustomFileDescription> search(String defaultModelObjectAsString) {
 			ArrayList<CustomFileDescription> ret = new ArrayList<CustomFileDescription>();
 			ret.add(new CustomFileDescription("klaus", new Date().getTime()));
 			ret.add(new CustomFileDescription("bert", new Date().getTime()));

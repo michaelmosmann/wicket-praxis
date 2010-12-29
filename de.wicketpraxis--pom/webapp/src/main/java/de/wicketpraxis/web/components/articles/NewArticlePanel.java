@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.components.articles;
 
 import org.apache.wicket.feedback.ContainerFeedbackMessageFilter;
@@ -23,48 +23,45 @@ import de.wicketpraxis.persistence.beans.Article;
 import de.wicketpraxis.persistence.beans.User;
 import de.wicketpraxis.persistence.dao.ArticleDao;
 
-public class NewArticlePanel extends Panel
-{
-	@SpringBean(name=ArticleDao.BEAN_ID)
+public class NewArticlePanel extends Panel {
+
+	@SpringBean(name = ArticleDao.BEAN_ID)
 	ArticleDao _articleDao;
 
 	Model<Article> _model;
-	
+
 	IModel<User> _userModel;
-	
-	public NewArticlePanel(String id,IModel<User> userModel)
-	{
+
+	public NewArticlePanel(String id, IModel<User> userModel) {
 		super(id);
-		
-		_userModel=userModel;
-		
-		_model=Model.of(new Article());
-		
-		Form<Article> form=new Form<Article>("form",new CompoundPropertyModel<Article>(_model))
-		{
+
+		_userModel = userModel;
+
+		_model = Model.of(new Article());
+
+		Form<Article> form = new Form<Article>("form", new CompoundPropertyModel<Article>(_model)) {
+
 			@Override
-			protected void onSubmit()
-			{
+			protected void onSubmit() {
 				Article thingy = _model.getObject();
 				thingy.setUser(_userModel.getObject());
 				_articleDao.save(thingy);
-				
+
 				_model.setObject(new Article());
 			}
 		};
-		
+
 		form.add(new TextField<String>("Title").setRequired(true));
 		form.add(new TextArea<String>("Text").setRequired(true));
 		form.add(new Button("submit"));
-		
+
 		add(form);
-		
-		add(new FeedbackPanel("feedback",new ContainerFeedbackMessageFilter(this)));
+
+		add(new FeedbackPanel("feedback", new ContainerFeedbackMessageFilter(this)));
 	}
-	
+
 	@Override
-	protected void detachModel()
-	{
+	protected void detachModel() {
 		super.detachModel();
 		_userModel.detach();
 	}

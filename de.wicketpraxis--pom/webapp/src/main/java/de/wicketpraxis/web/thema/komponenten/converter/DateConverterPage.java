@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.thema.komponenten.converter;
 
 import java.text.DateFormat;
@@ -19,38 +19,34 @@ import org.apache.wicket.util.convert.IConverter;
 import de.wicketpraxis.web.converter.CustomDateConverter;
 import de.wicketpraxis.web.thema.TitleAnnotation;
 
-@TitleAnnotation(title="Date Converter")
-public class DateConverterPage extends WebPage
-{
-	public DateConverterPage()
-	{
+@TitleAnnotation(title = "Date Converter")
+public class DateConverterPage extends WebPage {
+
+	public DateConverterPage() {
 		Model<Date> model = Model.of(new Date());
-		add(new Label("date",model));
-		add(new DateLabel("dateFull",model,DateFormat.FULL));
-		add(new DateLabel("dateMedium",model,DateFormat.MEDIUM));
-		add(new DateLabel("dateShort",model,DateFormat.SHORT));
-		add(new DateLabel("dateTime",model,DateFormat.SHORT,DateFormat.LONG));
+		add(new Label("date", model));
+		add(new DateLabel("dateFull", model, DateFormat.FULL));
+		add(new DateLabel("dateMedium", model, DateFormat.MEDIUM));
+		add(new DateLabel("dateShort", model, DateFormat.SHORT));
+		add(new DateLabel("dateTime", model, DateFormat.SHORT, DateFormat.LONG));
 	}
-	
-	static class DateLabel extends Label
-	{
+
+	static class DateLabel extends Label {
+
 		IConverter _converter;
-		
-		public DateLabel(String id, IModel<?> model,int dateFormat)
-		{
+
+		public DateLabel(String id, IModel<?> model, int dateFormat) {
 			super(id, model);
-			_converter=new CustomDateConverter(dateFormat);
+			_converter = new CustomDateConverter(dateFormat);
 		}
-		
-		public DateLabel(String id, IModel<?> model,int dateFormat,int timeFormat)
-		{
+
+		public DateLabel(String id, IModel<?> model, int dateFormat, int timeFormat) {
 			super(id, model);
-			_converter=new CustomDateConverter(dateFormat,timeFormat);
+			_converter = new CustomDateConverter(dateFormat, timeFormat);
 		}
-		
+
 		@Override
-		public IConverter getConverter(Class<?> type)
-		{
+		public IConverter getConverter(Class<?> type) {
 			return _converter;
 		}
 	}

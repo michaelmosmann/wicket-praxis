@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.apps.session.pages;
 
 import org.apache.wicket.markup.html.WebPage;
@@ -21,39 +21,30 @@ import de.wicketpraxis.apps.session.session.SecurePageSession;
 import de.wicketpraxis.persistence.beans.User;
 import de.wicketpraxis.persistence.dao.UserDao;
 
-public class LoginPage extends AbstractBasePage
-{
-	@SpringBean(name=UserDao.BEAN_ID)
+public class LoginPage extends AbstractBasePage {
+
+	@SpringBean(name = UserDao.BEAN_ID)
 	UserDao _userDao;
-	
-	public LoginPage()
-	{
+
+	public LoginPage() {
 		add(new FeedbackPanel("feedback"));
-		
-		Form<LoginBean> form=new Form<LoginBean>("form",new CompoundPropertyModel<LoginBean>(new LoginBean()))
-		{
+
+		Form<LoginBean> form = new Form<LoginBean>("form", new CompoundPropertyModel<LoginBean>(new LoginBean())) {
+
 			@Override
-			protected void onSubmit()
-			{
+			protected void onSubmit() {
 				LoginBean loginBean = getModel().getObject();
 				User user = _userDao.getByEMail(loginBean.getEMail());
-				if (user!=null)
-				{
-					if (user.isPasswordValid(loginBean.getPassword()))
-					{
+				if (user != null) {
+					if (user.isPasswordValid(loginBean.getPassword())) {
 						SecurePageSession.get().setUser(user);
-						if (!continueToOriginalDestination())
-						{
+						if (!continueToOriginalDestination()) {
 							setResponsePage(SecurePageApplication.get().getHomePage());
 						}
-					}
-					else
-					{
+					} else {
 						error("EMail oder Passwort falsch (Passwort natürlich)");
 					}
-				}
-				else
-				{
+				} else {
 					error("EMail oder Passwort falsch (EMail natürlich)");
 				}
 			}

@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,83 +33,73 @@ import de.wicketpraxis.web.thema.howto.res.shared.RssFeedPage;
 import de.wicketpraxis.web.thema.howto.res.shared.SharedResourcesPage;
 import de.wicketpraxis.wicket.util.resource.MavenDevResourceStreamLocator;
 
-public class WicketPraxisApplication extends WebApplication
-{
+public class WicketPraxisApplication extends WebApplication {
+
 	@Override
-	protected void init()
-	{
+	protected void init() {
 		super.init();
 
 		addComponentInstantiationListener(new SpringComponentInjector(this));
 
-		if (DEVELOPMENT.equalsIgnoreCase(getConfigurationType()))
-		{
+		if (DEVELOPMENT.equalsIgnoreCase(getConfigurationType())) {
 			getResourceSettings().setResourceStreamLocator(new MavenDevResourceStreamLocator());
 		}
 
-		IAuthorizationStrategy strategy = new SimplePageAuthorizationStrategy(SecurePageInterface.class, getHomePage())
-		{
+		IAuthorizationStrategy strategy = new SimplePageAuthorizationStrategy(SecurePageInterface.class, getHomePage()) {
+
 			@Override
-			protected boolean isAuthorized()
-			{
+			protected boolean isAuthorized() {
 				return WicketPraxisSession.get().isUserLogin();
 			}
 		};
-		
+
 		getSecuritySettings().setAuthorizationStrategy(strategy);
-		
+
 		PageMount.init(this);
 		SharedResourcesPage.init(this);
 		RssFeedPage.init(this);
 		LinksPage.init(this);
-		
+
 		getResourceSettings().setDisableGZipCompression(true);
-//		getResourceSettings().setAddLastModifiedTimeToResourceReferenceUrl(true);
-//		getMarkupSettings().setAutomaticLinking(true);
+		//		getResourceSettings().setAddLastModifiedTimeToResourceReferenceUrl(true);
+		//		getMarkupSettings().setAutomaticLinking(true);
 	}
 
-	Class<? extends Page> _homePage=BootStrap.class;
-	
+	Class<? extends Page> _homePage = BootStrap.class;
+
 	@Override
-	public Class<? extends Page> getHomePage()
-	{
+	public Class<? extends Page> getHomePage() {
 		return _homePage;
 	}
-	
-	public void setHomePage(Class<? extends Page> homePage)
-	{
-		_homePage=homePage;
+
+	public void setHomePage(Class<? extends Page> homePage) {
+		_homePage = homePage;
 	}
 
-	public Class<? extends Page> getUserHomePage()
-	{
+	public Class<? extends Page> getUserHomePage() {
 		return UserStartPage.class;
 	}
 
 	@Override
-	public Session newSession(Request request, Response response)
-	{
+	public Session newSession(Request request, Response response) {
 		return new WicketPraxisSession(request);
 	}
-	
-//	@Override
-//	protected IConverterLocator newConverterLocator()
-//	{
-//		return new ConverterLocatorPage.CustomConverterLocator(super.newConverterLocator());
-//	}
-	
-  /**
-   * @see org.apache.wicket.protocol.http.WebApplication#newWebRequest(javax.servlet.http.HttpServletRequest)
-   */
-  @Override
-  protected WebRequest newWebRequest(HttpServletRequest servletRequest)
-  {
-      return new UploadWebRequest(servletRequest);
-  }
-	
 
-	public static WicketPraxisApplication get()
-	{
+	//	@Override
+	//	protected IConverterLocator newConverterLocator()
+	//	{
+	//		return new ConverterLocatorPage.CustomConverterLocator(super.newConverterLocator());
+	//	}
+
+	/**
+	 * @see org.apache.wicket.protocol.http.WebApplication#newWebRequest(javax.servlet.http.HttpServletRequest)
+	 */
+	@Override
+	protected WebRequest newWebRequest(HttpServletRequest servletRequest) {
+		return new UploadWebRequest(servletRequest);
+	}
+
+	public static WicketPraxisApplication get() {
 		return (WicketPraxisApplication) Application.get();
 	}
 }

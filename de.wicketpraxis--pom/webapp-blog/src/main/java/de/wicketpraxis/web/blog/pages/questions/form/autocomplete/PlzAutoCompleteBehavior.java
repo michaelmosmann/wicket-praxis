@@ -10,23 +10,21 @@ import java.util.List;
 import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AutoCompleteBehavior;
 import org.apache.wicket.markup.html.form.FormComponent;
 
+class PlzAutoCompleteBehavior extends AutoCompleteBehavior<PlzOrt> {
 
-class PlzAutoCompleteBehavior extends AutoCompleteBehavior<PlzOrt>
-{
 	PlzOrtListFactory _listFactory;
-	
-	public PlzAutoCompleteBehavior(PlzOrtListFactory listFactory, FormComponent<?> ortInput)
-	{
+
+	public PlzAutoCompleteBehavior(PlzOrtListFactory listFactory, FormComponent<?> ortInput) {
 		super(new PlzOrtRenderer(ortInput));
-		
-		_listFactory=listFactory;
+
+		_listFactory = listFactory;
 	}
 
 	@Override
-	protected Iterator<PlzOrt> getChoices(String input)
-	{
+	protected Iterator<PlzOrt> getChoices(String input) {
 		List<PlzOrt> list = _listFactory.getList(input);
-		if (list!=null) return list.iterator();
+		if (list != null)
+			return list.iterator();
 		return Collections.EMPTY_LIST.iterator();
 	}
 }

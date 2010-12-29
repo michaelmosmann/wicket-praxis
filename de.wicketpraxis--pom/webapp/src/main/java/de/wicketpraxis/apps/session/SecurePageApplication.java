@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.apps.session;
 
 import org.apache.wicket.Page;
@@ -24,41 +24,36 @@ import de.wicketpraxis.apps.session.pages.Start;
 import de.wicketpraxis.apps.session.session.SecurePageSession;
 import de.wicketpraxis.wicket.util.resource.MavenDevResourceStreamLocator;
 
-public class SecurePageApplication extends WebApplication
-{
+public class SecurePageApplication extends WebApplication {
+
 	@Override
-	protected void init()
-	{
+	protected void init() {
 		super.init();
 
 		addComponentInstantiationListener(new SpringComponentInjector(this));
 
-		if (DEVELOPMENT.equalsIgnoreCase(getConfigurationType()))
-		{
+		if (DEVELOPMENT.equalsIgnoreCase(getConfigurationType())) {
 			getResourceSettings().setResourceStreamLocator(new MavenDevResourceStreamLocator());
 		}
 
 		getSecuritySettings().setAuthorizationStrategy(new UserLoginSimplePageAuthStrategy(LoginPage.class));
-//		getSecuritySettings().setAuthorizationStrategy(new UserLoginSecureComponentAuthStrategy(LoginPage.class));
-//		getSecuritySettings().setAuthorizationStrategy(new UserLoginSecureComponentDisableAuthStrategy());
-		
-		if (false)
-		{
+		//		getSecuritySettings().setAuthorizationStrategy(new UserLoginSecureComponentAuthStrategy(LoginPage.class));
+		//		getSecuritySettings().setAuthorizationStrategy(new UserLoginSecureComponentDisableAuthStrategy());
+
+		if (false) {
 			ActionAuthorizationStrategy actionStrategy;
 			CompoundAuthorizationStrategy compoundStrategy;
 		}
 	}
 
 	@Override
-	public Class<? extends Page> getHomePage()
-	{
+	public Class<? extends Page> getHomePage() {
 		return Start.class;
 	}
-	
+
 	@Override
-	public Session newSession(Request request, Response response)
-	{
+	public Session newSession(Request request, Response response) {
 		return new SecurePageSession(request);
 	}
-	
+
 }

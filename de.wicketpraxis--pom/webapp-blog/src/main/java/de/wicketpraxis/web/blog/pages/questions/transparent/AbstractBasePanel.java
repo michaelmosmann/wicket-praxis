@@ -4,35 +4,33 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 
-public abstract class AbstractBasePanel extends Panel
-{
+public abstract class AbstractBasePanel extends Panel {
+
 	private WebMarkupContainer _border;
 
-	public AbstractBasePanel(String id)
-	{
+	public AbstractBasePanel(String id) {
 		super(id);
-		
-		_border = new WebMarkupContainer("border")
-		{
+
+		_border = new WebMarkupContainer("border") {
+
 			@Override
-			public boolean isTransparentResolver()
-			{
+			public boolean isTransparentResolver() {
 				return true;
 			}
 		};
 		_border.setOutputMarkupPlaceholderTag(true);
 		add(_border);
 	}
-	
-	public void hide(AjaxRequestTarget target)
-	{
+
+	public void hide(AjaxRequestTarget target) {
 		_border.setVisible(false);
-		if (target!=null) target.addComponent(_border);
+		if (target != null)
+			target.addComponent(_border);
 	}
-	
-	public void show(AjaxRequestTarget target)
-	{
+
+	public void show(AjaxRequestTarget target) {
 		_border.setVisible(true);
-		if (target!=null) target.addComponent(_border);
+		if (target != null)
+			target.addComponent(_border);
 	}
 }

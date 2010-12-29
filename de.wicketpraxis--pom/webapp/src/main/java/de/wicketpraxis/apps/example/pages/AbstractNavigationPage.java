@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.apps.example.pages;
 
 import java.util.List;
@@ -16,35 +16,32 @@ import de.wicketpraxis.apps.example.components.layout.Line;
 import de.wicketpraxis.apps.example.components.navigation.NavigationCallbackInterface;
 import de.wicketpraxis.apps.example.components.navigation.NavigationPanel;
 
-public abstract class AbstractNavigationPage extends AbstractBasePage
-{
-	public AbstractNavigationPage()
-	{
-		Line head= new Line("head");
-		Grid logo=new Grid("logo",2);
-		
-		Grid claim=new Grid("claim",14);
+public abstract class AbstractNavigationPage extends AbstractBasePage {
+
+	public AbstractNavigationPage() {
+		Line head = new Line("head");
+		Grid logo = new Grid("logo", 2);
+
+		Grid claim = new Grid("claim", 14);
 		claim.add(new Claim("claimPanel"));
-		
+
 		head.add(logo);
 		head.add(claim);
 		add(head);
-		
-		Line main = new Line("main")
-		{
+
+		Line main = new Line("main") {
+
 			@Override
-			public boolean isTransparentResolver()
-			{
+			public boolean isTransparentResolver() {
 				return true;
 			}
 		};
-		Grid nav = new Grid("navigation",4);
-		nav.add(new NavigationPanel("navigationPanel",getNavigation()));
-		Grid content = new Grid("content",12)
-		{
+		Grid nav = new Grid("navigation", 4);
+		nav.add(new NavigationPanel("navigationPanel", getNavigation()));
+		Grid content = new Grid("content", 12) {
+
 			@Override
-			public boolean isTransparentResolver()
-			{
+			public boolean isTransparentResolver() {
 				return true;
 			}
 		};
@@ -52,6 +49,6 @@ public abstract class AbstractNavigationPage extends AbstractBasePage
 		main.add(content);
 		add(main);
 	}
-	
+
 	protected abstract IModel<List<NavigationCallbackInterface>> getNavigation();
 }

@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.thema.howto.optimize;
 
 import org.apache.wicket.Page;
@@ -25,55 +25,51 @@ import org.apache.wicket.util.lang.Bytes;
 
 import de.wicketpraxis.web.thema.TitleAnnotation;
 
-@TitleAnnotation(space=true,title="Optimize Application Settings")
-public class OptimizePage extends WebPage
-{
+@TitleAnnotation(space = true, title = "Optimize Application Settings")
+public class OptimizePage extends WebPage {
+
 	/*
 	 * Code in Application
 	 */
-	public static void init(WebApplication _this)
-	{
-		if (false)
-		{
+	public static void init(WebApplication _this) {
+		if (false) {
 			// Application Settings
 			IApplicationSettings applicationSettings = _this.getApplicationSettings();
-			
+
 			// pages
 			applicationSettings.setAccessDeniedPage(Page.class);
 			applicationSettings.setInternalErrorPage(Page.class);
 			applicationSettings.setPageExpiredErrorPage(Page.class);
-			
+
 			applicationSettings.setDefaultMaximumUploadSize(Bytes.megabytes(12));
-			
+
 			// App Configuration
 			String configurationType = _this.getConfigurationType();
-			if (configurationType.equals(_this.DEVELOPMENT))
-			{
+			if (configurationType.equals(_this.DEVELOPMENT)) {
 				// fallback
 			}
-			if (configurationType.equals(_this.DEPLOYMENT))
-			{
-				
+			if (configurationType.equals(_this.DEPLOYMENT)) {
+
 			}
-			
+
 			// Converter Locator - überschreiben und weiterreichen
 			_this.getConverterLocator();
-			
+
 			IDebugSettings debugSettings = _this.getDebugSettings();
 			debugSettings.setAjaxDebugModeEnabled(true); // default in DEV
 			debugSettings.setComponentUseCheck(true); // default in DEV
 			debugSettings.setDevelopmentUtilitiesEnabled(true); // default in DEV
-			
+
 			// use with care
 			debugSettings.setLinePreciseReportingOnAddComponentEnabled(false);
 			debugSettings.setLinePreciseReportingOnNewComponentEnabled(false);
-			
+
 			// usefull for debugging - fills wicket:path attr in tag
 			debugSettings.setOutputComponentPath(false);
 			// sehr hilfreich, um zu sehen, von welcher komponente 
 			// welcher inhalt dargestellt wird - see kap debugging
 			debugSettings.setOutputMarkupContainerClassName(false);
-			
+
 			// unterschiedliche einstellungen in DEV und DEPLOYMENT
 			IMarkupSettings markupSettings = _this.getMarkupSettings();
 			// entfernt whitespaces aus markups - könnte was kaputt machen
@@ -84,28 +80,30 @@ public class OptimizePage extends WebPage
 			// das eingefügt .. hmm
 			markupSettings.setDefaultBeforeDisabledLink("<i>");
 			markupSettings.setDefaultAfterDisabledLink("</i>");
-			
+
 			// ??
 			markupSettings.setAutomaticLinking(false);
-			
+
 			IPageSettings pageSettings = _this.getPageSettings();
 			// keinen grund das zu deaktivieren
 			pageSettings.setAutomaticMultiWindowSupport(true);
-			
+
 			IRequestLoggerSettings requestLoggerSettings = _this.getRequestLoggerSettings();
 			requestLoggerSettings.setRequestLoggerEnabled(false);
 			/**
-21.05.2009 08:44:21 org.apache.wicket.protocol.http.RequestLogger log
-INFO: time=162,event=BookmarkablePage[de.wicketpraxis.web.thema.howto.KapHowto()],response=BookmarkablePage[de.wicketpraxis.web.thema.howto.KapHowto()],sessionid=null,sessionsize=1794,activerequests=0,maxmem=265M,total=25M,used=18M
+			 * 21.05.2009 08:44:21 org.apache.wicket.protocol.http.RequestLogger log
+			 * INFO: time=162,event=BookmarkablePage[de.wicketpraxis.web.thema.howto.KapHowto()],response=BookmarkablePage[de.
+			 * wicketpraxis
+			 * .web.thema.howto.KapHowto()],sessionid=null,sessionsize=1794,activerequests=0,maxmem=265M,total=25M,used=18M
 			 */
-			
+
 			IResourceSettings resourceSettings = _this.getResourceSettings();
 			resourceSettings.setAddLastModifiedTimeToResourceReferenceUrl(false);
 			resourceSettings.setDisableGZipCompression(false);
 			// kann evtl. zu problemen führen, wenn die js-lib nicht sauber ist..
 			resourceSettings.setJavascriptCompressor(new DefaultJavascriptCompressor());
 			resourceSettings.setThrowExceptionOnMissingResource(false);
-			
+
 			ISecuritySettings securitySettings = _this.getSecuritySettings();
 			// zugriff auf wicket:bookmarkablePage nicht mehr erlaubt, wenn true
 			securitySettings.setEnforceMounts(false);

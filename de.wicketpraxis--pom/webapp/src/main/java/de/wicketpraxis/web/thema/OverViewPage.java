@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.thema;
 
 import java.util.ArrayList;
@@ -29,15 +29,14 @@ import de.wicketpraxis.web.thema.req.KapRequest;
 import de.wicketpraxis.web.thema.sessions.KapSession;
 import de.wicketpraxis.web.thema.spring.KapSpring;
 
-@TitleAnnotation(title="Übersicht")
-public class OverViewPage extends WebPage
-{
-	public OverViewPage()
-	{
-		List<Class<? extends AbstractKapitel>> pages=new ArrayList<Class<? extends AbstractKapitel>>();
-		
-		add(new BookmarkablePageLink<OrgStart>("start",OrgStart.class));
-		
+@TitleAnnotation(title = "Übersicht")
+public class OverViewPage extends WebPage {
+
+	public OverViewPage() {
+		List<Class<? extends AbstractKapitel>> pages = new ArrayList<Class<? extends AbstractKapitel>>();
+
+		add(new BookmarkablePageLink<OrgStart>("start", OrgStart.class));
+
 		pages.add(KapRequest.class);
 		pages.add(KapModels.class);
 		pages.add(KapKomponenten.class);
@@ -46,22 +45,22 @@ public class OverViewPage extends WebPage
 		pages.add(KapMetaData.class);
 		pages.add(KapHowto.class);
 		pages.add(KapDebugging.class);
-		
+
 		final Map<Class<? extends AbstractKapitel>, String> classNameMap = Util.getClassNameMap(pages);
-		
-		ListView<Class<? extends AbstractKapitel>> listView = new ListView<Class<? extends AbstractKapitel>>("list",pages)
-		{
-			int _idx=0;
-			
+
+		ListView<Class<? extends AbstractKapitel>> listView = new ListView<Class<? extends AbstractKapitel>>("list", pages) {
+
+			int _idx = 0;
+
 			@Override
-			protected void populateItem(ListItem<Class<? extends AbstractKapitel>> item)
-			{
+			protected void populateItem(ListItem<Class<? extends AbstractKapitel>> item) {
 				_idx++;
 				Class<? extends AbstractKapitel> pageClass = item.getModelObject();
-				item.add(new BookmarkablePageLink<Page>("link",pageClass).add(new Label("label",""+_idx+". "+classNameMap.get(pageClass))));
+				item.add(new BookmarkablePageLink<Page>("link", pageClass).add(new Label("label", "" + _idx + ". "
+						+ classNameMap.get(pageClass))));
 			}
 		};
-		
+
 		add(listView);
 	}
 }

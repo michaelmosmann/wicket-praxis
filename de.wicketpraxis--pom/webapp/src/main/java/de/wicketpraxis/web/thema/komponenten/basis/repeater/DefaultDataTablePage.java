@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.thema.komponenten.basis.repeater;
 
 import java.util.ArrayList;
@@ -27,40 +27,37 @@ import de.wicketpraxis.persistence.beans.User;
 import de.wicketpraxis.persistence.dao.UserDao;
 import de.wicketpraxis.web.thema.TitleAnnotation;
 
-@TitleAnnotation(title="Default DataTable")
-public class DefaultDataTablePage extends WebPage
-{
+@TitleAnnotation(title = "Default DataTable")
+public class DefaultDataTablePage extends WebPage {
+
 	@SpringBean
 	UserDao _userDao;
-	
-	public DefaultDataTablePage()
-	{
-		UserList data=new UserList(_userDao);
-		
-		List<IColumn<User>> columns=new ArrayList<IColumn<User>>();
-		columns.add(new PropertyColumn<User>(Model.of("Id"),"id","Id"));
-		columns.add(new PropertyColumn<User>(Model.of("EMail"),"EMail","EMail"));
-		columns.add(new AbstractColumn<User>(Model.of(""))
-		{
-			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId, IModel<User> rowModel)
-			{
-				Fragment fragment = new Fragment(componentId,"deleteFragment",DefaultDataTablePage.this);
-				fragment.add(new Link<User>("link",rowModel)
-				{
+
+	public DefaultDataTablePage() {
+		UserList data = new UserList(_userDao);
+
+		List<IColumn<User>> columns = new ArrayList<IColumn<User>>();
+		columns.add(new PropertyColumn<User>(Model.of("Id"), "id", "Id"));
+		columns.add(new PropertyColumn<User>(Model.of("EMail"), "EMail", "EMail"));
+		columns.add(new AbstractColumn<User>(Model.of("")) {
+
+			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId, IModel<User> rowModel) {
+				Fragment fragment = new Fragment(componentId, "deleteFragment", DefaultDataTablePage.this);
+				fragment.add(new Link<User>("link", rowModel) {
+
 					@Override
-					public void onClick()
-					{
-						User user= getModelObject();
+					public void onClick() {
+						User user = getModelObject();
 						_userDao.delete(user);
 					}
 				});
 				cellItem.add(fragment);
 			}
 		});
-		
-		DefaultDataTable<User> table = new DefaultDataTable<User>("list",columns,data,3);
+
+		DefaultDataTable<User> table = new DefaultDataTable<User>("list", columns, data, 3);
 		// Bug mit der sichtbarkeit der NavigationToolbar in 1.4-rc2
-//		table.addTopToolbar(new NavigationToolbar(table));
+		//		table.addTopToolbar(new NavigationToolbar(table));
 		add(table);
 	}
 }

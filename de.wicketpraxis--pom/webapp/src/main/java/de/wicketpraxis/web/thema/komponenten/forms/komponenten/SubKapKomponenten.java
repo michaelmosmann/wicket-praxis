@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.thema.komponenten.forms.komponenten;
 
 import java.util.List;
@@ -30,37 +30,34 @@ import de.wicketpraxis.web.thema.komponenten.forms.komponenten.textfield.TextFie
 import de.wicketpraxis.web.thema.komponenten.forms.komponenten.upload.FileUploadPage;
 import de.wicketpraxis.web.thema.komponenten.forms.komponenten.upload.MultiFileUploadPage;
 
-@TitleAnnotation(title="Formulare - Komponenten")
-public class SubKapKomponenten extends AbstractKapitel
-{
+@TitleAnnotation(title = "Formulare - Komponenten")
+public class SubKapKomponenten extends AbstractKapitel {
 
 	@Override
-	protected void addPages(List<Class<? extends Page>> pages)
-	{
+	protected void addPages(List<Class<? extends Page>> pages) {
 		pages.add(FormTextFieldTypePage.class);
 		pages.add(FormWithTextFieldPage.class);
 		pages.add(TextFieldsPage.class);
-		
+
 		pages.add(SimpleFormCompLabelPage.class);
 		pages.add(FormCompLabelPage.class);
-		
+
 		pages.add(CheckBoxPage.class);
 		pages.add(CheckGroupPage.class);
-		
+
 		pages.add(RadioButtonPage.class);
-		
+
 		pages.add(SimpleSelectPage.class);
 		pages.add(DropDownChoicePage.class);
 		pages.add(ListMultipleChoicePage.class);
 		pages.add(PalettePage.class);
-		
+
 		pages.add(FileUploadPage.class);
 		pages.add(MultiFileUploadPage.class);
 	}
 
 	@Override
-	protected Class<? extends Page> getParentPageClass()
-	{
+	protected Class<? extends Page> getParentPageClass() {
 		return SubKapForms.class;
 	}
 

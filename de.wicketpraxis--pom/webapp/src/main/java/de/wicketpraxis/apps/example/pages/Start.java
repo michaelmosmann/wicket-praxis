@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.apps.example.pages;
 
 import java.util.ArrayList;
@@ -32,47 +32,40 @@ import de.wicketpraxis.apps.example.pages.start.AbstractStartNav;
 import de.wicketpraxis.apps.example.pages.start.MainNav;
 import de.wicketpraxis.web.model.Cascading2LoadableDetachableModel;
 
+public class Start extends AbstractNavigationPage {
 
-public class Start extends AbstractNavigationPage
-{
 	String _idNav;
-	
-	public Start()
-	{
+
+	public Start() {
 		Line line = new Line("line1");
-		line.add(new Grid("left",4).setStart(true));
-		line.add(new GridWithSpace("right",5,3,0).setEnd(true));
+		line.add(new Grid("left", 4).setStart(true));
+		line.add(new GridWithSpace("right", 5, 3, 0).setEnd(true));
 		add(line);
-		
+
 		add(new FeedbackPanel("feedback"));
 	}
-	
+
 	@Override
-	protected IModel<List<NavigationCallbackInterface>> getNavigation()
-	{
-		return new LoadableDetachableModel<List<NavigationCallbackInterface>>()
-		{
+	protected IModel<List<NavigationCallbackInterface>> getNavigation() {
+		return new LoadableDetachableModel<List<NavigationCallbackInterface>>() {
+
 			@Override
-			protected List<NavigationCallbackInterface> load()
-			{
-				List<NavigationCallbackInterface> ret=WicketExampleApplication.get().getNavigation();
+			protected List<NavigationCallbackInterface> load() {
+				List<NavigationCallbackInterface> ret = WicketExampleApplication.get().getNavigation();
 				PageNavigationCallback.replaceCallback(ret, Start.class, new MainNav());
 				return ret;
 			}
 
 		};
 	}
-	
-	public void clickFrom(AbstractStartNav nav)
-	{
-		_idNav=nav.getID();
-		info("Auf Navigation mit der ID "+_idNav+" geklickt");
+
+	public void clickFrom(AbstractStartNav nav) {
+		_idNav = nav.getID();
+		info("Auf Navigation mit der ID " + _idNav + " geklickt");
 	}
-	
-	public boolean isActive(AbstractStartNav nav)
-	{
-		if (_idNav!=null)
-		{
+
+	public boolean isActive(AbstractStartNav nav) {
+		if (_idNav != null) {
 			return _idNav.equals(nav.getID());
 		}
 		return false;

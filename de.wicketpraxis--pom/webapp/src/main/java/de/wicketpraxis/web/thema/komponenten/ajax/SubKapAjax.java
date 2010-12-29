@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.thema.komponenten.ajax;
 
 import java.util.List;
@@ -27,13 +27,11 @@ import de.wicketpraxis.web.thema.komponenten.basis.panels.SubKapPanels;
 import de.wicketpraxis.web.thema.komponenten.basis.repeater.SubKapRepeater;
 import de.wicketpraxis.web.thema.komponenten.basis.resources.SubKapResources;
 
-@TitleAnnotation(title="Ajax")
-public class SubKapAjax extends AbstractKapitel
-{
+@TitleAnnotation(title = "Ajax")
+public class SubKapAjax extends AbstractKapitel {
 
 	@Override
-	protected void addPages(List<Class<? extends Page>> pages)
-	{
+	protected void addPages(List<Class<? extends Page>> pages) {
 		pages.add(SimpleAjaxPage.class);
 		pages.add(SimpleAjaxEventPage.class);
 		pages.add(AjaxEventPage.class);
@@ -41,8 +39,7 @@ public class SubKapAjax extends AbstractKapitel
 	}
 
 	@Override
-	protected Class<? extends Page> getParentPageClass()
-	{
+	protected Class<? extends Page> getParentPageClass() {
 		return KapKomponenten.class;
 	}
 

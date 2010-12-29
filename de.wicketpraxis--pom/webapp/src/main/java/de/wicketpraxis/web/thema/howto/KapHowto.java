@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.thema.howto;
 
 import java.util.List;
@@ -30,28 +30,26 @@ import de.wicketpraxis.web.thema.howto.seolinks.SeoLinksPage;
 import de.wicketpraxis.web.thema.howto.servletfilter.FilterPage;
 import de.wicketpraxis.web.thema.howto.trackingcode.GoogleAnalyticsCodePage;
 
-@TitleAnnotation(title="HowTo")
-public class KapHowto extends AbstractKapitel
-{
+@TitleAnnotation(title = "HowTo")
+public class KapHowto extends AbstractKapitel {
 
 	@Override
-	protected void addPages(List<Class<? extends Page>> pages)
-	{
+	protected void addPages(List<Class<? extends Page>> pages) {
 		// standard
 		pages.add(StartPage.class);
 		pages.add(BasePageWithCSS.class);
 		pages.add(OwnComponentsPage.class);
-		
+
 		// component replace
 		pages.add(ComponentReplacePage.class);
 		pages.add(WizardPage.class);
-		
+
 		// seo
 		pages.add(MountedPage.class);
 		pages.add(SeoLinksPage.class);
 		pages.add(FilterPage.class);
 		pages.add(GoogleAnalyticsCodePage.class);
-		
+
 		// resourcen und links
 		pages.add(DynamicImagePage.class);
 		pages.add(ImageFromDatabasePage.class);
@@ -59,7 +57,7 @@ public class KapHowto extends AbstractKapitel
 		pages.add(SharedResourcesPage.class);
 		pages.add(RssFeedPage.class);
 		pages.add(LinksPage.class);
-		
+
 		// optimize
 		pages.add(OptimizePage.class);
 	}

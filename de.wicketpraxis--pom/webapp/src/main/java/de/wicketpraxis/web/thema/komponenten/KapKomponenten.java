@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.thema.komponenten;
 
 import java.util.List;
@@ -24,13 +24,11 @@ import de.wicketpraxis.web.thema.komponenten.variations.SubKapVariation;
 import de.wicketpraxis.web.thema.komponenten.vererbung.SubKapVererbung;
 import de.wicketpraxis.web.thema.komponenten.visibility.SubKapVisible;
 
-@TitleAnnotation(title="Komponenten")
-public class KapKomponenten extends AbstractKapitel
-{
+@TitleAnnotation(title = "Komponenten")
+public class KapKomponenten extends AbstractKapitel {
 
 	@Override
-	protected void addPages(List<Class<? extends Page>> pages)
-	{
+	protected void addPages(List<Class<? extends Page>> pages) {
 		pages.add(SubKapVariation.class);
 		pages.add(SubKapVisible.class);
 		pages.add(SubKapTree.class);
@@ -44,8 +42,7 @@ public class KapKomponenten extends AbstractKapitel
 	}
 
 	@Override
-	protected String getTitle()
-	{
+	protected String getTitle() {
 		return "Komponenten";
 	}
 

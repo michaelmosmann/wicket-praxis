@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.thema.debug;
 
 import java.util.List;
@@ -34,13 +34,11 @@ import de.wicketpraxis.web.thema.howto.seolinks.SeoLinksPage;
 import de.wicketpraxis.web.thema.howto.servletfilter.FilterPage;
 import de.wicketpraxis.web.thema.howto.trackingcode.GoogleAnalyticsCodePage;
 
-@TitleAnnotation(title="Debugging")
-public class KapDebugging extends AbstractKapitel
-{
+@TitleAnnotation(title = "Debugging")
+public class KapDebugging extends AbstractKapitel {
 
 	@Override
-	protected void addPages(List<Class<? extends Page>> pages)
-	{
+	protected void addPages(List<Class<? extends Page>> pages) {
 		pages.add(UnitTestPage.class);
 		pages.add(PageInfoPage.class);
 		pages.add(DebugByVisitorPage.class);

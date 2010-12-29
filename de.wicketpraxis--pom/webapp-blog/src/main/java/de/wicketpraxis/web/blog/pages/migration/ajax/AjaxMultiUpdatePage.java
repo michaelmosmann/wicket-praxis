@@ -8,21 +8,20 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.Model;
 
-public class AjaxMultiUpdatePage extends WebPage
-{
-	public AjaxMultiUpdatePage()
-	{
-		final FeedbackPanel feedback=new FeedbackPanel("feedback");
+public class AjaxMultiUpdatePage extends WebPage {
+
+	public AjaxMultiUpdatePage() {
+		final FeedbackPanel feedback = new FeedbackPanel("feedback");
 		feedback.setOutputMarkupId(true);
 		add(feedback);
-		
+
 		// die geschweiften Klammern haben keine Funktion
 		// sie sollen nur den Komponentenbaum veranschaulichen
-		WebMarkupContainer block = getBlock(feedback,1);
+		WebMarkupContainer block = getBlock(feedback, 1);
 		{
-			WebMarkupContainer block2 = getBlock(feedback,2);
+			WebMarkupContainer block2 = getBlock(feedback, 2);
 			{
-				WebMarkupContainer block3 = getBlock(feedback,3);
+				WebMarkupContainer block3 = getBlock(feedback, 3);
 				block2.add(block3);
 			}
 			block.add(block2);
@@ -30,34 +29,31 @@ public class AjaxMultiUpdatePage extends WebPage
 		add(block);
 	}
 
-	private WebMarkupContainer getBlock(final FeedbackPanel feedback, int start)
-	{
+	private WebMarkupContainer getBlock(final FeedbackPanel feedback, int start) {
 		final WebMarkupContainer block = new WebMarkupContainer("ajaxUpdate");
 		block.setOutputMarkupId(true);
-		
+
 		Model<Integer> model = Model.of(start);
-		final Label label = new Label("count",model);
+		final Label label = new Label("count", model);
 		label.setOutputMarkupId(true);
 		block.add(label);
-		
-		block.add(new AjaxFallbackLink<Integer>("link",model)
-		{
+
+		block.add(new AjaxFallbackLink<Integer>("link", model) {
+
 			@Override
-			public void onClick(AjaxRequestTarget target)
-			{
-				setModelObject(getModelObject()+1);
-				info("Aktualisiere "+getPath());
-				if (target!=null)
-				{
+			public void onClick(AjaxRequestTarget target) {
+				setModelObject(getModelObject() + 1);
+				info("Aktualisiere " + getPath());
+				if (target != null) {
 					target.addComponent(feedback);
 					target.addComponent(block);
-					
+
 					// ist nicht nötig
 					target.addComponent(label);
 				}
 			}
 		});
-		
+
 		return block;
 	}
 }

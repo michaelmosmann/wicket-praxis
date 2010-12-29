@@ -2,30 +2,26 @@ package de.wicketpraxis.web.blog.pages.questions.form.validation;
 
 import java.io.Serializable;
 
-public class FormBean implements Serializable
-{
+public class FormBean implements Serializable {
+
 	Integer _a;
-	
+
 	Integer _b;
 
-	public Integer getA()
-	{
+	public Integer getA() {
 		return _a;
 	}
 
-	public void setA(Integer a)
-	{
+	public void setA(Integer a) {
 		_a = a;
 	}
 
-	public Integer getB()
-	{
+	public Integer getB() {
 		return _b;
 	}
 
-	public void setB(Integer b)
-	{
+	public void setB(Integer b) {
 		_b = b;
 	}
-	
+
 }

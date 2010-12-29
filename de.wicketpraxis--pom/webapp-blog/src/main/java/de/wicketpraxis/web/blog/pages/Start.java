@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.blog.pages;
 
 import java.util.ArrayList;
@@ -44,10 +44,9 @@ import de.wicketpraxis.web.blog.pages.questions.transparent.TransparentResolverP
 import de.wicketpraxis.web.blog.pages.questions.transparent.lazy.NoTransparentResolverPage;
 import de.wicketpraxis.web.blog.wicketstuff.StuffPage;
 
-public class Start extends WebPage
-{
-	public Start()
-	{
+public class Start extends WebPage {
+
+	public Start() {
 		List<Class<? extends WebPage>> pages = new ArrayList<Class<? extends WebPage>>();
 		pages.add(CheckGroupFromDbPage.class);
 		pages.add(ListViewAjaxRefreshPage.class);
@@ -76,14 +75,13 @@ public class Start extends WebPage
 		pages.add(ModalWindowPage.class);
 		pages.add(ParameterizedAjaxPage.class);
 		pages.add(ComponentFactoryPage.class);
-		
-		add(new ListView<Class<? extends WebPage>>("list",pages)
-		{
+
+		add(new ListView<Class<? extends WebPage>>("list", pages) {
+
 			@Override
-			protected void populateItem(ListItem<Class<? extends WebPage>> item)
-			{
-				BookmarkablePageLink<WebPage> link = new BookmarkablePageLink<WebPage>("link",item.getModelObject());
-				link.add(new Label("name",item.getModelObject().getSimpleName()));
+			protected void populateItem(ListItem<Class<? extends WebPage>> item) {
+				BookmarkablePageLink<WebPage> link = new BookmarkablePageLink<WebPage>("link", item.getModelObject());
+				link.add(new Label("name", item.getModelObject().getSimpleName()));
 				item.add(link);
 			}
 		});

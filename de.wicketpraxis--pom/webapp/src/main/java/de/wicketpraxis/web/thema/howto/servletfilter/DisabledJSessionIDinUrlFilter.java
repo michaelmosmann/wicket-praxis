@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.thema.howto.servletfilter;
 
 import java.io.IOException;
@@ -19,12 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 
-public class DisabledJSessionIDinUrlFilter implements Filter
-{
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
-	{
-		if (!(request instanceof HttpServletRequest))
-		{
+public class DisabledJSessionIDinUrlFilter implements Filter {
+
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
+			ServletException {
+		if (!(request instanceof HttpServletRequest)) {
 			chain.doFilter(request, response);
 			return;
 		}
@@ -38,42 +37,35 @@ public class DisabledJSessionIDinUrlFilter implements Filter
 		chain.doFilter(request, wrappedResponse);
 	}
 
-	protected HttpServletResponse wrapResponse(HttpServletRequest httpRequest, HttpServletResponse httpResponse)
-	{
-		HttpServletResponseWrapper wrappedResponse = new HttpServletResponseWrapper(httpResponse)
-		{
+	protected HttpServletResponse wrapResponse(HttpServletRequest httpRequest, HttpServletResponse httpResponse) {
+		HttpServletResponseWrapper wrappedResponse = new HttpServletResponseWrapper(httpResponse) {
+
 			@Override
-			public String encodeRedirectUrl(final String url)
-			{
+			public String encodeRedirectUrl(final String url) {
 				return url;
 			}
 
 			@Override
-			public String encodeRedirectURL(final String url)
-			{
+			public String encodeRedirectURL(final String url) {
 				return url;
 			}
 
 			@Override
-			public String encodeUrl(final String url)
-			{
+			public String encodeUrl(final String url) {
 				return url;
 			}
 
 			@Override
-			public String encodeURL(final String url)
-			{
+			public String encodeURL(final String url) {
 				return url;
 			}
 		};
 		return wrappedResponse;
 	}
 
-	public void init(FilterConfig filterConfig) throws ServletException
-	{
+	public void init(FilterConfig filterConfig) throws ServletException {
 	}
 
-	public void destroy()
-	{
+	public void destroy() {
 	}
 }

@@ -1,10 +1,10 @@
 /*****************************************
-Quelltexte zum Buch: Praxisbuch Wicket
-(http://www.hanser.de/978-3-446-41909-4)
-
-Autor: Michael Mosmann
-(michael@mosmann.de)
-*****************************************/
+ * Quelltexte zum Buch: Praxisbuch Wicket
+ * (http://www.hanser.de/978-3-446-41909-4)
+ * 
+ * Autor: Michael Mosmann
+ * (michael@mosmann.de)
+ *****************************************/
 package de.wicketpraxis.web.thema.komponenten.forms;
 
 import java.util.List;
@@ -22,12 +22,11 @@ import de.wicketpraxis.web.thema.komponenten.forms.feedback.SubKapFeedback;
 import de.wicketpraxis.web.thema.komponenten.forms.komponenten.SubKapKomponenten;
 import de.wicketpraxis.web.thema.komponenten.forms.validators.SubKapValidator;
 
-@TitleAnnotation(title="Formulare")
-public class SubKapForms extends AbstractKapitel
-{
+@TitleAnnotation(title = "Formulare")
+public class SubKapForms extends AbstractKapitel {
+
 	@Override
-	protected void addPages(List<Class<? extends Page>> pages)
-	{
+	protected void addPages(List<Class<? extends Page>> pages) {
 		pages.add(SubKapBasics.class);
 		pages.add(SubKapKomponenten.class);
 		pages.add(SubKapValidator.class);
@@ -38,8 +37,7 @@ public class SubKapForms extends AbstractKapitel
 	}
 
 	@Override
-	protected Class<? extends Page> getParentPageClass()
-	{
+	protected Class<? extends Page> getParentPageClass() {
 		return KapKomponenten.class;
 	}
 }

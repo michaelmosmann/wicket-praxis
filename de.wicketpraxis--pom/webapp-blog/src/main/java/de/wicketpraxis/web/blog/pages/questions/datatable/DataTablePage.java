@@ -15,23 +15,22 @@ import org.apache.wicket.model.Model;
 import de.wicketpraxis.web.blog.pages.questions.data.SomeBean;
 import de.wicketpraxis.web.blog.pages.questions.data.SomeBeanDataProvider;
 
-public class DataTablePage extends WebPage
-{
-	public DataTablePage()
-	{
-		List<IColumn<SomeBean>> columns=new ArrayList<IColumn<SomeBean>>();
-		columns.add(new TextFilteredPropertyColumn<SomeBean,String>(Model.of("Vorname"),"vorname"));
-		columns.add(new TextFilteredPropertyColumn<SomeBean,String>(Model.of("Name"),"name","name"));
-		columns.add(new PropertyColumn<SomeBean>(Model.of("Alter"),"alter","alter"));
-		
-		SomeBeanDataProvider dataProvider=new SomeBeanDataProvider();
-		
-		FilterForm form=new FilterForm("form",dataProvider);
-		
-		DefaultDataTable<SomeBean> dataTable = new DefaultDataTable<SomeBean>("dataTable",columns,dataProvider,10);
-		dataTable.addTopToolbar(new FilterToolbar(dataTable,form,dataProvider));
+public class DataTablePage extends WebPage {
+
+	public DataTablePage() {
+		List<IColumn<SomeBean>> columns = new ArrayList<IColumn<SomeBean>>();
+		columns.add(new TextFilteredPropertyColumn<SomeBean, String>(Model.of("Vorname"), "vorname"));
+		columns.add(new TextFilteredPropertyColumn<SomeBean, String>(Model.of("Name"), "name", "name"));
+		columns.add(new PropertyColumn<SomeBean>(Model.of("Alter"), "alter", "alter"));
+
+		SomeBeanDataProvider dataProvider = new SomeBeanDataProvider();
+
+		FilterForm form = new FilterForm("form", dataProvider);
+
+		DefaultDataTable<SomeBean> dataTable = new DefaultDataTable<SomeBean>("dataTable", columns, dataProvider, 10);
+		dataTable.addTopToolbar(new FilterToolbar(dataTable, form, dataProvider));
 		form.add(dataTable);
-		
+
 		add(form);
 	}
 }

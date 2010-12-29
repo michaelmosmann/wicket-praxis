@@ -4,20 +4,17 @@ import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 
-public class ResultPage extends WebPage
-{
-	public ResultPage(String name)
-	{
+public class ResultPage extends WebPage {
+
+	public ResultPage(String name) {
 		init(name);
 	}
-	
-	public ResultPage(PageParameters pageParameters)
-	{
+
+	public ResultPage(PageParameters pageParameters) {
 		init(pageParameters.getString("Name"));
 	}
-	
-	protected void init(String name)
-	{
-		add(new Label("name",name));
+
+	protected void init(String name) {
+		add(new Label("name", name));
 	}
 }
