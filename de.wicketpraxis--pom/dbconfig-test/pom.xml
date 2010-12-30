@@ -13,7 +13,7 @@ Autor: Michael Mosmann
 	<parent>
 		<groupId>de.wicketpraxis</groupId>
   	<artifactId>de.wicketpraxis--parentPom</artifactId>
-  	<version>1.0-SNAPSHOT</version>
+  	<version>1.1-SNAPSHOT</version>
 <!--
 		<relativePath>../de.wicketpraxis- -parentPom</relativePath>
 -->
