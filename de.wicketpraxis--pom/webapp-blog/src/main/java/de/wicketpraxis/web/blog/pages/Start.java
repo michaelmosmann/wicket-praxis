@@ -38,6 +38,7 @@ import de.wicketpraxis.web.blog.pages.questions.form.validation.FormValidationPa
 import de.wicketpraxis.web.blog.pages.questions.lazy.LazyPanelPage;
 import de.wicketpraxis.web.blog.pages.questions.listview.ajax.ListViewAjaxRefreshPage;
 import de.wicketpraxis.web.blog.pages.questions.listview.model.ListViewModelChangePage;
+import de.wicketpraxis.web.blog.pages.questions.mergedresources.MergedResourcePage;
 import de.wicketpraxis.web.blog.pages.questions.migration.forms.KomplexFormPage;
 import de.wicketpraxis.web.blog.pages.questions.migration.forms.MinimalFormPage;
 import de.wicketpraxis.web.blog.pages.questions.seo.ajax.SeoAjaxLinksPage;
@@ -77,6 +78,7 @@ public class Start extends WebPage {
 		pages.add(ParameterizedAjaxPage.class);
 		pages.add(ComponentFactoryPage.class);
 		pages.add(SeoAjaxLinksPage.class);
+		pages.add(MergedResourcePage.class);
 
 		add(new ListView<Class<? extends WebPage>>("list", pages) {
 
