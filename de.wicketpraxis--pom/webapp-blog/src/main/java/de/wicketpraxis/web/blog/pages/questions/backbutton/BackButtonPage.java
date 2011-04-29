@@ -42,9 +42,6 @@ public class BackButtonPage extends WebPage {
 		Long lastPageRendered = Session.get().getMetaData(KEY);
 		setPageTimeStamp(_pageInitTimeStamp);
 
-		System.out.println("Last: " + lastPageRendered);
-		System.out.println("This: " + _pageInitTimeStamp);
-
 		if (lastPageRendered > _pageInitTimeStamp) {
 			info("BackButton pressed");
 		}

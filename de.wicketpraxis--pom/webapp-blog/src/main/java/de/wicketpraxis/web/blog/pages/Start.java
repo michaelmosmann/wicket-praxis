@@ -27,6 +27,7 @@ import de.wicketpraxis.web.blog.pages.questions.ajax.overview.AjaxJavascriptOver
 import de.wicketpraxis.web.blog.pages.questions.ajax.parameter.HeatMapPage;
 import de.wicketpraxis.web.blog.pages.questions.ajax.parameter.ParameterizedAjaxPage;
 import de.wicketpraxis.web.blog.pages.questions.backbutton.BackButtonPage;
+import de.wicketpraxis.web.blog.pages.questions.backbutton.BackButtonStartPage;
 import de.wicketpraxis.web.blog.pages.questions.checkgroup.fromdb.CheckGroupFromDbPage;
 import de.wicketpraxis.web.blog.pages.questions.datatable.DataTablePage;
 import de.wicketpraxis.web.blog.pages.questions.dataview.DataViewPage;
@@ -80,7 +81,7 @@ public class Start extends WebPage {
 		pages.add(ComponentFactoryPage.class);
 		pages.add(SeoAjaxLinksPage.class);
 		pages.add(MergedResourcePage.class);
-		pages.add(BackButtonPage.class);
+		pages.add(BackButtonStartPage.class);
 
 		add(new ListView<Class<? extends WebPage>>("list", pages) {
 
