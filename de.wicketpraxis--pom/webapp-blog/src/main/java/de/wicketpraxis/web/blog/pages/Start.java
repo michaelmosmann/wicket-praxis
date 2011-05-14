@@ -21,6 +21,7 @@ import de.wicketpraxis.web.blog.pages.migration.model.mwst.SomeModelsPage;
 import de.wicketpraxis.web.blog.pages.migration.model.property.UseOrNotUsePropertyModelPage;
 import de.wicketpraxis.web.blog.pages.migration.model.transformation.TransformationPage;
 import de.wicketpraxis.web.blog.pages.migration.refactor.CalendarRefactorPage;
+import de.wicketpraxis.web.blog.pages.questions.ajax.behavior.AjaxRegionPage;
 import de.wicketpraxis.web.blog.pages.questions.ajax.javascript.JavascriptAjaxHeadContributorPage;
 import de.wicketpraxis.web.blog.pages.questions.ajax.modal.ModalWindowPage;
 import de.wicketpraxis.web.blog.pages.questions.ajax.overview.AjaxJavascriptOverviewPage;
@@ -82,6 +83,7 @@ public class Start extends WebPage {
 		pages.add(SeoAjaxLinksPage.class);
 		pages.add(MergedResourcePage.class);
 		pages.add(BackButtonStartPage.class);
+		pages.add(AjaxRegionPage.class);
 
 		add(new ListView<Class<? extends WebPage>>("list", pages) {
 
