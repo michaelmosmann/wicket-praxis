@@ -11,8 +11,6 @@ import org.apache.wicket.Application;
 import org.apache.wicket.Page;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
-import org.wicketstuff.mergedresources.ResourceMount;
-import org.wicketstuff.mergedresources.versioning.RevisionVersionProvider;
 
 import de.wicketpraxis.web.blog.pages.Start;
 import de.wicketpraxis.web.blog.pages.questions.mergedresources.MergedResourcePage;
@@ -34,20 +32,6 @@ public class WicketPraxisBlogApplication extends WebApplication {
 		//		getResourceSettings().setAddLastModifiedTimeToResourceReferenceUrl(true);
 		//		getMarkupSettings().setAutomaticLinking(true);
 		
-		initResourceMerge();
-	}
-
-	private void initResourceMerge() {
-		ResourceMount.mountWicketResources("script", this);
-
-		ResourceMount mount = new ResourceMount()
-			.setResourceVersionProvider(new RevisionVersionProvider());
-
-		mount.clone()
-			.setPath("/style/all.css")
-			.addResourceSpec(MergedResourcePage.class,"partOne.css")
-			.addResourceSpec(MergedResourcePage.class,"partTwo.css")
-			.mount(this);
 	}
 
 	@Override
