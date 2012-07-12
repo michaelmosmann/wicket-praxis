@@ -10,8 +10,8 @@ package de.wicketpraxis.web.thema.howto.css;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.IHeaderContributor;
+import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -24,10 +24,6 @@ import de.wicketpraxis.web.thema.howto.css.styles.Style;
 public class BasePageWithCSS extends WebPage {
 
 	public BasePageWithCSS() {
-		List<IHeaderContributor> cssList = Style.getCss();
-		for (IHeaderContributor css : cssList) {
-			add(new HeaderContributor(css));
-		}
 
 		add(new ListView<Integer>("list", Arrays.asList(1, 2, 3, 4)) {
 
@@ -42,5 +38,15 @@ public class BasePageWithCSS extends WebPage {
 			}
 		});
 
+	}
+	
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		super.renderHead(response);
+		
+		List<IHeaderContributor> cssList = Style.getCss();
+		for (IHeaderContributor css : cssList) {
+			css.renderHead(response);
+		}
 	}
 }

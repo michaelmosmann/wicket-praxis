@@ -42,9 +42,9 @@ public class ModelTypesPage extends WebPage {
 		//		IModel<Collection<? extends String>> wildcardCollectionModel = new WildcardCollectionModel<String>(liste);
 		IModel<Collection<? extends String>> wildcardCollectionModel = Model.of((Collection<String>) liste);
 		//		IModel<List<? extends String>> wildcardListModel = new WildcardListModel<String>(liste);
-		IModel<List<? extends String>> wildcardListModel = Model.of(liste);
+		IModel<List<? extends String>> wildcardListModel = Model.ofList(liste);
 		//		IModel<Set<? extends String>> wildcardSetModel = new WildcardSetModel<String>(map.keySet());
-		IModel<Set<? extends String>> wildcardSetModel = Model.of(map.keySet());
+		IModel<Set<? extends String>> wildcardSetModel = Model.ofSet(map.keySet());
 
 	}
 }

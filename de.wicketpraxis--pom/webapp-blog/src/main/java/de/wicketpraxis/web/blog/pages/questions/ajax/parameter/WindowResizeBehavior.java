@@ -1,9 +1,8 @@
 package de.wicketpraxis.web.blog.pages.questions.ajax.parameter;
 
-import org.apache.wicket.ResourceReference;
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.IHeaderResponse;
-import org.apache.wicket.util.time.Duration;
 
 public abstract class WindowResizeBehavior extends AbstractParameterizedDefaultAjaxBehavior {
 
@@ -11,11 +10,11 @@ public abstract class WindowResizeBehavior extends AbstractParameterizedDefaultA
 	static final Parameter<Integer> HEIGHT = of("height", Integer.class, "Wicket.Window.getViewportHeight()");
 
 	@Override
-	public void renderHead(IHeaderResponse response) {
-		super.renderHead(response);
-		response.renderJavascriptReference(WicketWindowJavascript.RESOURCE);
-		response.renderOnDomReadyJavascript(getJavascript());
-		response.renderOnDomReadyJavascript(getCallbackScript().toString());
+	public void renderHead(Component component, IHeaderResponse response) {
+		super.renderHead(component, response);
+		response.renderJavaScriptReference(WicketWindowJavascript.RESOURCE);
+		response.renderOnDomReadyJavaScript(getJavascript());
+		response.renderOnDomReadyJavaScript(getCallbackScript().toString());
 	}
 
 	protected final String getJavascript() {

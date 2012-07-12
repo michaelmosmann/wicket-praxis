@@ -9,11 +9,11 @@ package de.wicketpraxis.web.blog;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.Page;
+import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 
 import de.wicketpraxis.web.blog.pages.Start;
-import de.wicketpraxis.web.blog.pages.questions.mergedresources.MergedResourcePage;
 import de.wicketpraxis.wicket.util.resource.MavenDevResourceAndSourceStreamLocator;
 
 public class WicketPraxisBlogApplication extends WebApplication {
@@ -22,13 +22,13 @@ public class WicketPraxisBlogApplication extends WebApplication {
 	protected void init() {
 		super.init();
 
-		addComponentInstantiationListener(new SpringComponentInjector(this));
+		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 
-		if (DEVELOPMENT.equalsIgnoreCase(getConfigurationType())) {
+		if (RuntimeConfigurationType.DEVELOPMENT==getConfigurationType()) {
 			getResourceSettings().setResourceStreamLocator(new MavenDevResourceAndSourceStreamLocator());
 		}
 
-		getResourceSettings().setDisableGZipCompression(true);
+//		getResourceSettings().setDisableGZipCompression(true);
 		//		getResourceSettings().setAddLastModifiedTimeToResourceReferenceUrl(true);
 		//		getMarkupSettings().setAutomaticLinking(true);
 		

@@ -16,17 +16,18 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
-import org.apache.wicket.protocol.http.WebRequest;
 import org.apache.wicket.protocol.http.request.WebClientInfo;
+import org.apache.wicket.protocol.http.servlet.ServletWebRequest;
 import org.apache.wicket.request.ClientInfo;
+import org.apache.wicket.request.http.WebRequest;
 
 public class SessionTimeoutPage extends WebPage {
 
 	public SessionTimeoutPage() {
 		// nicht sicher, wann das zündet und welcher referer das ist..
 
-		WebRequest wicketRequest = (WebRequest) getRequest();
-		HttpServletRequest request = wicketRequest.getHttpServletRequest();
+		ServletWebRequest wicketRequest = (ServletWebRequest) getRequest();
+		HttpServletRequest request = wicketRequest.getContainerRequest();
 		String referer = request.getHeader("Referer");
 
 		boolean cookies = true;

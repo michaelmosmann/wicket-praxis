@@ -8,14 +8,13 @@
 package de.wicketpraxis.web.thema.howto.modify;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.ResourceReference;
-import org.apache.wicket.behavior.HeaderContributor;
-import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.border.Border;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 public abstract class ButtonLink<T> extends Border {
 
@@ -32,8 +31,6 @@ public abstract class ButtonLink<T> extends Border {
 		setRenderBodyOnly(true);
 		_model = model;
 
-		add(CSSPackageResource.getHeaderContribution(ButtonLink.class, "button.css"));
-
 		Link<T> link = new Link<T>("link", model) {
 
 			@Override
@@ -42,10 +39,16 @@ public abstract class ButtonLink<T> extends Border {
 			}
 		};
 		link.add(new AttributeModifier("class", true, Model.of(type.name())));
-		link.add(new Image("icon", new ResourceReference(ButtonLink.class, type.name() + ".png")));
+		link.add(new Image("icon", new PackageResourceReference(ButtonLink.class, type.name() + ".png")));
 		link.add(getBodyContainer());
 		add(link);
 	}
 
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		super.renderHead(response);
+		response.renderCSSReference(new PackageResourceReference(ButtonLink.class, "button.css"));
+	}
+	
 	public abstract void onClick();
 }

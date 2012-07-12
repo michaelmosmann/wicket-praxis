@@ -8,7 +8,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.util.convert.IConverter;
-import org.apache.wicket.util.convert.converters.DateConverter;
+import org.apache.wicket.util.convert.converter.DateConverter;
 
 public class ExtendedPanel extends AbstractBasePanel {
 
@@ -17,6 +17,7 @@ public class ExtendedPanel extends AbstractBasePanel {
 
 		IModel<Date> model = new LoadableDetachableModel<Date>() {
 
+			@Override
 			protected Date load() {
 				return new Date();
 			};
@@ -25,8 +26,8 @@ public class ExtendedPanel extends AbstractBasePanel {
 		add(new Label("date", model) {
 
 			@Override
-			public IConverter getConverter(Class<?> type) {
-				return new DateConverter() {
+			public <C> IConverter<C> getConverter(Class<C> type) {
+				IConverter<Date> ret=new DateConverter() {
 
 					public DateFormat getDateFormat(Locale locale) {
 						if (locale == null) {
@@ -36,6 +37,8 @@ public class ExtendedPanel extends AbstractBasePanel {
 						return DateFormat.getTimeInstance(DateFormat.LONG, locale);
 					}
 				};
+				
+				return (IConverter<C>) ret;
 			}
 		});
 

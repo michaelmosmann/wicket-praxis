@@ -28,7 +28,7 @@ public class DynFormPage extends AbstractFormPage {
 
 	public DynFormPage() {
 		final IModel<Map<String, Serializable>> model = Model.ofMap(new HashMap<String, Serializable>());
-		IModel<? extends List<? extends String>> properties = Model.of(Arrays.asList("!Name", "!Vorname", "Straße",
+		IModel<? extends List<? extends String>> properties = Model.ofList(Arrays.asList("!Name", "!Vorname", "Straße",
 				"Hausnummer"));
 
 		Form form = new Form("form");

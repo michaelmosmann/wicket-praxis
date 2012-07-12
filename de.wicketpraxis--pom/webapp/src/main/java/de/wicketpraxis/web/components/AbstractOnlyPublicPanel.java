@@ -21,15 +21,10 @@ public class AbstractOnlyPublicPanel extends Panel {
 	public AbstractOnlyPublicPanel(String id, IModel<?> model) {
 		super(id, model);
 	}
-
+	
 	@Override
-	protected void onBeforeRender() {
-		super.onBeforeRender();
+	protected void onConfigure() {
+		super.onConfigure();
 		setVisible(!WicketPraxisSession.get().isUserLogin());
-	}
-
-	@Override
-	protected boolean callOnBeforeRenderIfNotVisible() {
-		return true;
 	}
 }

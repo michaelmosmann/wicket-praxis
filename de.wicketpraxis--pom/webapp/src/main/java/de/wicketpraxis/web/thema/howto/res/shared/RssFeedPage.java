@@ -7,12 +7,13 @@
  *****************************************/
 package de.wicketpraxis.web.thema.howto.res.shared;
 
-import org.apache.wicket.Resource;
-import org.apache.wicket.ResourceReference;
+import org.apache.wicket.Application;
 import org.apache.wicket.SharedResources;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.ResourceLink;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.resource.IResource;
+import org.apache.wicket.request.resource.ResourceReference;
 
 public class RssFeedPage extends WebPage {
 
@@ -21,8 +22,13 @@ public class RssFeedPage extends WebPage {
 	 */
 	public static void init(WebApplication _this) {
 		SharedResources sharedResources = _this.getSharedResources();
-		sharedResources.add("rssFeed", new RssFeedResource());
-		_this.mountSharedResource("rss", new ResourceReference("rssFeed").getSharedResourceKey());
+		RssFeedResource resource = new RssFeedResource();
+		sharedResources.add("rssFeed", resource);
+		_this.mountResource("rss", getResourceReference(sharedResources,"rssFeed"));
+	}
+
+	private static ResourceReference getResourceReference(SharedResources sharedResources, String name) {
+		return sharedResources.get(Application.class, name, null, null, null, true);
 	}
 
 	/*
@@ -30,7 +36,7 @@ public class RssFeedPage extends WebPage {
 	 */
 
 	public RssFeedPage() {
-		add(new ResourceLink<Resource>("rss", new ResourceReference("rssFeed")));
+		add(new ResourceLink<IResource>("rss", getResourceReference(Application.get().getSharedResources(),"rssFeed")));
 	}
 
 }

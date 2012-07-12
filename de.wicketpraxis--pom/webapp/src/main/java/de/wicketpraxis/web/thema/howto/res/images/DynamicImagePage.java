@@ -11,12 +11,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Date;
 
-import org.apache.wicket.Resource;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.image.resource.BufferedDynamicImageResource;
 import org.apache.wicket.markup.html.image.resource.RenderedDynamicImageResource;
 import org.apache.wicket.markup.html.link.ResourceLink;
+import org.apache.wicket.request.resource.IResource;
 
 import de.wicketpraxis.web.thema.TitleAnnotation;
 
@@ -42,6 +42,6 @@ public class DynamicImagePage extends WebPage {
 		add(new Image("image", imageResource));
 		add(new Image("image2", renderedResource));
 
-		add(new ResourceLink<Resource>("imageLink", imageResource));
+		add(new ResourceLink<IResource>("imageLink", imageResource));
 	}
 }

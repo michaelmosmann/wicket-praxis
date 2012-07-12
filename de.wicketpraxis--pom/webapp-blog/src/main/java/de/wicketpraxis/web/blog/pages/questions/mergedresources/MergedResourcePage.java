@@ -1,14 +1,22 @@
 package de.wicketpraxis.web.blog.pages.questions.mergedresources;
 
-import org.apache.wicket.PageParameters;
-import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.internal.HtmlHeaderContainer;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 
+@Deprecated
 public class MergedResourcePage extends WebPage {
 	
 	public MergedResourcePage(PageParameters pageParameters) {
-		add(CSSPackageResource.getHeaderContribution(getClass(), "partOne.css"));
-		add(CSSPackageResource.getHeaderContribution(getClass(), "partTwo.css"));
+	}
+
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		super.renderHead(response);
+		response.renderCSSReference(new PackageResourceReference(getClass(), "partOne.css"));
+		response.renderCSSReference(new PackageResourceReference(getClass(), "partTwo.css"));
 	}
 }

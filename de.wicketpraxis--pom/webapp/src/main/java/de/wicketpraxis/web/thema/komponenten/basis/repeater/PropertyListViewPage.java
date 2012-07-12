@@ -27,7 +27,7 @@ public class PropertyListViewPage extends WebPage {
 	public PropertyListViewPage() {
 		List<Kunde> liste = Arrays.asList(new Kunde("Klaus", "Müller", 1973), new Kunde("Hans", "Meier", 1967));
 
-		add(new PropertyListView<Kunde>("list", Model.of(liste)) {
+		add(new PropertyListView<Kunde>("list", Model.ofList(liste)) {
 
 			@Override
 			protected void populateItem(ListItem<Kunde> item) {

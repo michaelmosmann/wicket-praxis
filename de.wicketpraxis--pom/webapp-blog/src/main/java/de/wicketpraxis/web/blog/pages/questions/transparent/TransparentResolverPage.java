@@ -1,9 +1,9 @@
 package de.wicketpraxis.web.blog.pages.questions.transparent;
 
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class TransparentResolverPage extends WebPage {
 
@@ -14,7 +14,7 @@ public class TransparentResolverPage extends WebPage {
 
 		// bug?
 		// if invisible during startup, errors came up
-		if (pageParameters.getAsBoolean("Hide", false))
+		if (pageParameters.get("Hide").toBoolean(false))
 			panel.hide(null);
 
 		add(new AjaxLink<Void>("on") {

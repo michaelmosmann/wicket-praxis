@@ -16,9 +16,9 @@ import java.util.Map;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.IConverterLocator;
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.Session;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.convert.IConverter;
 
 public class BeanPagePropertyUtil {
@@ -47,18 +47,19 @@ public class BeanPagePropertyUtil {
 		return ret;
 	}
 
-	public static <B> Map<String, Object> getParameter(B bean) {
-		Map<String, Object> ret = new HashMap<String, Object>();
+	public static <B> PageParameters getParameter(B bean) {
+		PageParameters ret = new PageParameters();
 
-		Locale locale = Session.get().getLocale();
-		IConverterLocator converterLocator = Application.get().getConverterLocator();
+//		Locale locale = Session.get().getLocale();
+//		IConverterLocator converterLocator = Application.get().getConverterLocator();
 
 		for (String s : getPublicProperties(bean)) {
 			PropertyModel<?> propertyModel = new PropertyModel(bean, s);
-			IConverter converter = converterLocator.getConverter(propertyModel.getObjectClass());
+//			IConverter converter = converterLocator.getConverter(propertyModel.getObjectClass());
 			Object value = propertyModel.getObject();
 			if (value != null) {
-				ret.put(s, converter.convertToString(value, locale));
+//				ret.add(s, converter.convertToString(value, locale));
+				ret.add(s, value);
 			}
 		}
 		return ret;
@@ -71,7 +72,7 @@ public class BeanPagePropertyUtil {
 		for (String s : getPublicProperties(bean)) {
 			PropertyModel<Object> propertyModel = new PropertyModel<Object>(bean, s);
 			IConverter converter = converterLocator.getConverter(propertyModel.getObjectClass());
-			String svalue = pageParameters.getString(s);
+			String svalue = pageParameters.get(s).toString();
 			if (svalue != null) {
 				propertyModel.setObject(converter.convertToObject(svalue, locale));
 			}

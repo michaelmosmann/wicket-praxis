@@ -7,10 +7,10 @@
  *****************************************/
 package de.wicketpraxis.web.thema.howto.seolinks;
 
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class SeoLinksPage extends WebPage {
 

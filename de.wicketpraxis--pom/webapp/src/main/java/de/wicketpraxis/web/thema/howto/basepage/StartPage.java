@@ -28,16 +28,11 @@ public class StartPage extends AbstractBasePage {
 		add(new Label("clicked", _clicked) {
 
 			@Override
-			protected void onBeforeRender() {
-				super.onBeforeRender();
+			protected void onConfigure() {
+				super.onConfigure();
 				setVisible(getDefaultModelObject() != null
 						? true
 						: false);
-			}
-
-			@Override
-			protected boolean callOnBeforeRenderIfNotVisible() {
-				return true;
 			}
 		});
 	}

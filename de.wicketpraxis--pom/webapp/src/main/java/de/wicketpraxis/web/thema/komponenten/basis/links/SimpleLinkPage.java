@@ -9,13 +9,12 @@ package de.wicketpraxis.web.thema.komponenten.basis.links;
 
 import java.util.Date;
 
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class SimpleLinkPage extends WebPage {
 
@@ -28,14 +27,14 @@ public class SimpleLinkPage extends WebPage {
 
 		// Basisklasse aller Links AbstractLink
 
-		add(new BookmarkablePageLink<AllLinkTypesPage>("bookmarkLink", SimpleLinkPage.class, new PageParameters("a=1")));
+		add(new BookmarkablePageLink<AllLinkTypesPage>("bookmarkLink", SimpleLinkPage.class, new PageParameters().add("a",1)));
 
 		// Zielseite ist bookmarkable
 		add(new Link("noBookmarkLink") {
 
 			@Override
 			public void onClick() {
-				setResponsePage(SimpleLinkPage.class, new PageParameters("b=2"));
+				setResponsePage(SimpleLinkPage.class, new PageParameters().add("b",2));
 			}
 		});
 

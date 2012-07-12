@@ -19,7 +19,7 @@ public class EmailFromComponentPage extends WebPage {
 
 				BaseWicketTester tester = new BaseWicketTester();
 				tester.startPage(new EmailContentPage(listModel));
-				return tester.getServletResponse().getDocument();
+				return tester.getResponse().getDocument();
 			}
 		};
 

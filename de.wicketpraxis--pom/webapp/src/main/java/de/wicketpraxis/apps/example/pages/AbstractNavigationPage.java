@@ -29,22 +29,10 @@ public abstract class AbstractNavigationPage extends AbstractBasePage {
 		head.add(claim);
 		add(head);
 
-		Line main = new Line("main") {
-
-			@Override
-			public boolean isTransparentResolver() {
-				return true;
-			}
-		};
+		Line main = new Line("main");
 		Grid nav = new Grid("navigation", 4);
 		nav.add(new NavigationPanel("navigationPanel", getNavigation()));
-		Grid content = new Grid("content", 12) {
-
-			@Override
-			public boolean isTransparentResolver() {
-				return true;
-			}
-		};
+		Grid content = new Grid("content", 12);
 		main.add(nav);
 		main.add(content);
 		add(main);

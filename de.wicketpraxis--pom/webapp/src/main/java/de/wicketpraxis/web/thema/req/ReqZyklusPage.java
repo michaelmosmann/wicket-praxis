@@ -31,9 +31,9 @@ public class ReqZyklusPage extends WebPage {
 		}
 
 		@Override
-		protected void onRender(MarkupStream markupStream) {
+		protected void onRender() {
 			_logger.error("onRender {}", getId());
-			super.onRender(markupStream);
+			super.onRender();
 		}
 
 		@Override

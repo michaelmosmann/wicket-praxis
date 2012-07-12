@@ -7,28 +7,30 @@
  *****************************************/
 package de.wicketpraxis.web.thema.howto.modify;
 
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.feedback.IFeedbackMessageFilter;
-import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 public class CustomFeedbackPanel extends FeedbackPanel {
 
 	public CustomFeedbackPanel(String id) {
 		super(id);
-
-		add(CSSPackageResource.getHeaderContribution(CustomFeedbackPanel.class, "feedback.css"));
 	}
 
 	public CustomFeedbackPanel(String id, IFeedbackMessageFilter filter) {
 		super(id, filter);
-
-		add(CSSPackageResource.getHeaderContribution(CustomFeedbackPanel.class, "feedback.css"));
 	}
 
 	@Override
 	protected String getCSSClass(FeedbackMessage message) {
 		return message.getLevelAsString().toLowerCase();
+	}
+	
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		super.renderHead(response);
+		response.renderCSSReference(new PackageResourceReference(CustomFeedbackPanel.class, "feedback.css"));
 	}
 }

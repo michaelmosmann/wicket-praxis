@@ -12,14 +12,14 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.wicket.extensions.ajax.markup.html.autocomplete.DefaultCssAutocompleteTextField;
+import org.apache.wicket.extensions.ajax.markup.html.autocomplete.DefaultCssAutoCompleteTextField;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.Model;
 
 public class AutoCompletePage extends WebPage {
 
 	public AutoCompletePage() {
-		add(new DefaultCssAutocompleteTextField<String>("input", Model.of("")) {
+		add(new DefaultCssAutoCompleteTextField<String>("input", Model.of("")) {
 
 			@Override
 			protected Iterator<String> getChoices(String input) {

@@ -10,10 +10,12 @@ package de.wicketpraxis.web.thema.howto.basepage;
 import java.util.List;
 
 import org.apache.wicket.Page;
-import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.html.PackageResourceGuard;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 import de.wicketpraxis.web.thema.howto.basepage.nav.NavCallbackInterface;
 import de.wicketpraxis.web.thema.howto.basepage.nav.NavPanel;
@@ -21,8 +23,6 @@ import de.wicketpraxis.web.thema.howto.basepage.nav.NavPanel;
 public abstract class AbstractBasePage extends WebPage {
 
 	public AbstractBasePage() {
-		add(CSSPackageResource.getHeaderContribution(AbstractBasePage.class, "styles/base.css", "all"));
-
 		LoadableDetachableModel<NavCallbackInterface> navModel = new LoadableDetachableModel<NavCallbackInterface>() {
 
 			@Override
@@ -32,14 +32,14 @@ public abstract class AbstractBasePage extends WebPage {
 		};
 		add(new NavPanel("nav", navModel));
 
-		WebMarkupContainer webMarkupContainer = new WebMarkupContainer("main") {
-
-			@Override
-			public boolean isTransparentResolver() {
-				return true;
-			}
-		};
+		WebMarkupContainer webMarkupContainer = new WebMarkupContainer("main");
 		add(webMarkupContainer);
+	}
+	
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		super.renderHead(response);
+		response.renderCSSReference(new PackageResourceReference(AbstractBasePage.class, "styles/base.css"), "all");
 	}
 
 	public abstract List<NavCallbackInterface> getNavigations();

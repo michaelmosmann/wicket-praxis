@@ -1,9 +1,9 @@
 package de.wicketpraxis.web.blog.pages.questions.ajax.parameter;
 
-import org.apache.wicket.Request;
-import org.apache.wicket.ResourceReference;
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 public abstract class PageMouseClickBehavior extends AbstractParameterizedDefaultAjaxBehavior {
 
@@ -20,12 +20,12 @@ public abstract class PageMouseClickBehavior extends AbstractParameterizedDefaul
 	}
 
 	@Override
-	public void renderHead(IHeaderResponse response) {
-		super.renderHead(response);
+	public void renderHead(Component component, IHeaderResponse response) {
+		super.renderHead(component, response);
 
-		response.renderJavascriptReference(WicketWindowJavascript.RESOURCE);
-		response.renderJavascriptReference(new ResourceReference(PageMouseClickBehavior.class, "PageMouseClickBehavior.js"));
-		response.renderOnDomReadyJavascript(getJavascript());
+		response.renderJavaScriptReference(WicketWindowJavascript.RESOURCE);
+		response.renderJavaScriptReference(new PackageResourceReference(PageMouseClickBehavior.class, "PageMouseClickBehavior.js"));
+		response.renderOnDomReadyJavaScript(getJavascript());
 	}
 
 	protected String getJavascript() {

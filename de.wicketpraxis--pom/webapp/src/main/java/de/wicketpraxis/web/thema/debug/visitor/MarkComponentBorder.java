@@ -8,15 +8,19 @@
 package de.wicketpraxis.web.thema.debug.visitor;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.IComponentBorder;
+import org.apache.wicket.behavior.Behavior;
 
-public class MarkComponentBorder implements IComponentBorder {
+public class MarkComponentBorder extends Behavior {
 
-	public void renderBefore(Component component) {
+	@Override
+	public void beforeRender(Component component) {
+		super.beforeRender(component);
 		component.getResponse().write("[--");
 	}
-
-	public void renderAfter(Component component) {
+	
+	@Override
+	public void afterRender(Component component) {
+		super.afterRender(component);
 		component.getResponse().write("--]");
 	}
 }

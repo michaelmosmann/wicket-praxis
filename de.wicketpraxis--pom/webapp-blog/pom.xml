@@ -77,6 +77,7 @@ Autor: Michael Mosmann
 	</repositories>
 -->
 
+<!--
  <repositories>
   <repository>
     <id>wicket-snaps</id>
@@ -89,6 +90,7 @@ Autor: Michael Mosmann
     </releases>
   </repository>
 	</repositories>
+-->
 
   <dependencies>
     <dependency>
@@ -100,7 +102,7 @@ Autor: Michael Mosmann
 		<!-- wicket -->
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket</artifactId>
+			<artifactId>wicket-core</artifactId>
 			<version>${wicket.version}</version>
 		</dependency>
 
@@ -158,6 +160,7 @@ Autor: Michael Mosmann
 		</dependency> 
 
 		<!-- wicket stuff -->
+<!--
     <dependency>
       <groupId>org.wicketstuff</groupId>
       <artifactId>scriptaculous</artifactId>
@@ -233,6 +236,7 @@ Autor: Michael Mosmann
         </exclusion>
 			</exclusions>
     </dependency>
+-->
 
 <!--
     <dependency>
@@ -240,7 +244,7 @@ Autor: Michael Mosmann
       <artifactId>input-events</artifactId>
 			<version>${wicketstuff.version}</version>
     </dependency>
--->
+
     <dependency>
       <groupId>org.wicketstuff</groupId>
       <artifactId>multi-text-input</artifactId>
@@ -256,6 +260,8 @@ Autor: Michael Mosmann
         </exclusion>
 			</exclusions>
     </dependency>
+-->
+
 <!--
     <dependency>
       <groupId>org.wicketstuff</groupId>
@@ -288,7 +294,7 @@ Autor: Michael Mosmann
   </dependencies>
 
 	<properties>
-		<wicket.version>1.4.20</wicket.version>
-		<wicketstuff.version>1.4.20</wicketstuff.version>
+		<wicket.version>1.5.7</wicket.version>
+		<wicketstuff.version>1.5.7</wicketstuff.version>
 	</properties>
 </project>

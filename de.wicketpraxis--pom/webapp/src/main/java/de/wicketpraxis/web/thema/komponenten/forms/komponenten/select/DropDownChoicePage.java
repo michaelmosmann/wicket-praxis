@@ -49,7 +49,7 @@ public class DropDownChoicePage extends AbstractFormPage {
 			}
 		};
 
-		IModel<List<? extends Integer>> choices = Model.of((List<Integer>) new ArrayList<Integer>(_tage.keySet()));
+		IModel<List<? extends Integer>> choices = Model.ofList((List<Integer>) new ArrayList<Integer>(_tage.keySet()));
 		IChoiceRenderer<Integer> renderer = new IChoiceRenderer<Integer>() {
 
 			public Object getDisplayValue(Integer object) {

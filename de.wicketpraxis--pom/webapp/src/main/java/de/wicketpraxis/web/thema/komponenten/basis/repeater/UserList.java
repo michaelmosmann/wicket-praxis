@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortState;
+import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.IFilterStateLocator;
 import org.apache.wicket.extensions.markup.html.repeater.util.SingleSortState;
@@ -50,12 +51,12 @@ public class UserList implements ISortableDataProvider<User>, /* Filter */IFilte
 
 				String[] properties = {"id", "EMail"};
 				for (String s : properties) {
-					int propertySortOrder = _sortState.getPropertySortOrder(s);
+					SortOrder propertySortOrder = _sortState.getPropertySortOrder(s);
 					switch (propertySortOrder) {
-						case ISortState.ASCENDING:
+						case ASCENDING:
 							_all.setOrder(s, true);
 							break;
-						case ISortState.DESCENDING:
+						case DESCENDING:
 							_all.setOrder(s, false);
 							break;
 					}

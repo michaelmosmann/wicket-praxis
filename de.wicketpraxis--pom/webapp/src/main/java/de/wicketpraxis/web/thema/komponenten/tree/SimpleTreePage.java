@@ -12,6 +12,8 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.util.visit.IVisit;
+import org.apache.wicket.util.visit.IVisitor;
 
 public class SimpleTreePage extends WebPage {
 
@@ -36,11 +38,12 @@ public class SimpleTreePage extends WebPage {
 		});
 	}
 
-	static class Visitor implements IVisitor<Component> {
+	static class Visitor implements IVisitor<Component,Void> {
 
 		StringBuilder _sb = new StringBuilder();
 
-		public Object component(Component component) {
+		@Override
+		public void component(Component component, IVisit<Void> visit) {
 			_sb.append("ID: ");
 			boolean hidden = false;
 			if (component instanceof SimpleTreePanel) {
@@ -56,8 +59,6 @@ public class SimpleTreePage extends WebPage {
 			if (hidden)
 				_sb.append("</strong>");
 			_sb.append(" (").append(component.getPageRelativePath()).append(")<br>");
-
-			return IVisitor.CONTINUE_TRAVERSAL;
 		};
 
 		public String getLog() {

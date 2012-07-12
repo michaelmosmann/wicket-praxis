@@ -7,7 +7,10 @@
  *****************************************/
 package de.wicketpraxis.web.thema.komponenten.basis.pages;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.request.http.handler.RedirectRequestHandler;
 
 import de.wicketpraxis.web.thema.TitleAnnotation;
 
@@ -15,7 +18,7 @@ import de.wicketpraxis.web.thema.TitleAnnotation;
 public class RedirectHttpPermanentPage extends WebPage {
 
 	public RedirectHttpPermanentPage() {
-		getRequestCycle().setRequestTarget(new RedirectPermanentRequestTarget("http://www.google.de"));
+		getRequestCycle().scheduleRequestHandlerAfterCurrent(new RedirectRequestHandler("http://www.google.de",HttpServletResponse.SC_MOVED_PERMANENTLY));
 	}
 
 }

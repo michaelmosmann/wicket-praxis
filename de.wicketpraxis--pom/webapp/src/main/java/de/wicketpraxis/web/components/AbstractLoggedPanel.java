@@ -23,13 +23,8 @@ public abstract class AbstractLoggedPanel extends Panel {
 	}
 
 	@Override
-	protected void onBeforeRender() {
-		super.onBeforeRender();
+	protected void onConfigure() {
+		super.onConfigure();
 		setVisible(WicketPraxisSession.get().isUserLogin());
-	}
-
-	@Override
-	protected boolean callOnBeforeRenderIfNotVisible() {
-		return true;
 	}
 }

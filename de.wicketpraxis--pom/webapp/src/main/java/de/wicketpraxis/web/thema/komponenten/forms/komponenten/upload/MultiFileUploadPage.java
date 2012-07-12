@@ -11,10 +11,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.wicket.extensions.ajax.markup.html.form.upload.UploadProgressBar;
-import org.apache.wicket.extensions.ajax.markup.html.form.upload.UploadWebRequest;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.markup.html.form.upload.MultiFileUploadField;

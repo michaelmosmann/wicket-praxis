@@ -7,10 +7,10 @@
  *****************************************/
 package de.wicketpraxis.web.thema.howto.mount;
 
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import de.wicketpraxis.web.thema.TitleAnnotation;
 

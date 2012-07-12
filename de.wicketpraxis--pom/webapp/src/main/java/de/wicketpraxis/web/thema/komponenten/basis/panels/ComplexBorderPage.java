@@ -19,7 +19,7 @@ public class ComplexBorderPage extends WebPage {
 		add(complexBorder);
 
 		ComplexBorder complexBorder2 = new ComplexBorder("border2", "It's an other border.");
-		complexBorder2.setTransparentResolver(true);
+//		complexBorder2.setTransparentResolver(true);
 		add(complexBorder2);
 
 		add(new Label("message", "again in a border?"));

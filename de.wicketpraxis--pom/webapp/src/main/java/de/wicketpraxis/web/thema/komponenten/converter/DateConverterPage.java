@@ -46,7 +46,7 @@ public class DateConverterPage extends WebPage {
 		}
 
 		@Override
-		public IConverter getConverter(Class<?> type) {
+		public <C> IConverter<C> getConverter(Class<C> type) {
 			return _converter;
 		}
 	}

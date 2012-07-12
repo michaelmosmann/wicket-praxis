@@ -17,7 +17,7 @@ public class SimpleComponent extends Component {
 	}
 
 	@Override
-	protected void onRender(MarkupStream markupStream) {
+	protected void onRender() {
 
 	}
 

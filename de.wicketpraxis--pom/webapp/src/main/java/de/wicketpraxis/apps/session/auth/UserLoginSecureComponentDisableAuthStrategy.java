@@ -10,6 +10,7 @@ package de.wicketpraxis.apps.session.auth;
 import org.apache.wicket.Component;
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authorization.IAuthorizationStrategy;
+import org.apache.wicket.request.component.IRequestableComponent;
 
 import de.wicketpraxis.apps.session.pages.SecureComponentInterface;
 import de.wicketpraxis.apps.session.session.SecurePageSession;
@@ -28,7 +29,7 @@ public class UserLoginSecureComponentDisableAuthStrategy implements IAuthorizati
 		return true;
 	}
 
-	public <T extends Component> boolean isInstantiationAuthorized(Class<T> componentClass) {
+	public <T extends IRequestableComponent> boolean isInstantiationAuthorized(Class<T> componentClass) {
 		return true;
 	}
 }

@@ -8,12 +8,13 @@
 package de.wicketpraxis.apps.session;
 
 import org.apache.wicket.Page;
-import org.apache.wicket.Request;
-import org.apache.wicket.Response;
+import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;
 import org.apache.wicket.authorization.strategies.CompoundAuthorizationStrategy;
 import org.apache.wicket.authorization.strategies.action.ActionAuthorizationStrategy;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.Request;
+import org.apache.wicket.request.Response;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 
 import de.wicketpraxis.apps.session.auth.UserLoginSecureComponentAuthStrategy;
@@ -30,9 +31,9 @@ public class SecurePageApplication extends WebApplication {
 	protected void init() {
 		super.init();
 
-		addComponentInstantiationListener(new SpringComponentInjector(this));
+		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 
-		if (DEVELOPMENT.equalsIgnoreCase(getConfigurationType())) {
+		if (RuntimeConfigurationType.DEVELOPMENT==getConfigurationType()) {
 			getResourceSettings().setResourceStreamLocator(new MavenDevResourceStreamLocator());
 		}
 

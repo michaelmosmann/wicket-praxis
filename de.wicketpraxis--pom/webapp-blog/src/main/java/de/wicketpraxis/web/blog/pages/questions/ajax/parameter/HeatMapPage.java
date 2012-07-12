@@ -1,9 +1,6 @@
 package de.wicketpraxis.web.blog.pages.questions.ajax.parameter;
 
-import java.awt.AlphaComposite;
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.io.Serializable;
@@ -15,10 +12,8 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.image.NonCachingImage;
-import org.apache.wicket.markup.html.image.resource.DynamicImageResource;
 import org.apache.wicket.markup.html.image.resource.RenderedDynamicImageResource;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
-import org.apache.wicket.protocol.http.WebResponse;
 import org.apache.wicket.util.time.Duration;
 
 public class HeatMapPage extends WebPage {
@@ -47,8 +42,8 @@ public class HeatMapPage extends WebPage {
 				_xOffset = xOffset;
 				_yOffset = yOffset;
 				imageResource.invalidate();
-				target.addComponent(feedbackPanel);
-				target.addComponent(box);
+				target.add(feedbackPanel);
+				target.add(box);
 			}
 		}.setThrottleDelay(Duration.milliseconds(250)));
 
@@ -59,8 +54,8 @@ public class HeatMapPage extends WebPage {
 				info("Clicked: " + x + "," + y);
 				_points.add(new Pos(x, y));
 				imageResource.invalidate();
-				target.addComponent(box);
-				target.addComponent(feedbackPanel);
+				target.add(box);
+				target.add(feedbackPanel);
 			}
 		}.setThrottleDelay(Duration.milliseconds(50)));
 
@@ -74,8 +69,8 @@ public class HeatMapPage extends WebPage {
 				imageResource.setHeight(height);
 				imageResource.invalidate();
 
-				target.addComponent(feedbackPanel);
-				target.addComponent(box);
+				target.add(feedbackPanel);
+				target.add(box);
 			}
 		}.setThrottleDelay(Duration.milliseconds(250)));
 
@@ -85,7 +80,6 @@ public class HeatMapPage extends WebPage {
 
 		public ClickMap(int width, int height) {
 			super(width, height, "jpg");
-			setCacheable(false);
 		}
 
 		@Override

@@ -1,18 +1,16 @@
 package de.wicketpraxis.web.blog.pages.questions.ajax.modal;
 
-import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
-import org.apache.wicket.markup.html.CSSPackageResource;
-import org.apache.wicket.markup.html.JavascriptPackageResource;
-import org.apache.wicket.markup.html.resources.CompressedResourceReference;
-import org.apache.wicket.markup.html.resources.JavascriptResourceReference;
+import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 
 public class CustomModalWindow extends ModalWindow {
 
-	private static ResourceReference CSS = new CompressedResourceReference(CustomModalWindow.class,
+	private static PackageResourceReference CSS = new PackageResourceReference(CustomModalWindow.class,
 			"styles/custom-modal.css");
-	private static ResourceReference JAVASCRIPT = new JavascriptResourceReference(CustomModalWindow.class,
+	private static ResourceReference JAVASCRIPT = new PackageResourceReference(CustomModalWindow.class,
 			"styles/custom-modal.js");
 
 	public CustomModalWindow(String id) {
@@ -20,8 +18,6 @@ public class CustomModalWindow extends ModalWindow {
 
 		setCssClassName("custom");
 
-		add(JavascriptPackageResource.getHeaderContribution(JAVASCRIPT));
-		add(CSSPackageResource.getHeaderContribution(CSS));
 
 		setCloseButtonCallback(new CloseButtonCallback() {
 
@@ -36,6 +32,13 @@ public class CustomModalWindow extends ModalWindow {
 				CustomModalWindow.this.onClose(target);
 			}
 		});
+	}
+	
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		super.renderHead(response);
+		response.renderJavaScriptReference(JAVASCRIPT);
+		response.renderCSSReference(CSS);
 	}
 
 	protected void onClose(AjaxRequestTarget target) {

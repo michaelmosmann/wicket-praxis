@@ -11,16 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.Page;
-import org.apache.wicket.Request;
-import org.apache.wicket.Response;
+import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;
 import org.apache.wicket.SharedResources;
 import org.apache.wicket.authorization.IAuthorizationStrategy;
 import org.apache.wicket.authorization.strategies.page.SimplePageAuthorizationStrategy;
-import org.apache.wicket.extensions.ajax.markup.html.form.upload.UploadWebRequest;
 import org.apache.wicket.protocol.http.WebApplication;
-import org.apache.wicket.protocol.http.WebRequest;
+import org.apache.wicket.request.Request;
+import org.apache.wicket.request.Response;
+import org.apache.wicket.request.http.WebRequest;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
+import org.apache.wicket.extensions.ajax.markup.html.form.upload.UploadProgressBar;
 
 import de.wicketpraxis.web.pages.BootStrap;
 import de.wicketpraxis.web.pages.SecurePageInterface;
@@ -39,9 +40,9 @@ public class WicketPraxisApplication extends WebApplication {
 	protected void init() {
 		super.init();
 
-		addComponentInstantiationListener(new SpringComponentInjector(this));
+		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 
-		if (DEVELOPMENT.equalsIgnoreCase(getConfigurationType())) {
+		if (RuntimeConfigurationType.DEVELOPMENT==getConfigurationType()) {
 			getResourceSettings().setResourceStreamLocator(new MavenDevResourceStreamLocator());
 		}
 
@@ -60,9 +61,11 @@ public class WicketPraxisApplication extends WebApplication {
 		RssFeedPage.init(this);
 		LinksPage.init(this);
 
-		getResourceSettings().setDisableGZipCompression(true);
 		//		getResourceSettings().setAddLastModifiedTimeToResourceReferenceUrl(true);
 		//		getMarkupSettings().setAutomaticLinking(true);
+		
+		// UploadWebRequest in 1.4 
+		getApplicationSettings().setUploadProgressUpdatesEnabled(true);
 	}
 
 	Class<? extends Page> _homePage = BootStrap.class;
@@ -90,14 +93,6 @@ public class WicketPraxisApplication extends WebApplication {
 	//	{
 	//		return new ConverterLocatorPage.CustomConverterLocator(super.newConverterLocator());
 	//	}
-
-	/**
-	 * @see org.apache.wicket.protocol.http.WebApplication#newWebRequest(javax.servlet.http.HttpServletRequest)
-	 */
-	@Override
-	protected WebRequest newWebRequest(HttpServletRequest servletRequest) {
-		return new UploadWebRequest(servletRequest);
-	}
 
 	public static WicketPraxisApplication get() {
 		return (WicketPraxisApplication) Application.get();

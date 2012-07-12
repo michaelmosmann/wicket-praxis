@@ -1,18 +1,17 @@
 package de.wicketpraxis.web.blog.pages.questions.form.autocomplete;
 
-import org.apache.wicket.extensions.ajax.markup.html.autocomplete.DefaultCssAutocompleteTextField;
-import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.extensions.ajax.markup.html.autocomplete.DefaultCssAutoCompleteTextField;
+import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.internal.HtmlHeaderContainer;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 public class FormAutoCompletePage extends WebPage {
 
 	public FormAutoCompletePage() {
-		add(CSSPackageResource.getHeaderContribution(DefaultCssAutocompleteTextField.class,
-				"DefaultCssAutocompleteTextField.css"));
-
 		Form<Void> form = new Form<Void>("form");
 
 		TextField<String> plz = new TextField<String>("plz", Model.of(""));
@@ -24,5 +23,12 @@ public class FormAutoCompletePage extends WebPage {
 		form.add(ort);
 
 		add(form);
+	}
+	
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		super.renderHead(response);
+		response.renderCSSReference(new PackageResourceReference(DefaultCssAutoCompleteTextField.class,
+				"DefaultCssAutocompleteTextField.css"));
 	}
 }

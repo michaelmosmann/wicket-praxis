@@ -7,6 +7,7 @@
  *****************************************/
 package de.wicketpraxis.web.thema.komponenten.basis.content;
 
+import org.apache.wicket.markup.MarkupType;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 
@@ -17,7 +18,7 @@ public class XmlPage extends WebPage {
 	}
 
 	@Override
-	public String getMarkupType() {
-		return "xml";
+	public MarkupType getMarkupType() {
+		return new MarkupType("xml",MarkupType.XML_MIME);
 	}
 }

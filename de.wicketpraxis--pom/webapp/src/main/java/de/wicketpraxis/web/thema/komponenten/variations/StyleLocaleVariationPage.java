@@ -9,9 +9,9 @@ package de.wicketpraxis.web.thema.komponenten.variations;
 
 import java.util.Locale;
 
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class StyleLocaleVariationPage extends WebPage {
 
@@ -41,7 +41,7 @@ public class StyleLocaleVariationPage extends WebPage {
 		 * Application
 		 */
 
-		String changeStyle = pageParameters.getString("style");
+		String changeStyle = pageParameters.get("style").toString();
 		if ((changeStyle != null) && (changeStyle.length() > 0)) {
 			getSession().setStyle(changeStyle);
 		} else {

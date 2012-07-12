@@ -9,9 +9,9 @@ package de.wicketpraxis.web.thema.komponenten.basis.resources;
 
 import java.util.Locale;
 
-import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 import de.wicketpraxis.web.thema.TitleAnnotation;
 
@@ -20,13 +20,11 @@ public class ResourceRefPage extends WebPage {
 
 	public ResourceRefPage() {
 		// -> test_red_fr_CA.gif
-		ResourceReference refCanada = new ResourceReference(ResourceRefPage.class, "test.gif");
-		refCanada.setLocale(Locale.CANADA_FRENCH);
-		refCanada.setStyle("red");
+		PackageResourceReference refCanada = new PackageResourceReference(ResourceRefPage.class, "test.gif",Locale.CANADA_FRENCH,"red",null);
 		add(new Image("image", refCanada));
 
 		// -> test.gif
-		ResourceReference ref = new ResourceReference(ResourceRefPage.class, "test.gif");
+		PackageResourceReference ref = new PackageResourceReference(ResourceRefPage.class, "test.gif");
 		add(new Image("imageStandard", ref));
 	}
 }

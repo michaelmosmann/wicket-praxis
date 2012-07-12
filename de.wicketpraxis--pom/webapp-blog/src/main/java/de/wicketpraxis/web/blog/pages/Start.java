@@ -27,7 +27,6 @@ import de.wicketpraxis.web.blog.pages.questions.ajax.modal.ModalWindowPage;
 import de.wicketpraxis.web.blog.pages.questions.ajax.overview.AjaxJavascriptOverviewPage;
 import de.wicketpraxis.web.blog.pages.questions.ajax.parameter.HeatMapPage;
 import de.wicketpraxis.web.blog.pages.questions.ajax.parameter.ParameterizedAjaxPage;
-import de.wicketpraxis.web.blog.pages.questions.backbutton.BackButtonPage;
 import de.wicketpraxis.web.blog.pages.questions.backbutton.BackButtonStartPage;
 import de.wicketpraxis.web.blog.pages.questions.checkgroup.fromdb.CheckGroupFromDbPage;
 import de.wicketpraxis.web.blog.pages.questions.datatable.DataTablePage;
@@ -47,7 +46,6 @@ import de.wicketpraxis.web.blog.pages.questions.migration.forms.MinimalFormPage;
 import de.wicketpraxis.web.blog.pages.questions.seo.ajax.SeoAjaxLinksPage;
 import de.wicketpraxis.web.blog.pages.questions.transparent.TransparentResolverPage;
 import de.wicketpraxis.web.blog.pages.questions.transparent.lazy.NoTransparentResolverPage;
-import de.wicketpraxis.web.blog.wicketstuff.StuffPage;
 
 public class Start extends WebPage {
 
@@ -57,7 +55,6 @@ public class Start extends WebPage {
 		pages.add(ListViewAjaxRefreshPage.class);
 		pages.add(MinimalFormPage.class);
 		pages.add(KomplexFormPage.class);
-		pages.add(StuffPage.class);
 		pages.add(AjaxMultiUpdatePage.class);
 		pages.add(SomeModelsPage.class);
 		pages.add(DataTablePage.class);

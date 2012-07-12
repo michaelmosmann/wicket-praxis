@@ -58,6 +58,11 @@ public class FormSubmitPage extends WebPage {
 					info("AjaxFallbackButton: " + _counter++);
 				}
 			}
+			
+			@Override
+			protected void onError(AjaxRequestTarget target, Form<?> form) {
+				
+			}
 		});
 
 		add(form);

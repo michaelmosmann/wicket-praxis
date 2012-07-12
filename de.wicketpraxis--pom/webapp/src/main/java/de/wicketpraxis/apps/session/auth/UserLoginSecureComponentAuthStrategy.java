@@ -14,6 +14,7 @@ import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authorization.IAuthorizationStrategy;
 import org.apache.wicket.authorization.IUnauthorizedComponentInstantiationListener;
+import org.apache.wicket.request.component.IRequestableComponent;
 
 import de.wicketpraxis.apps.session.pages.SecureComponentInterface;
 import de.wicketpraxis.apps.session.session.SecurePageSession;
@@ -40,7 +41,8 @@ public class UserLoginSecureComponentAuthStrategy implements IAuthorizationStrat
 		return true;
 	}
 
-	public <T extends Component> boolean isInstantiationAuthorized(Class<T> componentClass) {
+	@Override
+	public <T extends IRequestableComponent> boolean isInstantiationAuthorized(Class<T> componentClass) {
 		if (SecureComponentInterface.class.isAssignableFrom(componentClass)) {
 			return SecurePageSession.get().isUserLogin();
 		}

@@ -11,13 +11,7 @@ public abstract class AbstractBasePanel extends Panel {
 	public AbstractBasePanel(String id) {
 		super(id);
 
-		_border = new WebMarkupContainer("border") {
-
-			@Override
-			public boolean isTransparentResolver() {
-				return true;
-			}
-		};
+		_border = new WebMarkupContainer("border");
 		_border.setOutputMarkupPlaceholderTag(true);
 		add(_border);
 	}
@@ -25,12 +19,12 @@ public abstract class AbstractBasePanel extends Panel {
 	public void hide(AjaxRequestTarget target) {
 		_border.setVisible(false);
 		if (target != null)
-			target.addComponent(_border);
+			target.add(_border);
 	}
 
 	public void show(AjaxRequestTarget target) {
 		_border.setVisible(true);
 		if (target != null)
-			target.addComponent(_border);
+			target.add(_border);
 	}
 }

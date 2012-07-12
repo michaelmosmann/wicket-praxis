@@ -7,7 +7,7 @@
  *****************************************/
 package de.wicketpraxis.web.thema.spring;
 
-import org.apache.wicket.injection.web.InjectorHolder;
+import org.apache.wicket.injection.Injector;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -27,7 +27,7 @@ public class ExtendedSpringIntegrationPage extends WebPage {
 		UserDao _userDao;
 
 		public SimpleNonWicketClass() {
-			InjectorHolder.getInjector().inject(this);
+			Injector.get().inject(this);
 		}
 
 		public String getEmail() {

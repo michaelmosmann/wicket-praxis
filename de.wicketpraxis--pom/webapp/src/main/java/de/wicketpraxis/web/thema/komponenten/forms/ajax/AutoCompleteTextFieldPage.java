@@ -13,7 +13,7 @@ import java.util.List;
 
 import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AutoCompleteSettings;
 import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AutoCompleteTextField;
-import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -21,6 +21,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 import de.wicketpraxis.web.thema.komponenten.forms.AbstractFormPage;
 
@@ -31,7 +32,6 @@ public class AutoCompleteTextFieldPage extends AbstractFormPage {
 	IModel<String> _text = Model.of("");
 
 	public AutoCompleteTextFieldPage() {
-		add(CSSPackageResource.getHeaderContribution(AutoCompleteTextFieldPage.class, "AutoCompleteTextFieldPage.css"));
 
 		Form form = new Form("form") {
 
@@ -75,5 +75,10 @@ public class AutoCompleteTextFieldPage extends AbstractFormPage {
 				item.add(new Label("text", item.getModel()));
 			}
 		});
+	}
+	
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		response.renderCSSReference(new PackageResourceReference(AutoCompleteTextFieldPage.class, "AutoCompleteTextFieldPage.css"));
 	}
 }

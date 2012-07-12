@@ -7,15 +7,17 @@
  *****************************************/
 package de.wicketpraxis.web.thema.komponenten.basis.panels;
 
-import org.apache.wicket.markup.html.CSSPackageResource;
-
-import de.wicketpraxis.web.thema.komponenten.basis.pages.HeaderReferencesPage;
+import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 public class SimpleWithHeaderPanel extends SimplePanel {
 
 	public SimpleWithHeaderPanel(String id, String message) {
 		super(id, message);
-
-		add(CSSPackageResource.getHeaderContribution(getClass(), "styles/standard.css"));
+	}
+	
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		response.renderCSSReference(new PackageResourceReference(getClass(), "styles/standard.css"));
 	}
 }

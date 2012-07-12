@@ -7,43 +7,39 @@
  *****************************************/
 package de.wicketpraxis.web.thema.howto.res.images;
 
+import org.apache.wicket.Application;
 import org.apache.wicket.extensions.markup.html.image.resource.ThumbnailImageResource;
-import org.apache.wicket.markup.html.DynamicWebResource;
-import org.apache.wicket.markup.html.PackageResource;
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.markup.html.WebResource;
 import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.request.resource.ByteArrayResource;
+import org.apache.wicket.request.resource.IResource;
+import org.apache.wicket.request.resource.PackageResource;
 
 import de.wicketpraxis.web.thema.howto.res.ResourceIOUtil;
 
 public class ImageFromDatabasePage extends WebPage {
 
 	public ImageFromDatabasePage() {
-		WebResource res = new DatabaseImageResource();
+		IResource res = new DatabaseImageResource();
 
 		add(new Image("image", res));
 		add(new Image("thumbnail128", new ThumbnailImageResource(res, 128)));
 		add(new Image("thumbnail64", new ThumbnailImageResource(res, 64)));
 	}
 
-	static class DatabaseImageResource extends DynamicWebResource {
+	static class DatabaseImageResource extends ByteArrayResource {
 
+		
+		public DatabaseImageResource() {
+			super("image/gif");
+		}
+		
 		@Override
-		protected ResourceState getResourceState() {
-			return new ResourceState() {
-
-				@Override
-				public String getContentType() {
-					return "image/gif";
-				}
-
-				@Override
-				public byte[] getData() {
-					PackageResource res = PackageResource.get(ImageFromDatabasePage.class, "test.gif");
-					return ResourceIOUtil.getByteArrayFrom(res);
-				}
-
+		protected byte[] getData(Attributes attributes) {
+			PackageResource res = new PackageResource(ImageFromDatabasePage.class, "test.gif",null,null,null) {
+				
 			};
+			return ResourceIOUtil.getByteArrayFrom(res);
 		}
 	}
 }

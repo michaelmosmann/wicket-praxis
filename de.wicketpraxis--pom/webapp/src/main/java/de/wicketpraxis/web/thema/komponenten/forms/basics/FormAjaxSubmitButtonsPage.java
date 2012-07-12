@@ -41,6 +41,12 @@ public class FormAjaxSubmitButtonsPage extends AbstractFormPage {
 					target.addComponent(getFeedbackPanel());
 				}
 			}
+
+			@Override
+			protected void onError(AjaxRequestTarget target, Form<?> form) {
+				// TODO Auto-generated method stub
+				
+			}
 		});
 
 		// submit auf alle Fälle
@@ -52,6 +58,12 @@ public class FormAjaxSubmitButtonsPage extends AbstractFormPage {
 				warn("Button 2 geklickt");
 				target.addComponent(form);
 				target.addComponent(getFeedbackPanel());
+			}
+
+			@Override
+			protected void onError(AjaxRequestTarget target, Form<?> form) {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 
@@ -65,6 +77,12 @@ public class FormAjaxSubmitButtonsPage extends AbstractFormPage {
 				warn("Button 3 geklickt");
 				target.addComponent(form);
 				target.addComponent(getFeedbackPanel());
+			}
+
+			@Override
+			protected void onError(AjaxRequestTarget target, Form<?> form) {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}

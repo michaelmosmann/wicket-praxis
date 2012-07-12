@@ -7,13 +7,13 @@
  *****************************************/
 package de.wicketpraxis.web.thema.komponenten.forms;
 
-import org.apache.wicket.behavior.HeaderContributor;
-import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 
 public class Forms {
 
-	public static HeaderContributor getCss() {
-		return CSSPackageResource.getHeaderContribution(Forms.class, "form.css");
+	public static ResourceReference getCss() {
+		return new PackageResourceReference(Forms.class, "form.css");
 	}
 
 }

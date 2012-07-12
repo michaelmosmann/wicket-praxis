@@ -7,13 +7,11 @@
  *****************************************/
 package de.wicketpraxis.web.thema.komponenten.basis.content;
 
-import java.util.Locale;
-
-import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 import de.wicketpraxis.web.thema.TitleAnnotation;
 
@@ -33,12 +31,12 @@ public class SimpleImagePage extends WebPage {
 		// -> src=".../test2_de_DE.gif"
 		add(new Image("image2", "test2.gif"));
 		//		add(new Image("image2Model",Model.of("test2.gif")));
-		add(new Image("image2ResourceRef", new ResourceReference(SimpleImagePage.class, "test2.gif", getLocale(),
-				getStyle())));
+		add(new Image("image2ResourceRef", new PackageResourceReference(SimpleImagePage.class, "test2.gif", getLocale(),
+				getStyle(),null)));
 
 		// -> src=".../test2.gif"
-		add(new Image("image2ResourceRefOhne", new ResourceReference(SimpleImagePage.class, "test2.gif")));
-		add(new Image("image2ResourceRefMit", new ResourceReference(SimpleImagePage.class, "test2.gif", null, null)));
+		add(new Image("image2ResourceRefOhne", new PackageResourceReference(SimpleImagePage.class, "test2.gif")));
+		add(new Image("image2ResourceRefMit", new PackageResourceReference(SimpleImagePage.class, "test2.gif", null, null,null)));
 
 		// test3.gif vorhanden
 		// -> src=".../test3.gif"

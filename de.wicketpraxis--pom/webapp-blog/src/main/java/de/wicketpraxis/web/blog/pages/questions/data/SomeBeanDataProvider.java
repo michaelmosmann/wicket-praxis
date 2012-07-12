@@ -6,13 +6,14 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortState;
+import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.IFilterStateLocator;
 import org.apache.wicket.extensions.markup.html.repeater.util.SingleSortState;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-public class SomeBeanDataProvider implements ISortableDataProvider<SomeBean>, IFilterStateLocator {
+public class SomeBeanDataProvider implements ISortableDataProvider<SomeBean>, IFilterStateLocator<SomeBeanFilter> {
 
 	ISortState _sortState = new SingleSortState();
 	SomeBeanFilter _filter = new SomeBeanFilter();
@@ -20,6 +21,7 @@ public class SomeBeanDataProvider implements ISortableDataProvider<SomeBean>, IF
 	final static int LIST_SIZE = 123;
 	private List<SomeBean> _list;
 
+	@Override
 	public Iterator<? extends SomeBean> iterator(int first, int count) {
 		initList();
 
@@ -31,20 +33,24 @@ public class SomeBeanDataProvider implements ISortableDataProvider<SomeBean>, IF
 		return ret.iterator();
 	}
 
+	@Override
 	public IModel<SomeBean> model(SomeBean object) {
 		return Model.of(object);
 	}
 
+	@Override
 	public int size() {
 		initList();
 
 		return _list.size();
 	}
 
+	@Override
 	public void detach() {
 		_list = null;
 	}
 
+	@Override
 	public ISortState getSortState() {
 		return _sortState;
 	}
@@ -53,31 +59,33 @@ public class SomeBeanDataProvider implements ISortableDataProvider<SomeBean>, IF
 		_sortState = state;
 	}
 
-	public Object getFilterState() {
+	@Override
+	public SomeBeanFilter getFilterState() {
 		return _filter;
 	}
 
-	public void setFilterState(Object state) {
-		_filter = (SomeBeanFilter) state;
+	@Override
+	public void setFilterState(SomeBeanFilter state) {
+		_filter = state;
 	}
 
 	private void initList() {
 		if (_list == null) {
-			final int nameSort;
-			final int alterSort;
+			final SortOrder nameSort;
+			final SortOrder alterSort;
 			if (_sortState != null) {
 				nameSort = _sortState.getPropertySortOrder("name");
 				alterSort = _sortState.getPropertySortOrder("alter");
 			} else {
-				nameSort = ISortState.NONE;
-				alterSort = ISortState.NONE;
+				nameSort = SortOrder.NONE;
+				alterSort = SortOrder.NONE;
 			}
 
 			_list = getSortedList(nameSort, alterSort, _filter);
 		}
 	}
 
-	private List<SomeBean> getSortedList(final int nameSort, final int alterSort, SomeBeanFilter filter) {
+	private List<SomeBean> getSortedList(final SortOrder nameSort, final SortOrder alterSort, SomeBeanFilter filter) {
 		List<SomeBean> result = SomeBeanGenerator.getBeans(LIST_SIZE, filter);
 
 		Collections.sort(result, new Comparator<SomeBean>() {
@@ -86,18 +94,18 @@ public class SomeBeanDataProvider implements ISortableDataProvider<SomeBean>, IF
 				int compName = o1.getName().compareTo(o2.getName());
 				int compAlter = new Integer(o1.getAlter()).compareTo(o2.getAlter());
 				switch (nameSort) {
-					case ISortState.NONE:
+					case NONE:
 						compName = 0;
 						break;
-					case ISortState.DESCENDING:
+					case DESCENDING:
 						compName = -compName;
 						break;
 				}
 				switch (alterSort) {
-					case ISortState.NONE:
+					case NONE:
 						compAlter = 0;
 						break;
-					case ISortState.DESCENDING:
+					case DESCENDING:
 						compAlter = -compAlter;
 						break;
 				}

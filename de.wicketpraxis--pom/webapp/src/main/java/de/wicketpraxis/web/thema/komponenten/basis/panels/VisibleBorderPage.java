@@ -7,19 +7,17 @@
  *****************************************/
 package de.wicketpraxis.web.thema.komponenten.basis.panels;
 
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.Model;
-
-import de.wicketpraxis.web.thema.komponenten.variations.StyleLocaleVariationPage;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class VisibleBorderPage extends WebPage {
 
 	public VisibleBorderPage(PageParameters pageParameters) {
 		AbstractVisibleBorder<String> border = new AbstractVisibleBorder<String>("border",
-				Model.of(pageParameters.getString("border"))) {
+				Model.of(pageParameters.get("border").toString())) {
 
 			@Override
 			protected boolean isVisibleWith(String object) {
@@ -37,7 +35,7 @@ public class VisibleBorderPage extends WebPage {
 		add(invers);
 
 		add(new BookmarkablePageLink<VisibleBorderPage>("show", VisibleBorderPage.class));
-		add(new BookmarkablePageLink<VisibleBorderPage>("hide", VisibleBorderPage.class, new PageParameters("border=hide")));
+		add(new BookmarkablePageLink<VisibleBorderPage>("hide", VisibleBorderPage.class, new PageParameters().add("border","hide")));
 
 	}
 }

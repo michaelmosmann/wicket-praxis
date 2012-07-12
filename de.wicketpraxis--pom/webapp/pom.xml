@@ -55,7 +55,7 @@ Autor: Michael Mosmann
 		<!-- wicket -->
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket</artifactId>
+			<artifactId>wicket-core</artifactId>
 			<version>${wicket.version}</version>
 		</dependency>
 
@@ -116,6 +116,6 @@ Autor: Michael Mosmann
   </dependencies>
 
 	<properties>
-		<wicket.version>1.4.20</wicket.version>
+		<wicket.version>1.5.7</wicket.version>
 	</properties>
 </project>

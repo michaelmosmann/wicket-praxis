@@ -29,8 +29,8 @@ public class CustomConverterLocator implements IConverterLocator {
 		_fallback = fallback;
 	}
 
-	public IConverter getConverter(Class<?> type) {
-		IConverter ret = _customMap.get(type);
+	public <C> IConverter<C> getConverter(Class<C> type) {
+		IConverter<C> ret = _customMap.get(type);
 		if (ret == null)
 			ret = _fallback.getConverter(type);
 		return ret;

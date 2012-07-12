@@ -1,15 +1,11 @@
 package de.wicketpraxis.web.blog.pages.questions.migration.forms;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class KomplexFormPage extends WebPage {
 
@@ -24,8 +20,8 @@ public class KomplexFormPage extends WebPage {
 				setResponsePage(new ResultPage(getModelObject().getName()));
 
 				// Variante 2
-				Map<String, String> map = new HashMap<String, String>();
-				map.put("Name", getModelObject().getName());
+				PageParameters map = new PageParameters();
+				map.add("Name", getModelObject().getName());
 				setResponsePage(ResultPage.class, new PageParameters(map));
 
 				// Variante ?

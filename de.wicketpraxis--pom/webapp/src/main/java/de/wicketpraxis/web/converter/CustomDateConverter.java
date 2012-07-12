@@ -10,7 +10,7 @@ package de.wicketpraxis.web.converter;
 import java.text.DateFormat;
 import java.util.Locale;
 
-import org.apache.wicket.util.convert.converters.DateConverter;
+import org.apache.wicket.util.convert.converter.DateConverter;
 
 public class CustomDateConverter extends DateConverter {
 

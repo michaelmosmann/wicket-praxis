@@ -7,7 +7,7 @@ import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
-import org.apache.wicket.protocol.http.WebResponse;
+import org.apache.wicket.request.http.WebResponse;
 
 public class BackButtonPage extends WebPage {
 
@@ -51,9 +51,8 @@ public class BackButtonPage extends WebPage {
 	}
 
 	@Override
-	protected void configureResponse() {
-		super.configureResponse();
-		WebResponse response = getWebRequestCycle().getWebResponse();
+	protected void configureResponse(WebResponse response) {
+		super.configureResponse(response);
 		response.setHeader("Cache-Control", "no-cache, max-age=0,must-revalidate, no-store");
 	}
 

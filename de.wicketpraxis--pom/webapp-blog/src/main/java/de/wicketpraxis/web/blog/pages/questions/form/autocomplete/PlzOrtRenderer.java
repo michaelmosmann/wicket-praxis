@@ -1,8 +1,8 @@
 package de.wicketpraxis.web.blog.pages.questions.form.autocomplete;
 
-import org.apache.wicket.Response;
 import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AbstractAutoCompleteRenderer;
 import org.apache.wicket.markup.html.form.FormComponent;
+import org.apache.wicket.request.Response;
 
 public class PlzOrtRenderer extends AbstractAutoCompleteRenderer<PlzOrt> {
 
@@ -24,7 +24,7 @@ public class PlzOrtRenderer extends AbstractAutoCompleteRenderer<PlzOrt> {
 	}
 
 	@Override
-	protected CharSequence getOnSelectJavascriptExpression(PlzOrt plzort) {
+	protected CharSequence getOnSelectJavaScriptExpression(PlzOrt plzort) {
 		StringBuilder js = new StringBuilder();
 		js.append("wicketGet('").append(_ortInput.getMarkupId()).append("').value ='" + plzort.getOrt() + "';");
 		js.append("input");

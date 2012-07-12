@@ -3,12 +3,14 @@ package de.wicketpraxis.web.blog.pages.questions.ajax.parameter;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.wicket.Request;
-import org.apache.wicket.RequestCycle;
-import org.apache.wicket.ResourceReference;
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.request.Request;
+import org.apache.wicket.request.cycle.RequestCycle;
+import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.util.time.Duration;
 
 public abstract class AbstractParameterizedDefaultAjaxBehavior extends AbstractDefaultAjaxBehavior {
@@ -18,9 +20,9 @@ public abstract class AbstractParameterizedDefaultAjaxBehavior extends AbstractD
 	private Duration _throttleDelay;
 
 	@Override
-	public void renderHead(IHeaderResponse response) {
-		super.renderHead(response);
-		response.renderJavascriptReference(new ResourceReference(AbstractParameterizedDefaultAjaxBehavior.class,
+	public void renderHead(Component component, IHeaderResponse response) {
+		super.renderHead(component, response);
+		response.renderJavaScriptReference(new PackageResourceReference(AbstractParameterizedDefaultAjaxBehavior.class,
 				"AbstractParameterizedDefaultAjaxBehavior.js"));
 	}
 
@@ -31,7 +33,7 @@ public abstract class AbstractParameterizedDefaultAjaxBehavior extends AbstractD
 		Map<String, Object> map = new HashMap<String, Object>();
 		Parameter<?>[] parameter = getParameter();
 		for (Parameter<?> p : parameter) {
-			String svalue = request.getParameter(p.getName());
+			String svalue = request.getRequestParameters().getParameterValue(p.getName()).toString();
 			if (svalue != null) {
 				Object value = getComponent().getConverter(p.getType()).convertToObject(svalue, getComponent().getLocale());
 				map.put(p.getName(), value);
@@ -40,11 +42,11 @@ public abstract class AbstractParameterizedDefaultAjaxBehavior extends AbstractD
 
 		respond(target, new ParameterMap(map));
 	}
-
+	
 	@Override
-	public CharSequence getCallbackUrl(boolean onlyTargetActivePage) {
+	public CharSequence getCallbackUrl() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(super.getCallbackUrl(onlyTargetActivePage));
+		sb.append(super.getCallbackUrl());
 
 		Parameter<?>[] parameter = getParameter();
 		for (Parameter<?> p : parameter) {

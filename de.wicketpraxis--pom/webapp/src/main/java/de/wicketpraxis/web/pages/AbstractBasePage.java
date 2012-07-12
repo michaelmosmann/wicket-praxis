@@ -7,11 +7,13 @@
  *****************************************/
 package de.wicketpraxis.web.pages;
 
-import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.html.PackageResourceGuard;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 import de.wicketpraxis.web.WicketPraxisApplication;
 import de.wicketpraxis.web.components.login.LoginFormPanel;
@@ -29,8 +31,11 @@ public class AbstractBasePage extends WebPage {
 		add(new Label("pageTitle", _pageTitleModel));
 		add(new Label("title", _titleModel));
 		add(getHeadPanel("head"));
-
-		add(CSSPackageResource.getHeaderContribution(WicketPraxisApplication.class, "layout/css/style.css"));
+	}
+	
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		response.renderCSSReference(new PackageResourceReference(WicketPraxisApplication.class, "layout/css/style.css"));
 	}
 
 	public Model<String> getPageTitleModel() {

@@ -1,12 +1,20 @@
 package de.wicketpraxis.web.blog.pages.questions.events;
 
 import org.apache.wicket.Application;
+
 import org.apache.wicket.Component;
 import org.apache.wicket.Page;
 import org.apache.wicket.Session;
-import org.apache.wicket.Component.IVisitor;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.event.IEventSource;
+import org.apache.wicket.util.visit.IVisitor;
 
+
+/**
+ * see {@link IEventSource}
+ */
+
+@Deprecated
 public class AbstractEvent {
 
 	private final Component _source;
@@ -50,7 +58,7 @@ public class AbstractEvent {
 
 	}
 
-	protected IVisitor<Component> getVisitor() {
+	protected IVisitor<Component,Void> getVisitor() {
 		return new NotifyVisitor(this);
 	}
 

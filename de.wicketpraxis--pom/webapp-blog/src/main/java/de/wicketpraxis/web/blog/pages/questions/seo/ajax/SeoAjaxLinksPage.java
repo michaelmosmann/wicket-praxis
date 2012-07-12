@@ -1,13 +1,12 @@
 package de.wicketpraxis.web.blog.pages.questions.seo.ajax;
 
-import org.apache.wicket.Page;
-import org.apache.wicket.PageParameters;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class SeoAjaxLinksPage extends WebPage {
 
@@ -45,6 +44,6 @@ public class SeoAjaxLinksPage extends WebPage {
 	}
 
 	private int getCounter(PageParameters pageParameters) {
-		return pageParameters.getAsInteger("Count",0);
+		return pageParameters.get("Count").toInt(0);
 	}
 }

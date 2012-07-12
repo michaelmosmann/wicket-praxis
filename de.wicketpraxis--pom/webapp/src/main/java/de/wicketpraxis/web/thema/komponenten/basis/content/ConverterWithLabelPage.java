@@ -29,7 +29,7 @@ public class ConverterWithLabelPage extends WebPage {
 		add(new Label("custom", colorModel) {
 
 			@Override
-			public IConverter getConverter(Class<?> type) {
+			public <C> IConverter<C> getConverter(Class<C> type) {
 				if (type == Color.class) {
 					return new ColorConverter();
 				}

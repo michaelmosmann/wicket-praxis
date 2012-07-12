@@ -7,28 +7,23 @@
  *****************************************/
 package de.wicketpraxis.web.thema.howto.res.shared;
 
-import org.apache.wicket.markup.html.DynamicWebResource;
-import org.apache.wicket.markup.html.PackageResource;
+import org.apache.wicket.request.resource.ByteArrayResource;
+import org.apache.wicket.request.resource.PackageResource;
+import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 
 import de.wicketpraxis.web.thema.howto.res.ResourceIOUtil;
 
-public class RssFeedResource extends DynamicWebResource {
+public class RssFeedResource extends ByteArrayResource {
 
+	
+	public RssFeedResource() {
+		super("text/xml");
+	}
+	
 	@Override
-	protected ResourceState getResourceState() {
-		return new ResourceState() {
-
-			@Override
-			public String getContentType() {
-				return "text/xml";
-			}
-
-			@Override
-			public byte[] getData() {
-				PackageResource res = PackageResource.get(DynamicSharedResource.class, "feed.xml");
-				return ResourceIOUtil.getByteArrayFrom(res);
-			}
-
-		};
+	protected byte[] getData(Attributes attributes) {
+		PackageResource res = new PackageResource(DynamicSharedResource.class, "feed.xml",null,null,null) {};
+		return ResourceIOUtil.getByteArrayFrom(res);
 	}
 }

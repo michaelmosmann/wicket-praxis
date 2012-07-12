@@ -8,6 +8,7 @@
 package de.wicketpraxis.web.thema.komponenten.basis.repeater;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
@@ -32,8 +33,9 @@ public class DataTablePage extends WebPage {
 		}
 
 		IDataProvider<Kunde> data = new ListDataProvider<Kunde>(liste);
-		IColumn[] columns = {new PropertyColumn<Kunde>(Model.of("Vorname"), "vorname"),
-				new PropertyColumn<Kunde>(Model.of("Name"), "name"), new PropertyColumn<Kunde>(Model.of("J"), "geburtsjahr"),};
+		List<IColumn<Kunde>> columns = new ArrayList<IColumn<Kunde>>();
+		columns.addAll(Arrays.asList(new PropertyColumn<Kunde>(Model.of("Vorname"), "vorname"), new PropertyColumn<Kunde>(
+				Model.of("Name"), "name"), new PropertyColumn<Kunde>(Model.of("J"), "geburtsjahr")));
 
 		DataTable<Kunde> dataTable = new DataTable<Kunde>("list", columns, data, 3);
 		dataTable.addTopToolbar(new NavigationToolbar(dataTable));

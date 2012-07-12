@@ -20,8 +20,8 @@ import org.apache.wicket.model.util.ListModel;
 public class ColumnListViewPage extends WebPage {
 
 	public ColumnListViewPage() {
-		IModel<List<? extends Integer>> rows = Model.of(Arrays.asList(1, 2, 3));
-		IModel<List<? extends String>> columns = Model.of(Arrays.asList("A", "B", "C"));
+		IModel<List<? extends Integer>> rows = Model.ofList(Arrays.asList(1, 2, 3));
+		IModel<List<? extends String>> columns = Model.ofList(Arrays.asList("A", "B", "C"));
 		add(new ColumnListView<Integer, String>("rows", rows, "columns", columns) {
 
 			@Override

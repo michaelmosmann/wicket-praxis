@@ -10,7 +10,7 @@ package de.wicketpraxis.web.thema.howto.res;
 import java.io.IOException;
 
 import org.apache.wicket.WicketRuntimeException;
-import org.apache.wicket.markup.html.PackageResource;
+import org.apache.wicket.request.resource.PackageResource;
 import org.apache.wicket.util.io.IOUtils;
 import org.apache.wicket.util.resource.ResourceStreamNotFoundException;
 
@@ -18,7 +18,7 @@ public class ResourceIOUtil {
 
 	public static byte[] getByteArrayFrom(PackageResource resource) {
 		try {
-			return IOUtils.toByteArray(resource.getResourceStream().getInputStream());
+			return IOUtils.toByteArray(resource.getCacheableResourceStream().getInputStream());
 		} catch (IOException e) {
 			throw new WicketRuntimeException(e);
 		} catch (ResourceStreamNotFoundException e) {

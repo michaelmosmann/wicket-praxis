@@ -17,6 +17,8 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.util.visit.IVisit;
+import org.apache.wicket.util.visit.IVisitor;
 
 public class RandomNumberPage extends WebPage {
 
@@ -52,9 +54,10 @@ public class RandomNumberPage extends WebPage {
 		return ret;
 	}
 
-	static class VisitLabels implements IVisitor<Component> {
+	static class VisitLabels implements IVisitor<Component,Void> {
 
-		public Object component(Component component) {
+		@Override
+		public void component(Component component, IVisit<Void> visit) {
 			if (component instanceof Label) {
 				Object data = component.getDefaultModelObject();
 				if (data instanceof Integer) {
@@ -63,7 +66,6 @@ public class RandomNumberPage extends WebPage {
 						component.setVisible(!component.isVisible());
 				}
 			}
-			return IVisitor.CONTINUE_TRAVERSAL;
 		};
 	}
 }

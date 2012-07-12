@@ -10,6 +10,8 @@ package de.wicketpraxis.web.thema.debug.visitor;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.util.visit.IVisit;
+import org.apache.wicket.util.visit.IVisitor;
 
 public class DebugLabel extends Label {
 
@@ -21,19 +23,20 @@ public class DebugLabel extends Label {
 	protected void onBeforeRender() {
 		super.onBeforeRender();
 
-		getPage().visitChildren(Label.class, new IVisitor<Label>() {
+		getPage().visitChildren(Label.class, new IVisitor<Label,Void>() {
 
-			public Object component(Label component) {
+			@Override
+			public void component(Label component, IVisit<Void> visit) {
 				if (component != DebugLabel.this) {
 					// irgendeine Überprüfung
 					if ("ist".equals(component.getDefaultModelObject())) {
-						component.setComponentBorder(new MarkComponentBorder());
+						component.add(new MarkComponentBorder());
 					}
 					if ("ein".equals(component.getDefaultModelObject())) {
 						component.add(new AttributeModifier("style", true, Model.of("border:1px solid red;")));
 					}
 				}
-				return IVisitor.CONTINUE_TRAVERSAL_BUT_DONT_GO_DEEPER;
+				visit.dontGoDeeper();
 			}
 		});
 	}

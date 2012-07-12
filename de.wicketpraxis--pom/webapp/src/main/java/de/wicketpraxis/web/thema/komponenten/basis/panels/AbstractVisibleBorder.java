@@ -28,16 +28,11 @@ public abstract class AbstractVisibleBorder<T> extends Border {
 	}
 
 	@Override
-	protected void onBeforeRender() {
-		super.onBeforeRender();
+	protected void onConfigure() {
+		super.onConfigure();
 		IModel<T> model = (IModel<T>) getDefaultModel();
 
 		setVisible(isVisibleWith(model.getObject()));
-	}
-
-	@Override
-	protected boolean callOnBeforeRenderIfNotVisible() {
-		return true;
 	}
 
 	protected abstract boolean isVisibleWith(T object);

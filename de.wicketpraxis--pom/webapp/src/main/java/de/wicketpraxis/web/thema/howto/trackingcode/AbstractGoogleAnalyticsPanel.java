@@ -18,6 +18,8 @@ import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.string.interpolator.MapVariableInterpolator;
+import org.apache.wicket.util.visit.IVisit;
+import org.apache.wicket.util.visit.IVisitor;
 
 public abstract class AbstractGoogleAnalyticsPanel extends Panel {
 
@@ -27,7 +29,7 @@ public abstract class AbstractGoogleAnalyticsPanel extends Panel {
 		add(new WebMarkupContainer("javascript") {
 
 			@Override
-			protected void onComponentTagBody(MarkupStream markupStream, ComponentTag openTag) {
+			public void onComponentTagBody(MarkupStream markupStream, ComponentTag openTag) {
 				MarkupElement element = markupStream.get();
 				String streamAsString = element.toString();
 
@@ -52,16 +54,17 @@ public abstract class AbstractGoogleAnalyticsPanel extends Panel {
 	@Override
 	protected void onBeforeRender() {
 		super.onBeforeRender();
-		getPage().visitChildren(ExternalLink.class, new IVisitor<ExternalLink>() {
+		getPage().visitChildren(ExternalLink.class, new IVisitor<ExternalLink,Void>() {
 
-			public Object component(ExternalLink link) {
+			@Override
+			public void component(ExternalLink link, IVisit<Void> visit) {
 				String url = link.getDefaultModelObjectAsString();
 				if (url.startsWith("http://")) {
 					url = url.substring("http://".length());
 					link.add(new AttributeModifier("onclick", true, new Model<String>("javascript:urchinTracker('/outbound/"
 							+ url + "');")));
 				}
-				return IVisitor.CONTINUE_TRAVERSAL_BUT_DONT_GO_DEEPER;
+				visit.dontGoDeeper();
 			}
 		});
 	}

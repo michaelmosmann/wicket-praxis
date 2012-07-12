@@ -24,7 +24,7 @@ public class SerializableModelPage extends WebPage {
 
 	public SerializableModelPage() {
 		//		IModel<List<? extends Serializable>> message=new WildcardListModel<Serializable>(Arrays.asList("Eins",(Serializable) 2,3.0d));
-		IModel<List<? extends Serializable>> message = Model.of(Arrays.asList("Eins", (Serializable) 2, 3.0d));
+		IModel<List<? extends Serializable>> message = Model.ofList(Arrays.asList("Eins", (Serializable) 2, 3.0d));
 
 		add(new Label("message", message));
 	}

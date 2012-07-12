@@ -9,8 +9,8 @@ package de.wicketpraxis.web.thema.howto.mount;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.protocol.http.WebApplication;
-import org.apache.wicket.request.target.coding.HybridUrlCodingStrategy;
-import org.apache.wicket.request.target.coding.QueryStringUrlCodingStrategy;
+import org.apache.wicket.request.mapper.MountedMapper;
+import org.apache.wicket.request.mapper.parameter.UrlPathPageParametersEncoder;
 
 public class PageMount {
 
@@ -33,12 +33,11 @@ public class PageMount {
 	}
 
 	private static void mountQueryString(WebApplication app, Class<? extends Page> page) {
-		app.mount(new QueryStringUrlCodingStrategy(getPath(page), page));
+		app.mountPage(getPath(page), page);
 	}
 
-	// funktioniert besser mit session timeout's
 	private static void mountHybrid(WebApplication app, Class<? extends Page> page) {
-		app.mount(new HybridUrlCodingStrategy(getPath(page), page, true));
+		app.mount(new MountedMapper(getPath(page), page, new UrlPathPageParametersEncoder()));
 	}
 
 	private static String getPath(Class<? extends Page> page) {

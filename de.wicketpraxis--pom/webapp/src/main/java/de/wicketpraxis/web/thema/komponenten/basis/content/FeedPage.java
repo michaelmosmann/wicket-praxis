@@ -14,15 +14,17 @@ import java.util.List;
 import java.util.UUID;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.PageParameters;
+import org.apache.wicket.markup.MarkupType;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.RequestUtils;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
+
+import de.wicketpraxis.wicketext.RequestUtilsExt;
 
 public class FeedPage extends WebPage {
 
@@ -36,7 +38,7 @@ public class FeedPage extends WebPage {
 			Entry e = new Entry();
 			e.setTitle("erster Beitrag");
 			e.setID(UUID.randomUUID().toString());
-			e.setLink(RequestUtils.toAbsolutePath(urlFor(FeedPage.class, new PageParameters()).toString()));
+			e.setLink(RequestUtilsExt.toAbsolutePath(urlFor(FeedPage.class, new PageParameters()).toString()));
 			e.setUpdated(new Date());
 			e.setSummary("Das ist <strong>ein kleines</strong> Beispiel");
 			e.setContent("Das ist <strong>ein kleines</strong> Beispiel. Hier mit <i>mehr</i> Inhalt.");
@@ -59,8 +61,8 @@ public class FeedPage extends WebPage {
 	}
 
 	@Override
-	public String getMarkupType() {
-		return "xml";
+	public MarkupType getMarkupType() {
+		return new MarkupType("xml",MarkupType.XML_MIME);
 	}
 
 	static class Entry implements Serializable {

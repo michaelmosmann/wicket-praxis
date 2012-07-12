@@ -7,12 +7,9 @@
  *****************************************/
 package de.wicketpraxis.web.thema.komponenten.basis.content;
 
-import org.apache.wicket.Application;
-import org.apache.wicket.ResourceReference;
 import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.image.Image;
-
-import sun.security.action.GetLongAction;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 public enum Images {
 	TEST1("test1.gif"),
@@ -27,6 +24,6 @@ public enum Images {
 
 	public Image newImage(String id) {
 		Session session = Session.get();
-		return new Image(id, new ResourceReference(getClass(), _name, session.getLocale(), session.getStyle()));
+		return new Image(id, new PackageResourceReference(getClass(), _name, session.getLocale(), session.getStyle(),null));
 	}
 }

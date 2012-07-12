@@ -7,28 +7,23 @@
  *****************************************/
 package de.wicketpraxis.web.thema.komponenten.basis.pages;
 
-import org.apache.wicket.ResourceReference;
-import org.apache.wicket.behavior.HeaderContributor;
-import org.apache.wicket.markup.html.CSSPackageResource;
-import org.apache.wicket.markup.html.IHeaderContributor;
 import org.apache.wicket.markup.html.IHeaderResponse;
-import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 public class HeaderReferencesPage extends WebPage {
 
-	public HeaderReferencesPage() {
-		add(CSSPackageResource.getHeaderContribution(HeaderReferencesPage.class, "styles/standard.css"));
-		add(CSSPackageResource.getHeaderContribution(new ResourceReference(HeaderReferencesPage.class, "styles/locale.css",
-				getLocale(), getStyle())));
+	
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		super.renderHead(response);
+		
+		response.renderCSSReference(new PackageResourceReference(HeaderReferencesPage.class, "styles/standard.css"));
+		response.renderCSSReference(new PackageResourceReference(HeaderReferencesPage.class, "styles/locale.css",
+				getLocale(), getStyle(),getVariation()));
 
-		add(JavascriptPackageResource.getHeaderContribution(HeaderReferencesPage.class, "js/test.js"));
+		response.renderJavaScriptReference(new PackageResourceReference(HeaderReferencesPage.class, "js/test.js"));
 
-		add(new HeaderContributor(new IHeaderContributor() {
-
-			public void renderHead(IHeaderResponse response) {
-				response.renderString("<!-- mein Beitrag -->");
-			}
-		}));
+		response.renderString("<!-- mein Beitrag -->");
 	}
 }

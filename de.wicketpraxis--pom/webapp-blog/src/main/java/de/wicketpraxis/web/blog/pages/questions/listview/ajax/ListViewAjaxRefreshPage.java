@@ -57,6 +57,11 @@ public class ListViewAjaxRefreshPage extends WebPage {
 				files.setDefaultModelObject(results);
 				target.addComponent(resultcontainer);
 			}
+			
+			@Override
+			protected void onError(AjaxRequestTarget target, Form<?> form) {
+				
+			}
 		};
 		form.add(buttquery);
 

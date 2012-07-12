@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.Page;
+import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 
@@ -27,9 +28,9 @@ public class WicketExampleApplication extends WebApplication {
 	protected void init() {
 		super.init();
 
-		addComponentInstantiationListener(new SpringComponentInjector(this));
+		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 
-		if (DEVELOPMENT.equalsIgnoreCase(getConfigurationType())) {
+		if (RuntimeConfigurationType.DEVELOPMENT==getConfigurationType()) {
 			getResourceSettings().setResourceStreamLocator(new MavenDevResourceStreamLocator());
 		}
 	}

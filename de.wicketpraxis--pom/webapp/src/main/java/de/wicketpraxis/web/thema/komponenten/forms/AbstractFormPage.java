@@ -8,6 +8,7 @@
 package de.wicketpraxis.web.thema.komponenten.forms;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
@@ -16,7 +17,6 @@ public abstract class AbstractFormPage extends WebPage {
 	private FeedbackPanel _feedbackPanel;
 
 	public AbstractFormPage() {
-		add(Forms.getCss());
 
 		_feedbackPanel = new FeedbackPanel("feedback");
 		_feedbackPanel.setOutputMarkupId(true);
@@ -30,5 +30,10 @@ public abstract class AbstractFormPage extends WebPage {
 
 	protected void updateFeedbackPanel(AjaxRequestTarget target) {
 		target.addComponent(_feedbackPanel);
+	}
+	
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		response.renderCSSReference(Forms.getCss());
 	}
 }

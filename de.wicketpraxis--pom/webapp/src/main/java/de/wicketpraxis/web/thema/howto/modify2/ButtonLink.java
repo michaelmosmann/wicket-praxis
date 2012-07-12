@@ -8,10 +8,11 @@
 package de.wicketpraxis.web.thema.howto.modify2;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 public abstract class ButtonLink<T> extends Link<T> {
 
@@ -24,8 +25,12 @@ public abstract class ButtonLink<T> extends Link<T> {
 	public ButtonLink(String id, IModel<T> model, Type type) {
 		super(id, model);
 
-		add(CSSPackageResource.getHeaderContribution(ButtonLink.class, "button.css"));
-
 		add(new AttributeModifier("class", true, Model.of(type.name())));
+	}
+	
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		super.renderHead(response);
+		response.renderCSSReference(new PackageResourceReference(ButtonLink.class, "button.css"));
 	}
 }

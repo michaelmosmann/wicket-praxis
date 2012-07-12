@@ -8,19 +8,17 @@
 package de.wicketpraxis.web.thema.howto.optimize;
 
 import org.apache.wicket.Page;
-import org.apache.wicket.javascript.DefaultJavascriptCompressor;
-import org.apache.wicket.javascript.IJavascriptCompressor;
+import org.apache.wicket.RuntimeConfigurationType;
+import org.apache.wicket.javascript.DefaultJavaScriptCompressor;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.settings.IApplicationSettings;
 import org.apache.wicket.settings.IDebugSettings;
-import org.apache.wicket.settings.IExceptionSettings;
 import org.apache.wicket.settings.IMarkupSettings;
 import org.apache.wicket.settings.IPageSettings;
 import org.apache.wicket.settings.IRequestLoggerSettings;
 import org.apache.wicket.settings.IResourceSettings;
 import org.apache.wicket.settings.ISecuritySettings;
-import org.apache.wicket.settings.IExceptionSettings.UnexpectedExceptionDisplay;
 import org.apache.wicket.util.lang.Bytes;
 
 import de.wicketpraxis.web.thema.TitleAnnotation;
@@ -44,11 +42,11 @@ public class OptimizePage extends WebPage {
 			applicationSettings.setDefaultMaximumUploadSize(Bytes.megabytes(12));
 
 			// App Configuration
-			String configurationType = _this.getConfigurationType();
-			if (configurationType.equals(_this.DEVELOPMENT)) {
+			RuntimeConfigurationType configurationType = _this.getConfigurationType();
+			if (configurationType==RuntimeConfigurationType.DEVELOPMENT) {
 				// fallback
 			}
-			if (configurationType.equals(_this.DEPLOYMENT)) {
+			if (configurationType==RuntimeConfigurationType.DEPLOYMENT) {
 
 			}
 
@@ -85,8 +83,6 @@ public class OptimizePage extends WebPage {
 			markupSettings.setAutomaticLinking(false);
 
 			IPageSettings pageSettings = _this.getPageSettings();
-			// keinen grund das zu deaktivieren
-			pageSettings.setAutomaticMultiWindowSupport(true);
 
 			IRequestLoggerSettings requestLoggerSettings = _this.getRequestLoggerSettings();
 			requestLoggerSettings.setRequestLoggerEnabled(false);
@@ -98,10 +94,10 @@ public class OptimizePage extends WebPage {
 			 */
 
 			IResourceSettings resourceSettings = _this.getResourceSettings();
-			resourceSettings.setAddLastModifiedTimeToResourceReferenceUrl(false);
-			resourceSettings.setDisableGZipCompression(false);
+//			resourceSettings.setAddLastModifiedTimeToResourceReferenceUrl(false);
+//			resourceSettings.setDisableGZipCompression(false);
 			// kann evtl. zu problemen führen, wenn die js-lib nicht sauber ist..
-			resourceSettings.setJavascriptCompressor(new DefaultJavascriptCompressor());
+			resourceSettings.setJavaScriptCompressor(new DefaultJavaScriptCompressor());
 			resourceSettings.setThrowExceptionOnMissingResource(false);
 
 			ISecuritySettings securitySettings = _this.getSecuritySettings();

@@ -33,7 +33,7 @@ public class VelocityPanelPage extends WebPage {
 		map.put("text", "etwas Text");
 		map.put("id", "label");
 
-		IModel<? extends Map<?, ?>> model = Model.of(map);
+		IModel<? extends Map<?, ?>> model = Model.ofMap(map);
 		VelocityPanel panel = new VelocityPanel("velocity", model) {
 
 			@Override

@@ -7,32 +7,25 @@
  *****************************************/
 package de.wicketpraxis.web.thema.howto.res.shared;
 
-import org.apache.wicket.markup.html.DynamicWebResource;
-import org.apache.wicket.markup.html.PackageResource;
-import org.apache.wicket.util.value.ValueMap;
+import org.apache.wicket.request.resource.ByteArrayResource;
+import org.apache.wicket.request.resource.PackageResource;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 import de.wicketpraxis.web.thema.howto.res.ResourceIOUtil;
 
-public class DynamicSharedResource extends DynamicWebResource {
+public class DynamicSharedResource extends ByteArrayResource {
 
-	@Override
-	protected ResourceState getResourceState() {
-		ValueMap parameters = getParameters();
-		final int nr = parameters.getInt("Nr", -1);
-		return new ResourceState() {
-
-			@Override
-			public String getContentType() {
-				return "image/gif";
-			}
-
-			@Override
-			public byte[] getData() {
-				return getImage(nr);
-			}
-
-		};
+	
+	public DynamicSharedResource() {
+		super("image/gif");
 	}
+	
+	@Override
+	protected byte[] getData(Attributes attributes) {
+		int nr = attributes.getParameters().get("Nr").toInt(-1);
+		return getImage(nr);
+	}
+	
 
 	public byte[] getImage(int nr) {
 		String image = "testUnknown.gif";
@@ -44,7 +37,7 @@ public class DynamicSharedResource extends DynamicWebResource {
 				image = "test2.gif";
 				break;
 		}
-		PackageResource res = PackageResource.get(DynamicSharedResource.class, image);
+		PackageResource res = new PackageResource(DynamicSharedResource.class, image,null,null,null) {};
 		return ResourceIOUtil.getByteArrayFrom(res);
 	}
 }

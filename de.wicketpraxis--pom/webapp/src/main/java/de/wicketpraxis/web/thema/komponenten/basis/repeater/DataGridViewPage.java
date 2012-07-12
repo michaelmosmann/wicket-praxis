@@ -50,7 +50,7 @@ public class DataGridViewPage extends WebPage {
 		ListDataProvider<Kunde> data = new ListDataProvider<Kunde>(liste);
 
 		final DataGridView<Kunde> datagrid = new DataGridView<Kunde>("list", cells, data);
-		datagrid.setRowsPerPage(3);
+		datagrid.setItemsPerPage(3);
 		add(datagrid);
 
 		add(new Link("link") {

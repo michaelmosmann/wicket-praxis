@@ -8,8 +8,9 @@
 package de.wicketpraxis.web.thema.komponenten.ajax;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.Component.IVisitor;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.util.visit.IVisit;
+import org.apache.wicket.util.visit.IVisitor;
 
 public abstract class AbstractAjaxEvent {
 
@@ -33,20 +34,20 @@ public abstract class AbstractAjaxEvent {
 		_requestTarget.addComponent(component);
 	}
 
-	protected static class AjaxEventVisitor implements IVisitor<Component> {
+	protected static class AjaxEventVisitor implements IVisitor<Component,Void> {
 
 		AbstractAjaxEvent _event;
 
 		protected AjaxEventVisitor(AbstractAjaxEvent event) {
 			_event = event;
 		}
-
-		public Object component(Component component) {
+		
+		@Override
+		public void component(Component component, IVisit<Void> visit) {
 			//			if (component instanceof AjaxEventListenerInterface)
 			//			{
 			((AjaxEventListenerInterface) component).notifyAjaxEvent(_event);
 			//			}
-			return IVisitor.CONTINUE_TRAVERSAL;
 		}
 	}
 

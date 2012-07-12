@@ -23,7 +23,7 @@ public class ConverterExamplePage extends WebPage {
 		add(new Label("colorConverter", Model.of(NamedColor.BLUE)) {
 
 			@Override
-			public IConverter getConverter(Class<?> type) {
+			public <C> IConverter<C> getConverter(Class<C> type) {
 				return NamedColorConverter.INSTANCE;
 			}
 		});

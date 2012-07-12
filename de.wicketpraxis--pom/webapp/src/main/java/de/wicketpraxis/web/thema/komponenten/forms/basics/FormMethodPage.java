@@ -27,7 +27,6 @@ public class FormMethodPage extends AbstractFormPage {
 			@Override
 			protected void onSubmit() {
 				info("Form mit GET");
-				setRedirect(false);
 			}
 
 			@Override

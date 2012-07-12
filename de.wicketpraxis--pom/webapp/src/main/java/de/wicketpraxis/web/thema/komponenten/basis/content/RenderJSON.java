@@ -7,9 +7,9 @@
  *****************************************/
 package de.wicketpraxis.web.thema.komponenten.basis.content;
 
-import org.apache.wicket.IRequestTarget;
 import org.apache.wicket.Page;
-import org.apache.wicket.RequestCycle;
+import org.apache.wicket.request.IRequestCycle;
+import org.apache.wicket.request.IRequestHandler;
 
 import com.sdicons.json.mapper.MapperException;
 import com.sdicons.json.mapper.helper.impl.ObjectMapper;
@@ -34,14 +34,17 @@ public class RenderJSON {
 	static <T> void render(Page page, T bean) throws MapperException {
 		final JSONValue json = new ObjectMapper().toJSON(bean);
 
-		page.getRequestCycle().setRequestTarget(new IRequestTarget() {
-
-			public void detach(RequestCycle requestCycle) {
-				// nothing to do
-			}
-
-			public void respond(RequestCycle requestCycle) {
+		page.getRequestCycle().scheduleRequestHandlerAfterCurrent(new IRequestHandler() {
+			
+			@Override
+			public void respond(IRequestCycle requestCycle) {
 				requestCycle.getResponse().write(json.render(true));
+			}
+			
+			@Override
+			public void detach(IRequestCycle requestCycle) {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}

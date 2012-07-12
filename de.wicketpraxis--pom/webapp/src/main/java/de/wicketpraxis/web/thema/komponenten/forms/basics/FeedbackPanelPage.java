@@ -7,6 +7,7 @@
  *****************************************/
 package de.wicketpraxis.web.thema.komponenten.forms.basics;
 
+import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -16,8 +17,6 @@ import de.wicketpraxis.web.thema.komponenten.forms.Forms;
 public class FeedbackPanelPage extends WebPage {
 
 	public FeedbackPanelPage() {
-		add(Forms.getCss());
-
 		add(new FeedbackPanel("feedback"));
 
 		add(new Link("link") {
@@ -43,5 +42,10 @@ public class FeedbackPanelPage extends WebPage {
 				error("Irren ist menschlich.");
 			}
 		});
+	}
+	
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		response.renderCSSReference(Forms.getCss());
 	}
 }
