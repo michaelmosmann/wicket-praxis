@@ -29,14 +29,19 @@ public class DataTablePage extends WebPage {
 		SomeBeanDataProvider dataProvider = new SomeBeanDataProvider();
 
 		FilterForm<SomeBeanFilter> form = new FilterForm<SomeBeanFilter>("form", dataProvider);
-		FilterForm rawForm=form;
-		
-		IFilterStateLocator rawDataProvider=dataProvider;
 
 		DefaultDataTable<SomeBean> dataTable = new DefaultDataTable<SomeBean>("dataTable", columns, dataProvider, 10);
-		dataTable.addTopToolbar(new FilterToolbar(dataTable, rawForm, rawDataProvider));
-		rawForm.add(dataTable);
+		dataTable.addTopToolbar(newFilterToolbar(dataTable, form, dataProvider));
+		form.add(dataTable);
 
-		add(rawForm);
+		add(form);
+	}
+
+	/**
+	 * wicket 1.5 api missmatch - fixed in wicket 6
+	 */
+	private <T,F> FilterToolbar newFilterToolbar(DefaultDataTable<T> dataTable, FilterForm<F> form,
+			IFilterStateLocator<F> dataProvider) {
+		return new FilterToolbar(dataTable, (FilterForm) form, (IFilterStateLocator) dataProvider);
 	}
 }

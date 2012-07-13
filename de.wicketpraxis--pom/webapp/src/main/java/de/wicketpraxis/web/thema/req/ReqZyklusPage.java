@@ -27,9 +27,35 @@ public class ReqZyklusPage extends WebPage {
 
 		public MyPanel(String id) {
 			super(id);
-			// TODO Auto-generated constructor stub
 		}
 
+		// not request cycle
+		@Override
+		protected void onInitialize() {
+			_logger.error("onInitialize {}", getId());
+			super.onInitialize();
+		}
+
+		@Override
+		protected void onMarkupAttached() {
+			_logger.error("onMarkupAttached {}", getId());
+			super.onMarkupAttached();
+		}
+		
+		@Override
+		protected void onRemove() {
+			_logger.error("onRemove {}", getId());
+			super.onRemove();
+		}
+		
+		
+		// request cycle
+		@Override
+		protected void onConfigure() {
+			_logger.error("onConfigure {}", getId());
+			super.onConfigure();
+		}
+		
 		@Override
 		protected void onRender() {
 			_logger.error("onRender {}", getId());
@@ -43,11 +69,19 @@ public class ReqZyklusPage extends WebPage {
 		}
 
 		@Override
+		protected void onAfterRenderChildren() {
+			_logger.error("onAfterRenderChildren {}", getId());
+			super.onAfterRenderChildren();
+		}
+		
+		@Override
 		protected void onAfterRender() {
 			_logger.error("onAfterRender {}", getId());
 			super.onAfterRender();
 		}
 
+		
+		
 		@Override
 		protected void onDetach() {
 			_logger.error("onDetach {}", getId());
