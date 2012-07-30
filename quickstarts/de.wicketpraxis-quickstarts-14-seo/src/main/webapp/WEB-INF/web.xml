@@ -25,6 +25,16 @@
  		</init-param>
  	</filter>
 
+  <filter>
+	  <filter-name>de.wicketpraxis.sessionurl</filter-name>
+  	<filter-class>de.wicketpraxis.DisabledJSessionIDinUrlFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>de.wicketpraxis.sessionurl</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
  <filter-mapping>
   <filter-name>wicket.de.wicketpraxis-quickstarts-14-seo</filter-name>
 	<url-pattern>/*</url-pattern>
