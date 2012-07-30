@@ -18,6 +18,8 @@ public class SimpleAjaxPage extends WebPage {
 	private Label _labelNoRefresh;
 
 	public SimpleAjaxPage() {
+		
+		
 		_labelRefresh = new Label("refresh", "Bin gleich weg.");
 		_labelRefresh.setOutputMarkupId(true);
 		add(_labelRefresh);

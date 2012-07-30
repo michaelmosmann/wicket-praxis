@@ -44,6 +44,7 @@ import de.wicketpraxis.web.blog.pages.questions.mergedresources.MergedResourcePa
 import de.wicketpraxis.web.blog.pages.questions.migration.forms.KomplexFormPage;
 import de.wicketpraxis.web.blog.pages.questions.migration.forms.MinimalFormPage;
 import de.wicketpraxis.web.blog.pages.questions.seo.ajax.SeoAjaxLinksPage;
+import de.wicketpraxis.web.blog.pages.questions.seo.requests.FirstRequestPage;
 import de.wicketpraxis.web.blog.pages.questions.transparent.TransparentResolverPage;
 import de.wicketpraxis.web.blog.pages.questions.transparent.lazy.NoTransparentResolverPage;
 
@@ -81,6 +82,8 @@ public class Start extends WebPage {
 		pages.add(MergedResourcePage.class);
 		pages.add(BackButtonStartPage.class);
 		pages.add(AjaxRegionPage.class);
+		
+		pages.add(FirstRequestPage.class);
 
 		add(new ListView<Class<? extends WebPage>>("list", pages) {
 
