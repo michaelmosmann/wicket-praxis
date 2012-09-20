@@ -2,10 +2,10 @@ package de.wicketpraxis.web.blog.pages.questions.ajax.behavior;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.IAjaxRegionMarkupIdProvider;
-import org.apache.wicket.behavior.AbstractBehavior;
+import org.apache.wicket.behavior.Behavior;
 
 
-public class AjaxRegionBehavior extends AbstractBehavior implements IAjaxRegionMarkupIdProvider {
+public class AjaxRegionBehavior extends Behavior implements IAjaxRegionMarkupIdProvider {
 
 	@Override
 	public void beforeRender(Component component) {
@@ -14,8 +14,8 @@ public class AjaxRegionBehavior extends AbstractBehavior implements IAjaxRegionM
 	}
 	
 	@Override
-	public void onRendered(Component component) {
-		super.onRendered(component);
+	public void afterRender(Component component) {
+		super.afterRender(component);
 		component.getResponse().write("</div>");
 	}
 	

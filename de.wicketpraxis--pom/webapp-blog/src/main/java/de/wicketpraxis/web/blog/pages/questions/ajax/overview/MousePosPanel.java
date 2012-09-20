@@ -25,7 +25,7 @@ public class MousePosPanel extends Panel {
 //				PageParameters pageParameters = RequestCycle.get().getPageParameters();
 				PageParameters pageParameters = target.getPageParameters();
 				info("geklickt: " + pageParameters);
-				target.addComponent(feedbackPanel);
+				target.add(feedbackPanel);
 			}
 		});
 		add(box);

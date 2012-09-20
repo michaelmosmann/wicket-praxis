@@ -72,7 +72,7 @@ public class AbstractEvent {
 
 	public final void update(Component component) {
 		if (_target != null) {
-			_target.addComponent(component);
+			_target.add(component);
 		}
 	}
 

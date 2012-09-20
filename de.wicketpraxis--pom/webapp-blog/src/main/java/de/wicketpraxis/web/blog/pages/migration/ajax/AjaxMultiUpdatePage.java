@@ -45,11 +45,11 @@ public class AjaxMultiUpdatePage extends WebPage {
 				setModelObject(getModelObject() + 1);
 				info("Aktualisiere " + getPath());
 				if (target != null) {
-					target.addComponent(feedback);
-					target.addComponent(block);
+					target.add(feedback);
+					target.add(block);
 
 					// ist nicht nötig
-					target.addComponent(label);
+					target.add(label);
 				}
 			}
 		});

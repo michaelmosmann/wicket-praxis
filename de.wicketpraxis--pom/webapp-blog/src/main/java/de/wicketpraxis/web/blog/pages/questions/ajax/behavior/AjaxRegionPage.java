@@ -24,7 +24,7 @@ public class AjaxRegionPage extends WebPage {
 			@Override
 			public void onClick(AjaxRequestTarget target) {
 				setModelObject(1+getModelObject());
-				target.addComponent(label);
+				target.add(label);
 			}
 		});
 	}

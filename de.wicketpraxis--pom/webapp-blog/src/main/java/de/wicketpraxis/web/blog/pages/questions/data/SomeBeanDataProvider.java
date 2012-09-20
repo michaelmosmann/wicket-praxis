@@ -13,17 +13,20 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SingleSortState;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-public class SomeBeanDataProvider implements ISortableDataProvider<SomeBean>, IFilterStateLocator<SomeBeanFilter> {
+public class SomeBeanDataProvider implements ISortableDataProvider<SomeBean,String>, IFilterStateLocator<SomeBean> {
 
-	ISortState _sortState = new SingleSortState();
-	SomeBeanFilter _filter = new SomeBeanFilter();
+	ISortState<String> _sortState = new SingleSortState<String>();
+	SomeBean _filter = new SomeBean();
 
 	final static int LIST_SIZE = 123;
 	private List<SomeBean> _list;
 
 	@Override
-	public Iterator<? extends SomeBean> iterator(int first, int count) {
+	public Iterator<? extends SomeBean> iterator(long lfirst, long lcount) {
 		initList();
+		
+		int first=(int) lfirst;
+		int count=(int) lcount;
 
 		List<SomeBean> ret = _list;
 		if (ret.size() > (first + count)) {
@@ -39,7 +42,7 @@ public class SomeBeanDataProvider implements ISortableDataProvider<SomeBean>, IF
 	}
 
 	@Override
-	public int size() {
+	public long size() {
 		initList();
 
 		return _list.size();
@@ -51,21 +54,21 @@ public class SomeBeanDataProvider implements ISortableDataProvider<SomeBean>, IF
 	}
 
 	@Override
-	public ISortState getSortState() {
+	public ISortState<String> getSortState() {
 		return _sortState;
 	}
 
-	public void setSortState(ISortState state) {
+	public void setSortState(ISortState<String> state) {
 		_sortState = state;
 	}
 
 	@Override
-	public SomeBeanFilter getFilterState() {
+	public SomeBean getFilterState() {
 		return _filter;
 	}
 
 	@Override
-	public void setFilterState(SomeBeanFilter state) {
+	public void setFilterState(SomeBean state) {
 		_filter = state;
 	}
 
@@ -85,7 +88,7 @@ public class SomeBeanDataProvider implements ISortableDataProvider<SomeBean>, IF
 		}
 	}
 
-	private List<SomeBean> getSortedList(final SortOrder nameSort, final SortOrder alterSort, SomeBeanFilter filter) {
+	private List<SomeBean> getSortedList(final SortOrder nameSort, final SortOrder alterSort, SomeBean filter) {
 		List<SomeBean> result = SomeBeanGenerator.getBeans(LIST_SIZE, filter);
 
 		Collections.sort(result, new Comparator<SomeBean>() {

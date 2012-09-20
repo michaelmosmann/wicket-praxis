@@ -13,14 +13,13 @@ import org.apache.wicket.model.CompoundPropertyModel;
 
 import de.wicketpraxis.web.blog.pages.questions.data.SomeBean;
 import de.wicketpraxis.web.blog.pages.questions.data.SomeBeanDataProvider;
-import de.wicketpraxis.web.blog.pages.questions.data.SomeBeanFilter;
 
 public class DataViewPage extends WebPage {
 
 	public DataViewPage() {
 		SomeBeanDataProvider dataProvider = new SomeBeanDataProvider();
 
-		Form<SomeBeanFilter> form = new Form<SomeBeanFilter>("form", new CompoundPropertyModel<SomeBeanFilter>(
+		Form<SomeBean> form = new Form<SomeBean>("form", new CompoundPropertyModel<SomeBean>(
 				dataProvider.getFilterState()));
 		form.add(new TextField<String>("name"));
 		form.add(new TextField<String>("vorname"));

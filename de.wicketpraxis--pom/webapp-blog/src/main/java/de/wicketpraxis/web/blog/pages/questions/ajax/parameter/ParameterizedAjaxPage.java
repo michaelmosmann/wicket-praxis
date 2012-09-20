@@ -18,7 +18,7 @@ public class ParameterizedAjaxPage extends WebPage {
 			@Override
 			protected void onClick(AjaxRequestTarget target, int x, int y) {
 				info("Clicked: " + x + "," + y);
-				target.addComponent(feedbackPanel);
+				target.add(feedbackPanel);
 			}
 		});
 		add(block);

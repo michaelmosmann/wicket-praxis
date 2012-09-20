@@ -25,17 +25,17 @@ public class SeoAjaxLinksPage extends WebPage {
 		label.setOutputMarkupId(true);
 		add(label);
 
-		add(new AjaxBookmarkablePageLink<Void>("link", getClass(), new PageParameters("Count="+count)) {
+		add(new AjaxBookmarkablePageLink<Void>("link", getClass(), new PageParameters().add("Count",count)) {
 
 			@Override
 			protected void onclick(AjaxRequestTarget target) {
-				target.addComponent(feedbackPanel);
-				target.addComponent(label);
-				target.addComponent(this);
+				target.add(feedbackPanel);
+				target.add(label);
+				target.add(this);
 				
 				int count=getCounter(getPageParameters());
 				_countModel.setObject(count);
-				setParameter("Count", count+1);
+				getPageParameters().set("Count", count+1);
 				
 				info("Count: "+count);
 			}

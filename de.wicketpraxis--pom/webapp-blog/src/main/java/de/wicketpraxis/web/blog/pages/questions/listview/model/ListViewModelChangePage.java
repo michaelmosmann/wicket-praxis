@@ -47,7 +47,7 @@ public class ListViewModelChangePage extends WebPage {
 						produkt.setAktiv(!produkt.isAktiv());
 						_produktDao.update(produkt);
 						if (target != null)
-							target.addComponent(blockA);
+							target.add(blockA);
 					}
 				});
 			}

@@ -6,11 +6,13 @@ import java.util.Map;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
+import org.apache.wicket.ajax.attributes.ThrottlingSettings;
+import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.JavaScriptReferenceHeaderItem;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.PackageResourceReference;
-import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.util.time.Duration;
 
 public abstract class AbstractParameterizedDefaultAjaxBehavior extends AbstractDefaultAjaxBehavior {
@@ -22,8 +24,8 @@ public abstract class AbstractParameterizedDefaultAjaxBehavior extends AbstractD
 	@Override
 	public void renderHead(Component component, IHeaderResponse response) {
 		super.renderHead(component, response);
-		response.renderJavaScriptReference(new PackageResourceReference(AbstractParameterizedDefaultAjaxBehavior.class,
-				"AbstractParameterizedDefaultAjaxBehavior.js"));
+		response.render(JavaScriptReferenceHeaderItem.forReference(new PackageResourceReference(AbstractParameterizedDefaultAjaxBehavior.class,
+				"AbstractParameterizedDefaultAjaxBehavior.js")));
 	}
 
 	@Override
@@ -55,14 +57,20 @@ public abstract class AbstractParameterizedDefaultAjaxBehavior extends AbstractD
 
 		return sb.toString();
 	}
-
+	
 	@Override
-	protected final CharSequence getCallbackScript() {
-		if (_throttleDelay != null) {
-			return throttleScript(super.getCallbackScript(), "thw" + (sec++), _throttleDelay);
-		}
-		return super.getCallbackScript();
+	protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
+		attributes.setThrottlingSettings(new ThrottlingSettings("thw" + (sec++), _throttleDelay));
+		super.updateAjaxAttributes(attributes);
 	}
+
+//	@Override
+//	protected final CharSequence getCallbackScript() {
+//		if (_throttleDelay != null) {
+//			return throttleScript(super.getCallbackScript(), "thw" + (sec++), _throttleDelay);
+//		}
+//		return super.getCallbackScript();
+//	}
 
 	protected static class Parameter<T> {
 

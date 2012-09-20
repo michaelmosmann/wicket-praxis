@@ -30,7 +30,7 @@ public class JavascriptAjaxHeadContributorPage extends WebPage {
 			@Override
 			public void onClick(AjaxRequestTarget target) {
 				ajaxBorder.setVisible(!ajaxBorder.isVisible());
-				target.addComponent(ajaxBorder);
+				target.add(ajaxBorder);
 			}
 		});
 	}

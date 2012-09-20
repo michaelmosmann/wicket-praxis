@@ -83,7 +83,7 @@ public class HeatMapPage extends WebPage {
 		}
 
 		@Override
-		protected boolean render(Graphics2D graphics) {
+		protected boolean render(Graphics2D graphics, Attributes attributes) {
 			graphics.setBackground(new Color(255, 255, 255));
 			graphics.setColor(new Color(0, 0, 0, 50));
 			//			graphics.setStroke(new BasicStroke(1.0f));

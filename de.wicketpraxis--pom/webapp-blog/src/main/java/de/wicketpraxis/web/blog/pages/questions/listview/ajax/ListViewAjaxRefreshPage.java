@@ -55,7 +55,7 @@ public class ListViewAjaxRefreshPage extends WebPage {
 				final List<CustomFileDescription> results = fileSearchService.search(query.getDefaultModelObjectAsString());
 				System.out.println(results.size());
 				files.setDefaultModelObject(results);
-				target.addComponent(resultcontainer);
+				target.add(resultcontainer);
 			}
 			
 			@Override

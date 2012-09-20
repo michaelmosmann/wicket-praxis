@@ -37,7 +37,7 @@ public class ModalWindowPage extends WebPage {
 			@Override
 			protected void onTimer(AjaxRequestTarget target) {
 				modalWindow.show(target);
-				stop();
+				stop(target);
 			}
 		});
 	}

@@ -51,7 +51,7 @@ public class FormSubmitPage extends WebPage {
 			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				if (target != null) {
 					info("AjaxSubmit Button(ajax): " + _counter++);
-					target.addComponent(feedbackPanel);
+					target.add(feedbackPanel);
 
 					_counter = 0;
 				} else {

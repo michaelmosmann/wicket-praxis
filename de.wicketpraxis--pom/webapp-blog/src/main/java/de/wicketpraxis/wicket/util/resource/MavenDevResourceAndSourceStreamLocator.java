@@ -7,10 +7,10 @@
  *****************************************/
 package de.wicketpraxis.wicket.util.resource;
 
+import org.apache.wicket.core.util.resource.locator.ResourceStreamLocator;
 import org.apache.wicket.util.file.File;
 import org.apache.wicket.util.resource.FileResourceStream;
 import org.apache.wicket.util.resource.IResourceStream;
-import org.apache.wicket.util.resource.locator.ResourceStreamLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

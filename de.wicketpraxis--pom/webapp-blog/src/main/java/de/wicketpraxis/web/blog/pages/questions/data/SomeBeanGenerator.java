@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SomeBeanGenerator {
 
-	public static List<SomeBean> getBeans(int size, SomeBeanFilter filter) {
+	public static List<SomeBean> getBeans(int size, SomeBean filter) {
 		List<SomeBean> ret = new ArrayList<SomeBean>();
 
 		for (int i = 0; i < size; i++) {
