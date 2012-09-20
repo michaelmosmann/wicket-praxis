@@ -44,20 +44,20 @@ public class FilterDataTablePage extends WebPage {
 	public FilterDataTablePage() {
 		UserList data = new UserList(_userDao);
 
-		List<IColumn<User>> columns = new ArrayList<IColumn<User>>();
-		columns.add(new PropertyColumn<User>(Model.of("Id"), "id", "Id"));
+		List<IColumn<User,String>> columns = new ArrayList<IColumn<User,String>>();
+		columns.add(new PropertyColumn<User,String>(Model.of("Id"), "id", "Id"));
 		columns.add(new FilterEmailColumn(Model.of("EMail"), "EMail", "EMail"));
 
 		FilterForm form = new FilterForm("form", data);
 
-		DefaultDataTable<User> table = new DefaultDataTable<User>("list", columns, data, 3);
+		DefaultDataTable<User,String> table = new DefaultDataTable<User,String>("list", columns, data, 3);
 		table.addTopToolbar(new FilterToolbar(table, form, data));
 
 		form.add(table);
 		add(form);
 	}
 
-	static class FilterEmailColumn extends PropertyColumn<User> implements IFilteredColumn<User> {
+	static class FilterEmailColumn extends PropertyColumn<User,String> implements IFilteredColumn<User,String> {
 
 		public FilterEmailColumn(IModel<String> displayModel, String sortProperty, String propertyExpression) {
 			super(displayModel, sortProperty, propertyExpression);

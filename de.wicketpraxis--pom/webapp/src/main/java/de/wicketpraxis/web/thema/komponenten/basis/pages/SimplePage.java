@@ -41,7 +41,7 @@ public class SimplePage extends WebPage {
 			}
 		});
 		add(new BookmarkablePageLink<SimplePage>("linkBookmarkable", SimplePage.class));
-		add(new BookmarkablePageLink<SimplePage>("linkBookmarkableParameter", SimplePage.class, new PageParameters("p=1")));
+		add(new BookmarkablePageLink<SimplePage>("linkBookmarkableParameter", SimplePage.class, new PageParameters().add("p","1")));
 
 		/*
 		 * 

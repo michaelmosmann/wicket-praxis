@@ -30,7 +30,7 @@ public class DynamicImagePage extends WebPage {
 		RenderedDynamicImageResource renderedResource = new RenderedDynamicImageResource(200, 50) {
 
 			@Override
-			protected boolean render(Graphics2D graphics) {
+			protected boolean render(Graphics2D graphics, Attributes attributes) {
 				graphics.setBackground(new Color(200, 200, 200));
 				graphics.setColor(new Color(255, 255, 255));
 				graphics.clearRect(0, 0, getWidth(), getHeight());

@@ -28,7 +28,7 @@ public class GridViewPage extends WebPage {
 	public GridViewPage() {
 		IDataProvider<String> data = new IDataProvider<String>() {
 
-			public Iterator<? extends String> iterator(int first, int count) {
+			public Iterator<? extends String> iterator(long first, long count) {
 				List<String> tempList = new ArrayList<String>();
 				for (int i = 0; i < count; i++) {
 					tempList.add("Position " + (i + first));
@@ -40,7 +40,7 @@ public class GridViewPage extends WebPage {
 				return Model.of(object);
 			}
 
-			public int size() {
+			public long size() {
 				return 25;
 			}
 
@@ -69,7 +69,7 @@ public class GridViewPage extends WebPage {
 
 			@Override
 			public void onClick() {
-				int page = gridView.getCurrentPage() + 1;
+				long page = gridView.getCurrentPage() + 1;
 				if (page < gridView.getPageCount())
 					gridView.setCurrentPage(page);
 			}

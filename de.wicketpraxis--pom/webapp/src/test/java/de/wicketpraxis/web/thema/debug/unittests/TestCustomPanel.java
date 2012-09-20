@@ -7,11 +7,11 @@
  *****************************************/
 package de.wicketpraxis.web.thema.debug.unittests;
 
-import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.util.tester.ITestPanelSource;
+import junit.framework.TestCase;
+
 import org.apache.wicket.util.tester.WicketTester;
 
-public class TestCustomPanel {
+public class TestCustomPanel extends TestCase {
 
 	public void testPage() {
 		WicketTester tester = new WicketTester();
@@ -22,12 +22,7 @@ public class TestCustomPanel {
 
 	public void testPanel() {
 		WicketTester tester = new WicketTester();
-		tester.startPanel(new ITestPanelSource() {
-
-			public Panel getTestPanel(String panelId) {
-				return new CustomPanel(panelId);
-			}
-		});
+		tester.startComponentInPage(new CustomPanel("panel"));
 		tester.clickLink("panel:link");
 		tester.assertComponentOnAjaxResponse("panel:feedback");
 		tester.assertInfoMessages(new String[] {"Link per Ajax"});

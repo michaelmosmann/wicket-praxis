@@ -15,7 +15,6 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.resource.IStringResourceStream;
-import org.apache.wicket.util.resource.PackageResourceStream;
 import org.apache.wicket.util.resource.StringBufferResourceStream;
 import org.apache.wicket.velocity.markup.html.VelocityPanel;
 

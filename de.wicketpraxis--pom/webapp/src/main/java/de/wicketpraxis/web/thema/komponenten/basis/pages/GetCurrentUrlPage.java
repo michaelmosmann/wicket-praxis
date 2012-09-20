@@ -25,6 +25,6 @@ public class GetCurrentUrlPage extends WebPage {
 		CharSequence customUrl = urlFor(GetCurrentUrlPage.class, new PageParameters().add("a",1).add("b",2));
 		add(new Label("customUrl", customUrl.toString()));
 
-		add(new BookmarkablePageLink<GetCurrentUrlPage>("link", GetCurrentUrlPage.class, new PageParameters("c=3")));
+		add(new BookmarkablePageLink<GetCurrentUrlPage>("link", GetCurrentUrlPage.class, new PageParameters().add("c","3")));
 	}
 }

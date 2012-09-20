@@ -37,8 +37,8 @@ public class FormAjaxSubmitButtonsPage extends AbstractFormPage {
 			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				warn("Button 1 geklickt");
 				if (target != null) {
-					target.addComponent(form);
-					target.addComponent(getFeedbackPanel());
+					target.add(form);
+					target.add(getFeedbackPanel());
 				}
 			}
 
@@ -56,8 +56,8 @@ public class FormAjaxSubmitButtonsPage extends AbstractFormPage {
 			@Override
 			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				warn("Button 2 geklickt");
-				target.addComponent(form);
-				target.addComponent(getFeedbackPanel());
+				target.add(form);
+				target.add(getFeedbackPanel());
 			}
 
 			@Override
@@ -75,8 +75,8 @@ public class FormAjaxSubmitButtonsPage extends AbstractFormPage {
 			@Override
 			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				warn("Button 3 geklickt");
-				target.addComponent(form);
-				target.addComponent(getFeedbackPanel());
+				target.add(form);
+				target.add(getFeedbackPanel());
 			}
 
 			@Override

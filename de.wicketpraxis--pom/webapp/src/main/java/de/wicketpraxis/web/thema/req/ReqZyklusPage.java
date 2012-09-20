@@ -7,6 +7,7 @@
  *****************************************/
 package de.wicketpraxis.web.thema.req;
 
+import org.apache.wicket.event.IEvent;
 import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -35,12 +36,6 @@ public class ReqZyklusPage extends WebPage {
 			_logger.error("onInitialize {}", getId());
 			super.onInitialize();
 		}
-
-		@Override
-		protected void onMarkupAttached() {
-			_logger.error("onMarkupAttached {}", getId());
-			super.onMarkupAttached();
-		}
 		
 		@Override
 		protected void onRemove() {
@@ -48,6 +43,11 @@ public class ReqZyklusPage extends WebPage {
 			super.onRemove();
 		}
 		
+		@Override
+		public void onEvent(IEvent<?> event) {
+			_logger.error("onEvent {}", getId());
+			super.onEvent(event);
+		}
 		
 		// request cycle
 		@Override

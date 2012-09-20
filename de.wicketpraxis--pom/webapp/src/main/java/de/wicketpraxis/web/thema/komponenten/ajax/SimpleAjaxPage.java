@@ -34,7 +34,7 @@ public class SimpleAjaxPage extends WebPage {
 				_labelRefresh.setDefaultModelObject("neuer Text");
 				_labelNoRefresh.setDefaultModelObject("...auch hier neuer Text");
 
-				target.addComponent(_labelRefresh);
+				target.add(_labelRefresh);
 			}
 		});
 

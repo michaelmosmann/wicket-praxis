@@ -31,7 +31,7 @@ public class AjaxFallbackLinkPage extends WebPage {
 				_message.setDefaultModelObject("Link geklickt (" + new Date() + ")");
 				if (target != null) {
 					_message.setDefaultModelObject("Ajax Link geklickt (" + new Date() + ")");
-					target.addComponent(_message);
+					target.add(_message);
 				}
 			}
 		});
@@ -45,7 +45,7 @@ public class AjaxFallbackLinkPage extends WebPage {
 				_message.setDefaultModelObject("Link geklickt (" + new Date() + ")");
 				if (target != null) {
 					_message.setDefaultModelObject("Ajax Link geklickt (" + new Date() + ")");
-					target.addComponent(_message);
+					target.add(_message);
 				}
 			}
 		});

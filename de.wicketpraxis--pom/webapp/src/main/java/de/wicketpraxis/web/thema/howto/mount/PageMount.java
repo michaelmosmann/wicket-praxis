@@ -8,8 +8,8 @@
 package de.wicketpraxis.web.thema.howto.mount;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.core.request.mapper.MountedMapper;
 import org.apache.wicket.protocol.http.WebApplication;
-import org.apache.wicket.request.mapper.MountedMapper;
 import org.apache.wicket.request.mapper.parameter.UrlPathPageParametersEncoder;
 
 public class PageMount {

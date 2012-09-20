@@ -52,8 +52,8 @@ public class StyleLocaleVariationPage extends WebPage {
 		add(new SimplePanel("withVariation", "v1"));
 		add(new SimplePanel("withCustomLocale", "v2").setLocale(new Locale("de", "CH")));
 
-		add(new BookmarkablePageLink<StyleLocaleVariationPage>("rot", StyleLocaleVariationPage.class, new PageParameters(
-				"style=rot")));
+		add(new BookmarkablePageLink<StyleLocaleVariationPage>("rot", StyleLocaleVariationPage.class,
+				new PageParameters().add("style", "rot")));
 		add(new BookmarkablePageLink<StyleLocaleVariationPage>("normal", StyleLocaleVariationPage.class));
 	}
 }

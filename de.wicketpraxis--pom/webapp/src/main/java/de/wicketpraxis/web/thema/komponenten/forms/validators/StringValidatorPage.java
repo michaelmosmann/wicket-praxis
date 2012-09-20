@@ -10,7 +10,6 @@ package de.wicketpraxis.web.thema.komponenten.forms.validators;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.validation.validator.MaximumValidator;
 import org.apache.wicket.validation.validator.StringValidator;
 
 import de.wicketpraxis.web.thema.komponenten.forms.AbstractFormPage;

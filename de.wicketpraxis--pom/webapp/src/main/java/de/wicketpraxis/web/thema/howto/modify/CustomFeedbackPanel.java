@@ -9,7 +9,8 @@ package de.wicketpraxis.web.thema.howto.modify;
 
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.feedback.IFeedbackMessageFilter;
-import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.head.CssReferenceHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.request.resource.PackageResourceReference;
 
@@ -31,6 +32,6 @@ public class CustomFeedbackPanel extends FeedbackPanel {
 	@Override
 	public void renderHead(IHeaderResponse response) {
 		super.renderHead(response);
-		response.renderCSSReference(new PackageResourceReference(CustomFeedbackPanel.class, "feedback.css"));
+		response.render(CssReferenceHeaderItem.forReference(new PackageResourceReference(CustomFeedbackPanel.class, "feedback.css")));
 	}
 }

@@ -13,7 +13,8 @@ import java.util.List;
 
 import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AutoCompleteSettings;
 import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AutoCompleteTextField;
-import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.head.CssReferenceHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -79,6 +80,6 @@ public class AutoCompleteTextFieldPage extends AbstractFormPage {
 	
 	@Override
 	public void renderHead(IHeaderResponse response) {
-		response.renderCSSReference(new PackageResourceReference(AutoCompleteTextFieldPage.class, "AutoCompleteTextFieldPage.css"));
+		response.render(CssReferenceHeaderItem.forReference(new PackageResourceReference(AutoCompleteTextFieldPage.class, "AutoCompleteTextFieldPage.css")));
 	}
 }

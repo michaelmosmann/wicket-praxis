@@ -22,12 +22,12 @@ public class MountedPage extends WebPage {
 		// session expired page -> wicket nicht im pfad -> link zur seite
 		// see PageMount
 
-		add(new BookmarkablePageLink<SubMountedPage>("current", MountedPage.class, new PageParameters("A=1,B=2")));
+		add(new BookmarkablePageLink<SubMountedPage>("current", MountedPage.class, new PageParameters().add("A","1").add("B","2")));
 		add(new Link("currentBookmark") {
 
 			@Override
 			public void onClick() {
-				setResponsePage(MountedPage.class, new PageParameters("A=1,B=2"));
+				setResponsePage(MountedPage.class, new PageParameters().add("A","1").add("B","2"));
 			}
 		});
 		add(new Link("currentDirect") {
@@ -37,12 +37,12 @@ public class MountedPage extends WebPage {
 				setResponsePage(new MountedPage());
 			}
 		});
-		add(new BookmarkablePageLink<SubMountedPage>("sub", SubMountedPage.class, new PageParameters("A=1,B=2")));
+		add(new BookmarkablePageLink<SubMountedPage>("sub", SubMountedPage.class, new PageParameters().add("A","1").add("B","2")));
 		add(new Link("directBookmark") {
 
 			@Override
 			public void onClick() {
-				setResponsePage(SubMountedPage.class, new PageParameters("A=1,B=2"));
+				setResponsePage(SubMountedPage.class, new PageParameters().add("A","1").add("B","2"));
 			}
 		});
 		add(new Link("direct") {

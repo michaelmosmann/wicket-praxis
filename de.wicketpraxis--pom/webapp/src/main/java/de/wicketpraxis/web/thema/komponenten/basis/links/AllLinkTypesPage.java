@@ -62,7 +62,7 @@ public class AllLinkTypesPage extends WebPage {
 			public void onClick(AjaxRequestTarget target) {
 				_message.setDefaultModelObject("Ajax Link geklickt (" + new Date() + ")");
 				if (target != null) {
-					target.addComponent(_message);
+					target.add(_message);
 				}
 			}
 		});
@@ -72,7 +72,7 @@ public class AllLinkTypesPage extends WebPage {
 			public void onClick(AjaxRequestTarget target) {
 				_message.setDefaultModelObject("Ajax Link geklickt (" + new Date() + ")");
 				if (target != null) {
-					target.addComponent(_message);
+					target.add(_message);
 					try {
 						Thread.sleep(500);
 					} catch (InterruptedException e) {

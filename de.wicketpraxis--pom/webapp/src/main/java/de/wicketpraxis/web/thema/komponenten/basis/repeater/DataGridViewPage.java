@@ -57,7 +57,7 @@ public class DataGridViewPage extends WebPage {
 
 			@Override
 			public void onClick() {
-				int page = datagrid.getCurrentPage() + 1;
+				long page = datagrid.getCurrentPage() + 1;
 				if (page < datagrid.getPageCount())
 					datagrid.setCurrentPage(page);
 			}

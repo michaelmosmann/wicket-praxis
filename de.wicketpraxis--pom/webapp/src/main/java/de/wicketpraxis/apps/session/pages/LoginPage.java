@@ -38,9 +38,8 @@ public class LoginPage extends AbstractBasePage {
 				if (user != null) {
 					if (user.isPasswordValid(loginBean.getPassword())) {
 						SecurePageSession.get().setUser(user);
-						if (!continueToOriginalDestination()) {
-							setResponsePage(SecurePageApplication.get().getHomePage());
-						}
+						continueToOriginalDestination();
+						setResponsePage(SecurePageApplication.get().getHomePage());
 					} else {
 						error("EMail oder Passwort falsch (Passwort natürlich)");
 					}

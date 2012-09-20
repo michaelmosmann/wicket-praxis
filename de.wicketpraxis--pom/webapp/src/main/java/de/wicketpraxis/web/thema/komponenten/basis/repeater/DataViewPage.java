@@ -28,7 +28,7 @@ public class DataViewPage extends WebPage {
 	public DataViewPage() {
 		IDataProvider<String> data = new IDataProvider<String>() {
 
-			public Iterator<? extends String> iterator(int first, int count) {
+			public Iterator<? extends String> iterator(long first, long count) {
 				List<String> tempList = new ArrayList<String>();
 				for (int i = 0; i < count; i++) {
 					tempList.add("Position " + (i + first));
@@ -40,7 +40,7 @@ public class DataViewPage extends WebPage {
 				return Model.of(object);
 			}
 
-			public int size() {
+			public long size() {
 				return 124;
 			}
 
@@ -62,7 +62,7 @@ public class DataViewPage extends WebPage {
 
 			@Override
 			public void onClick() {
-				int page = dataView.getCurrentPage() + 1;
+				long page = dataView.getCurrentPage() + 1;
 				if (page < dataView.getPageCount())
 					dataView.setCurrentPage(page);
 			}

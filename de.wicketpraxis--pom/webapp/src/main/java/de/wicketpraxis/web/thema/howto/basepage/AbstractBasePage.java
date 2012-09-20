@@ -9,9 +9,8 @@ package de.wicketpraxis.web.thema.howto.basepage;
 
 import java.util.List;
 
-import org.apache.wicket.Page;
-import org.apache.wicket.markup.html.IHeaderResponse;
-import org.apache.wicket.markup.html.PackageResourceGuard;
+import org.apache.wicket.markup.head.CssReferenceHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -39,7 +38,7 @@ public abstract class AbstractBasePage extends WebPage {
 	@Override
 	public void renderHead(IHeaderResponse response) {
 		super.renderHead(response);
-		response.renderCSSReference(new PackageResourceReference(AbstractBasePage.class, "styles/base.css"), "all");
+		response.render(CssReferenceHeaderItem.forReference(new PackageResourceReference(AbstractBasePage.class, "styles/base.css"), "all"));
 	}
 
 	public abstract List<NavCallbackInterface> getNavigations();

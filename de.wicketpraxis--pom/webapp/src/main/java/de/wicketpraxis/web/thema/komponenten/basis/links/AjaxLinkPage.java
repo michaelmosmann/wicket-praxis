@@ -30,7 +30,7 @@ public class AjaxLinkPage extends WebPage {
 			public void onClick(AjaxRequestTarget target) {
 				_message.setDefaultModelObject("Ajax Link geklickt (" + new Date() + ")");
 				if (target != null) {
-					target.addComponent(_message);
+					target.add(_message);
 				}
 			}
 		});
@@ -42,7 +42,7 @@ public class AjaxLinkPage extends WebPage {
 				timeConsumingTask();
 
 				_message.setDefaultModelObject("Ajax Link geklickt (" + new Date() + ")");
-				target.addComponent(_message);
+				target.add(_message);
 			}
 		});
 	}

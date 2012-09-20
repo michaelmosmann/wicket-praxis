@@ -76,7 +76,7 @@ public class ArticleListPanel extends Panel {
 						}
 
 						if (target != null) {
-							target.addComponent(ArticleListPanel.this);
+							target.add(ArticleListPanel.this);
 						}
 					}
 				});

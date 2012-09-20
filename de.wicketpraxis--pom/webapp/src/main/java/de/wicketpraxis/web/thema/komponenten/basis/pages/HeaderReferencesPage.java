@@ -7,7 +7,10 @@
  *****************************************/
 package de.wicketpraxis.web.thema.komponenten.basis.pages;
 
-import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.head.CssReferenceHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.JavaScriptHeaderItem;
+import org.apache.wicket.markup.head.StringHeaderItem;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.resource.PackageResourceReference;
 
@@ -18,12 +21,12 @@ public class HeaderReferencesPage extends WebPage {
 	public void renderHead(IHeaderResponse response) {
 		super.renderHead(response);
 		
-		response.renderCSSReference(new PackageResourceReference(HeaderReferencesPage.class, "styles/standard.css"));
-		response.renderCSSReference(new PackageResourceReference(HeaderReferencesPage.class, "styles/locale.css",
-				getLocale(), getStyle(),getVariation()));
+		response.render(CssReferenceHeaderItem.forReference(new PackageResourceReference(HeaderReferencesPage.class, "styles/standard.css")));
+		response.render(CssReferenceHeaderItem.forReference(new PackageResourceReference(HeaderReferencesPage.class, "styles/locale.css",
+				getLocale(), getStyle(),getVariation())));
 
-		response.renderJavaScriptReference(new PackageResourceReference(HeaderReferencesPage.class, "js/test.js"));
+		response.render(JavaScriptHeaderItem.forReference(new PackageResourceReference(HeaderReferencesPage.class, "js/test.js")));
 
-		response.renderString("<!-- mein Beitrag -->");
+		response.render(StringHeaderItem.forString("<!-- mein Beitrag -->"));
 	}
 }

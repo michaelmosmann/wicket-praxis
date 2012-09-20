@@ -31,7 +31,7 @@ public abstract class AbstractAjaxEvent {
 	}
 
 	public void update(Component component) {
-		_requestTarget.addComponent(component);
+		_requestTarget.add(component);
 	}
 
 	protected static class AjaxEventVisitor implements IVisitor<Component,Void> {

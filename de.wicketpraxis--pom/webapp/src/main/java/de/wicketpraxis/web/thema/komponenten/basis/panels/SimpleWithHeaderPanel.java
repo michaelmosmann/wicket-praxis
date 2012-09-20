@@ -7,7 +7,8 @@
  *****************************************/
 package de.wicketpraxis.web.thema.komponenten.basis.panels;
 
-import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.head.CssReferenceHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.request.resource.PackageResourceReference;
 
 public class SimpleWithHeaderPanel extends SimplePanel {
@@ -18,6 +19,6 @@ public class SimpleWithHeaderPanel extends SimplePanel {
 	
 	@Override
 	public void renderHead(IHeaderResponse response) {
-		response.renderCSSReference(new PackageResourceReference(getClass(), "styles/standard.css"));
+		response.render(CssReferenceHeaderItem.forReference(new PackageResourceReference(getClass(), "styles/standard.css")));
 	}
 }

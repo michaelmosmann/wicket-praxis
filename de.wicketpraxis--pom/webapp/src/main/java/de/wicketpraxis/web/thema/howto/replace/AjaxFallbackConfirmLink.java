@@ -35,7 +35,7 @@ public abstract class AjaxFallbackConfirmLink<T> extends AjaxFallbackLink<T> {
 		ConfirmPanel confirmLink = new ConfirmPanel(this);
 
 		if (target != null)
-			target.addComponent(confirmLink);
+			target.add(confirmLink);
 	}
 
 	class ConfirmPanel extends Panel {
@@ -55,7 +55,7 @@ public abstract class AjaxFallbackConfirmLink<T> extends AjaxFallbackLink<T> {
 				public void onClick(AjaxRequestTarget target) {
 					ConfirmPanel.this.replaceWith(_parent);
 					if (target != null)
-						target.addComponent(_parent);
+						target.add(_parent);
 					onConfirm(target);
 				}
 			});
@@ -66,7 +66,7 @@ public abstract class AjaxFallbackConfirmLink<T> extends AjaxFallbackLink<T> {
 				public void onClick(AjaxRequestTarget target) {
 					ConfirmPanel.this.replaceWith(_parent);
 					if (target != null)
-						target.addComponent(_parent);
+						target.add(_parent);
 					onCancel(target);
 				}
 			});

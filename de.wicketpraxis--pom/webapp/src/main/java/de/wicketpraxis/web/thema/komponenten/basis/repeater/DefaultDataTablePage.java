@@ -36,10 +36,10 @@ public class DefaultDataTablePage extends WebPage {
 	public DefaultDataTablePage() {
 		UserList data = new UserList(_userDao);
 
-		List<IColumn<User>> columns = new ArrayList<IColumn<User>>();
-		columns.add(new PropertyColumn<User>(Model.of("Id"), "id", "Id"));
-		columns.add(new PropertyColumn<User>(Model.of("EMail"), "EMail", "EMail"));
-		columns.add(new AbstractColumn<User>(Model.of("")) {
+		List<IColumn<User,String>> columns = new ArrayList<IColumn<User,String>>();
+		columns.add(new PropertyColumn<User,String>(Model.of("Id"), "id", "Id"));
+		columns.add(new PropertyColumn<User,String>(Model.of("EMail"), "EMail", "EMail"));
+		columns.add(new AbstractColumn<User,String>(Model.of("")) {
 
 			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId, IModel<User> rowModel) {
 				Fragment fragment = new Fragment(componentId, "deleteFragment", DefaultDataTablePage.this);
@@ -55,7 +55,7 @@ public class DefaultDataTablePage extends WebPage {
 			}
 		});
 
-		DefaultDataTable<User> table = new DefaultDataTable<User>("list", columns, data, 3);
+		DefaultDataTable<User,String> table = new DefaultDataTable<User,String>("list", columns, data, 3);
 		// Bug mit der sichtbarkeit der NavigationToolbar in 1.4-rc2
 		//		table.addTopToolbar(new NavigationToolbar(table));
 		add(table);

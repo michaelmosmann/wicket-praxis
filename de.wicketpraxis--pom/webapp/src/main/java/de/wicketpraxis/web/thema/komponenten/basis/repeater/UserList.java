@@ -23,7 +23,7 @@ import de.wicketpraxis.persistence.dao.UserDao;
 import de.wicketpraxis.persistence.dao.UserDao.All;
 import de.wicketpraxis.web.model.DaoModel;
 
-public class UserList implements ISortableDataProvider<User>, /* Filter */IFilterStateLocator /* Filter Ende */
+public class UserList implements ISortableDataProvider<User,String>, /* Filter */IFilterStateLocator /* Filter Ende */
 {
 
 	UserDao _userDao;
@@ -67,15 +67,20 @@ public class UserList implements ISortableDataProvider<User>, /* Filter */IFilte
 		return _all;
 	}
 
-	public Iterator<? extends User> iterator(int first, int count) {
-		return load().getList(first, count).iterator();
+	@Override
+	public Iterator<? extends User> iterator(long first, long count) {
+		if (first>Integer.MAX_VALUE) return null;
+		if ((first+count)>Integer.MAX_VALUE) return null;
+		int ifirst=(int) first;
+		int icount=(int) count;
+		return load().getList(ifirst, icount).iterator();
 	}
 
 	public IModel<User> model(User object) {
 		return new DaoModel<Integer, User>(_userDao, object);
 	}
 
-	public int size() {
+	public long size() {
 		return load().getSize();
 	}
 
@@ -118,4 +123,5 @@ public class UserList implements ISortableDataProvider<User>, /* Filter */IFilte
 		}
 	}
 	// Filter - Ende
+
 }

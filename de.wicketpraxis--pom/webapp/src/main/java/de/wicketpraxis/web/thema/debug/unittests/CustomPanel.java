@@ -28,7 +28,7 @@ public class CustomPanel extends Panel {
 			public void onClick(AjaxRequestTarget target) {
 				if (target != null) {
 					info("Link per Ajax");
-					target.addComponent(feedbackPanel);
+					target.add(feedbackPanel);
 				} else {
 					info("Link ohne Ajax");
 				}

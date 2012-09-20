@@ -36,7 +36,7 @@ public class LinksPage extends WebPage {
 
 	public LinksPage() {
 		String resourceUrl = urlFor(new PackageResourceReference(LinksPage.class, "resource.txt"), new PageParameters()).toString();
-		String pageUrl = urlFor(LinksPage.class, new PageParameters("P=1")).toString();
+		String pageUrl = urlFor(LinksPage.class, new PageParameters().add("P","1")).toString();
 
 		add(new Label("resourceUrl", resourceUrl));
 		add(new Label("pageUrl", pageUrl));

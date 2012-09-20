@@ -10,13 +10,12 @@ package de.wicketpraxis.apps.example.styles;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.wicket.markup.head.CssReferenceHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.IHeaderContributor;
-import org.apache.wicket.markup.html.IHeaderResponse;
-import org.apache.wicket.request.resource.IResource;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
-
-import de.wicketpraxis.apps.example.styles.header.IEConditionalHeader;
 
 /**
  * http://960.gs/
@@ -36,9 +35,7 @@ public class Style {
 
 		boolean specialIEHack = false;
 		if (specialIEHack) {
-			ret.add(IEConditionalHeader.START);
-			ret.add(new CSS(Style.class, "ieOnly.css", "all"));
-			ret.add(IEConditionalHeader.END);
+			ret.add(new CSS(Style.class, "ieOnly.css", "all","IE"));
 		}
 		return ret;
 	}
@@ -47,15 +44,21 @@ public class Style {
 
 		private ResourceReference _reference;
 		private String _media;
+		private String _condition;
 
 		protected CSS(Class<?> clazz, String resource, String media) {
+			this(clazz,resource,media,null);
+		}
+		
+		protected CSS(Class<?> clazz, String resource, String media, String condition) {
 			_reference=new PackageResourceReference(clazz,resource);
 			_media=media;
+			_condition=condition;
 		}
 		
 		@Override
 		public void renderHead(IHeaderResponse response) {
-			response.renderCSSReference(_reference,_media);
+			response.render(new CssReferenceHeaderItem(_reference,new PageParameters(),_media,_condition));
 		}
 		
 	}

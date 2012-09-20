@@ -7,8 +7,8 @@
  *****************************************/
 package de.wicketpraxis.web.pages;
 
-import org.apache.wicket.markup.html.IHeaderResponse;
-import org.apache.wicket.markup.html.PackageResourceGuard;
+import org.apache.wicket.markup.head.CssReferenceHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -35,7 +35,7 @@ public class AbstractBasePage extends WebPage {
 	
 	@Override
 	public void renderHead(IHeaderResponse response) {
-		response.renderCSSReference(new PackageResourceReference(WicketPraxisApplication.class, "layout/css/style.css"));
+		response.render(CssReferenceHeaderItem.forReference(new PackageResourceReference(WicketPraxisApplication.class, "layout/css/style.css")));
 	}
 
 	public Model<String> getPageTitleModel() {

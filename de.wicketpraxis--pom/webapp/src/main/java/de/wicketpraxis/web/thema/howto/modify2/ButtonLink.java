@@ -8,7 +8,8 @@
 package de.wicketpraxis.web.thema.howto.modify2;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.head.CssReferenceHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -31,6 +32,6 @@ public abstract class ButtonLink<T> extends Link<T> {
 	@Override
 	public void renderHead(IHeaderResponse response) {
 		super.renderHead(response);
-		response.renderCSSReference(new PackageResourceReference(ButtonLink.class, "button.css"));
+		response.render(CssReferenceHeaderItem.forReference(new PackageResourceReference(ButtonLink.class, "button.css")));
 	}
 }

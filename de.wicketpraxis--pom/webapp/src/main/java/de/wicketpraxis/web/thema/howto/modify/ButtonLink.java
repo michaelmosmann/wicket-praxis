@@ -8,7 +8,8 @@
 package de.wicketpraxis.web.thema.howto.modify;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.head.CssReferenceHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.border.Border;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.link.Link;
@@ -47,7 +48,7 @@ public abstract class ButtonLink<T> extends Border {
 	@Override
 	public void renderHead(IHeaderResponse response) {
 		super.renderHead(response);
-		response.renderCSSReference(new PackageResourceReference(ButtonLink.class, "button.css"));
+		response.render(CssReferenceHeaderItem.forReference(new PackageResourceReference(ButtonLink.class, "button.css")));
 	}
 	
 	public abstract void onClick();

@@ -7,7 +7,8 @@
  *****************************************/
 package de.wicketpraxis.web.thema.komponenten.forms.basics;
 
-import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.head.CssReferenceHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -46,6 +47,6 @@ public class FeedbackPanelPage extends WebPage {
 	
 	@Override
 	public void renderHead(IHeaderResponse response) {
-		response.renderCSSReference(Forms.getCss());
+		response.render(CssReferenceHeaderItem.forReference(Forms.getCss()));
 	}
 }

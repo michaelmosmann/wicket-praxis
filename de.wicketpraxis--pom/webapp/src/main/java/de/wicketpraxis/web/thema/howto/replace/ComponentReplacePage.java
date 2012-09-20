@@ -27,14 +27,14 @@ public class ComponentReplacePage extends WebPage {
 			@Override
 			public void onConfirm(AjaxRequestTarget target) {
 				if (target != null)
-					target.addComponent(feedbackPanel);
+					target.add(feedbackPanel);
 				info("Ok. Dann mach ich's");
 			}
 
 			@Override
 			public void onCancel(AjaxRequestTarget target) {
 				if (target != null)
-					target.addComponent(feedbackPanel);
+					target.add(feedbackPanel);
 				error("Ok. Besser nicht.");
 			}
 		});
