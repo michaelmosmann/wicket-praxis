@@ -293,8 +293,10 @@ Autor: Michael Mosmann
 -->
   </dependencies>
 
+<!--
 	<properties>
 		<wicket.version>1.5.7</wicket.version>
 		<wicketstuff.version>1.5.7</wicketstuff.version>
 	</properties>
+	-->
 </project>

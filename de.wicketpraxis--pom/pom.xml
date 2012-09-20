@@ -87,6 +87,8 @@ Autor: Michael Mosmann
 	<properties>
 		<junit.version>3.8.1</junit.version>
 		<slf4j.version>1.5.8</slf4j.version>
+		<wicket.version>1.5.8</wicket.version>
+		<wicketstuff.version>1.5.8</wicketstuff.version>
 	</properties>
 
   <modules>

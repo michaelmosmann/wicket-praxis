@@ -115,7 +115,9 @@ Autor: Michael Mosmann
 		
   </dependencies>
 
+<!--
 	<properties>
 		<wicket.version>1.5.7</wicket.version>
 	</properties>
+	-->
 </project>
