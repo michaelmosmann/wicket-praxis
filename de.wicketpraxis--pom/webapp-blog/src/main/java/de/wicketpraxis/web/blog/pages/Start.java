@@ -52,6 +52,9 @@ public class Start extends WebPage {
 
 	public Start() {
 		List<Class<? extends WebPage>> pages = new ArrayList<Class<? extends WebPage>>();
+		
+		pages.add(BlogExamples.class);
+
 		pages.add(CheckGroupFromDbPage.class);
 		pages.add(ListViewAjaxRefreshPage.class);
 		pages.add(MinimalFormPage.class);
@@ -85,14 +88,6 @@ public class Start extends WebPage {
 		
 		pages.add(FirstRequestPage.class);
 
-		add(new ListView<Class<? extends WebPage>>("list", pages) {
-
-			@Override
-			protected void populateItem(ListItem<Class<? extends WebPage>> item) {
-				BookmarkablePageLink<WebPage> link = new BookmarkablePageLink<WebPage>("link", item.getModelObject());
-				link.add(new Label("name", item.getModelObject().getSimpleName()));
-				item.add(link);
-			}
-		});
+		add(new PageLinksPanel("list", pages));
 	}
 }
