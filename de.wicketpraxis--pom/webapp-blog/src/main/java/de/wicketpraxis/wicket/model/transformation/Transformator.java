@@ -17,8 +17,15 @@ public abstract class Transformator<T> extends LoadableDetachableModel<T> {
 			m.detach();
 		}
 	}
+	
+	public void setObject(T object) {
+		throw new UnsupportedOperationException("Model " + getClass() + " with " + getFunction() +
+				" does not support setObject(Object)");
+	};
 
-	public static class Model1<T, M1> extends Transformator<T> {
+	protected abstract Object getFunction();
+
+	public final static class Model1<T, M1> extends Transformator<T> {
 
 		IModel<M1> _m1;
 		Function1<T, M1> _function;
@@ -34,9 +41,13 @@ public abstract class Transformator<T> extends LoadableDetachableModel<T> {
 		protected T load() {
 			return _function.apply(_m1.getObject());
 		}
+		@Override
+		protected Object getFunction() {
+			return _function;
+		}
 	}
 
-	public static class Model2<T, M1, M2> extends Transformator<T> {
+	public final static class Model2<T, M1, M2> extends Transformator<T> {
 
 		IModel<M1> _m1;
 		IModel<M2> _m2;
@@ -54,9 +65,14 @@ public abstract class Transformator<T> extends LoadableDetachableModel<T> {
 		protected T load() {
 			return _function.apply(_m1.getObject(), _m2.getObject());
 		}
+		
+		@Override
+		protected Object getFunction() {
+			return _function;
+		}
 	}
 
-	public static class Model3<T, M1, M2, M3> extends Transformator<T> {
+	public final static class Model3<T, M1, M2, M3> extends Transformator<T> {
 
 		IModel<M1> _m1;
 		IModel<M2> _m2;
@@ -75,6 +91,10 @@ public abstract class Transformator<T> extends LoadableDetachableModel<T> {
 		@Override
 		protected T load() {
 			return _function.apply(_m1.getObject(), _m2.getObject(), _m3.getObject());
+		}
+		@Override
+		protected Object getFunction() {
+			return _function;
 		}
 	}
 }
