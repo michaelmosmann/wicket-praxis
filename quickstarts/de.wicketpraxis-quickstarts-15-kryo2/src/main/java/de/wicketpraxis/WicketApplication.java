@@ -4,8 +4,24 @@ import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.util.lang.Bytes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.wicketstuff.pageserializer.kryo.DebuggingKryo;
-import org.wicketstuff.pageserializer.kryo.KryoSerializer;
+import org.wicketstuff.pageserializer.kryo2.DebuggingKryo;
+import org.wicketstuff.pageserializer.kryo2.KryoSerializer;
+import org.wicketstuff.pageserializer.kryo2.inspecting.ISerializationListener;
+import org.wicketstuff.pageserializer.kryo2.inspecting.InspectingKryoSerializer;
+import org.wicketstuff.pageserializer.kryo2.inspecting.LoggingSerializationListener;
+import org.wicketstuff.pageserializer.kryo2.inspecting.SerializationListener;
+import org.wicketstuff.pageserializer.kryo2.inspecting.analyze.AnalyzingSerializationListener;
+import org.wicketstuff.pageserializer.kryo2.inspecting.analyze.IObjectLabelizer;
+import org.wicketstuff.pageserializer.kryo2.inspecting.analyze.ISerializedObjectTree;
+import org.wicketstuff.pageserializer.kryo2.inspecting.analyze.ISerializedObjectTreeProcessor;
+import org.wicketstuff.pageserializer.kryo2.inspecting.analyze.TreeProcessors;
+import org.wicketstuff.pageserializer.kryo2.inspecting.analyze.report.ITreeFilter;
+import org.wicketstuff.pageserializer.kryo2.inspecting.analyze.report.Level;
+import org.wicketstuff.pageserializer.kryo2.inspecting.analyze.report.SortedTreeSizeReport;
+import org.wicketstuff.pageserializer.kryo2.inspecting.analyze.report.TreeSizeReport;
+import org.wicketstuff.pageserializer.kryo2.inspecting.analyze.report.TreeTransformator;
+import org.wicketstuff.pageserializer.kryo2.inspecting.analyze.report.TypeSizeReport;
+import org.wicketstuff.pageserializer.kryo2.inspecting.validation.DefaultJavaSerializationValidator;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
@@ -37,7 +53,10 @@ public class WicketApplication extends WebApplication
 	{
 		super.init();
 
-		getFrameworkSettings().setSerializer(new KryoSerializer(Bytes.bytes(25*1024*1024))
+		ISerializationListener listener=createListener();
+		getFrameworkSettings().setSerializer(new InspectingKryoSerializer(Bytes.bytes(25*1024*1024), listener));
+		
+		if (false) getFrameworkSettings().setSerializer(new KryoSerializer(Bytes.bytes(25*1024*1024))
 		{
 
 			@Override
@@ -85,5 +104,34 @@ public class WicketApplication extends WebApplication
 				/* .blacklist(Some.class) */
 			}
 		});	
+	}
+
+	private ISerializationListener createListener()
+	{
+		IObjectLabelizer labelizer = new IObjectLabelizer()
+		{
+			@Override
+			public String labelFor(Object object)
+			{
+				return null;
+			}
+		};
+		
+		ISerializedObjectTreeProcessor treeProcessor = TreeProcessors.listOf(new TypeSizeReport(),
+			new TreeSizeReport(), new SortedTreeSizeReport());
+		ITreeFilter filter=new ITreeFilter()
+		{
+			@Override
+			public boolean accept(ISerializedObjectTree source, Level current)
+			{
+				return source.type()!=Class.class;
+			}
+		};
+		ISerializedObjectTreeProcessor cleanedTreeProcessor = new TreeTransformator(treeProcessor, TreeTransformator.strip(filter));
+		ISerializationListener listener = SerializationListener.listOf(new DefaultJavaSerializationValidator(),
+			new LoggingSerializationListener(), new AnalyzingSerializationListener(labelizer,
+				treeProcessor), new AnalyzingSerializationListener(labelizer,
+					cleanedTreeProcessor));
+		return listener;
 	}
 }
