@@ -7,6 +7,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import de.wicketpraxis.components.BigComponent;
+import de.wicketpraxis.usecase.anonclasses.UseCaseAnonClasses;
 import de.wicketpraxis.usecase.dateformat.UseCaseDateFormat;
 import de.wicketpraxis.usecase.models.UseCaseModels;
 
@@ -30,5 +31,6 @@ public class HomePage extends WebPage {
 		
 		add(AutoLabelBookmarkablePageLink.with("dateformat", UseCaseDateFormat.class));
 		add(AutoLabelBookmarkablePageLink.with("models", UseCaseModels.class));
+		add(AutoLabelBookmarkablePageLink.with("anonclasses", UseCaseAnonClasses.class));
     }
 }
