@@ -18,4 +18,5 @@ public class AutoLabelBookmarkablePageLink<T extends WebPage> extends Bookmarkab
 	{
 		return new AutoLabelBookmarkablePageLink<T>(id, pageType);
 	}
+
 }

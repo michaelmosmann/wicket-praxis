@@ -8,6 +8,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import de.wicketpraxis.components.BigComponent;
 import de.wicketpraxis.usecase.dateformat.UseCaseDateFormat;
+import de.wicketpraxis.usecase.models.UseCaseModels;
 
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
@@ -27,6 +28,7 @@ public class HomePage extends WebPage {
 		add(new BigComponent("a6", 6*1024*1024));
 		add(new BigComponent("a4", 4*1024*1024));
 		
-		add(AutoLabelBookmarkablePageLink.with("dateFormat", UseCaseDateFormat.class));
+		add(AutoLabelBookmarkablePageLink.with("dateformat", UseCaseDateFormat.class));
+		add(AutoLabelBookmarkablePageLink.with("models", UseCaseModels.class));
     }
 }
