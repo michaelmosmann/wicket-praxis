@@ -1,5 +1,7 @@
 package de.wicketpraxis;
 
+import org.apache.wicket.ConverterLocator;
+import org.apache.wicket.IConverterLocator;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.util.lang.Bytes;
 import org.slf4j.Logger;
@@ -18,6 +20,10 @@ import org.wicketstuff.pageserializer.kryo2.inspecting.analyze.report.filter.Typ
 import org.wicketstuff.pageserializer.kryo2.inspecting.listener.ISerializationListener;
 import org.wicketstuff.pageserializer.kryo2.inspecting.listener.SerializationListeners;
 import org.wicketstuff.pageserializer.kryo2.inspecting.validation.DefaultJavaSerializationValidator;
+
+import de.wicketpraxis.usecase.dateformat.AbstractDateContainer;
+import de.wicketpraxis.usecase.dateformat.DateContainerConverter;
+import de.wicketpraxis.usecase.dateformat.FullDate;
 
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start class.
@@ -65,5 +71,17 @@ public class WicketApplication extends WebApplication
 			serializationListener);
 
 		getFrameworkSettings().setSerializer(serializer);
+		getStoreSettings().setAsynchronous(false);
+		getStoreSettings().setInmemoryCacheSize(0);
+		getPageSettings().setVersionPagesByDefault(true);
+	}
+	
+	@Override
+	protected IConverterLocator newConverterLocator()
+	{
+		ConverterLocator ret = new ConverterLocator();
+		ret.set(AbstractDateContainer.class, new DateContainerConverter<AbstractDateContainer>(AbstractDateContainer.class, "dd.MM.yyyy"));
+		ret.set(FullDate.class, new DateContainerConverter<FullDate>(FullDate.class, "dd.MM.yyyy HH:mm:ss"));
+		return ret;
 	}
 }

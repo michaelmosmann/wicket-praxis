@@ -7,7 +7,7 @@ public class UseCaseDateFormat extends AbstractStartPage
 
 	public UseCaseDateFormat()
 	{
-		super("Date Format", UseCaseDateFormatPage.class);
+		super("Date Format", DateFormatV1Page.class,DateFormatV2Page.class,DateFormatV3Page.class);
 	}
 
 }
