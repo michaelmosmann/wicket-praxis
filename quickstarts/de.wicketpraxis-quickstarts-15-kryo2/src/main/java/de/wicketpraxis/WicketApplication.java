@@ -21,9 +21,9 @@ import org.wicketstuff.pageserializer.kryo2.inspecting.listener.ISerializationLi
 import org.wicketstuff.pageserializer.kryo2.inspecting.listener.SerializationListeners;
 import org.wicketstuff.pageserializer.kryo2.inspecting.validation.DefaultJavaSerializationValidator;
 
-import de.wicketpraxis.usecase.dateformat.AbstractDateContainer;
 import de.wicketpraxis.usecase.dateformat.DateContainerConverter;
 import de.wicketpraxis.usecase.dateformat.FullDate;
+import de.wicketpraxis.usecase.dateformat.SmallDate;
 
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start class.
@@ -80,7 +80,7 @@ public class WicketApplication extends WebApplication
 	protected IConverterLocator newConverterLocator()
 	{
 		ConverterLocator ret = new ConverterLocator();
-		ret.set(AbstractDateContainer.class, new DateContainerConverter<AbstractDateContainer>(AbstractDateContainer.class, "dd.MM.yyyy"));
+		ret.set(SmallDate.class, new DateContainerConverter<SmallDate>(SmallDate.class, "dd.MM.yyyy"));
 		ret.set(FullDate.class, new DateContainerConverter<FullDate>(FullDate.class, "dd.MM.yyyy HH:mm:ss"));
 		return ret;
 	}
