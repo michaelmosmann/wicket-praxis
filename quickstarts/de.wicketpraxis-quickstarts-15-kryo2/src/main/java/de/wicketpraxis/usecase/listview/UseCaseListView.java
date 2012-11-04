@@ -7,7 +7,7 @@ public class UseCaseListView extends AbstractStartPage
 
 	public UseCaseListView()
 	{
-		super("Models",ListViewV1Page.class,ListViewV2Page.class);
+		super("ListView",ListViewV1Page.class,ListViewV2Page.class);
 	}
 
 }
