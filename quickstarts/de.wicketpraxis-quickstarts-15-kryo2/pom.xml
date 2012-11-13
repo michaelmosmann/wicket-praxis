@@ -47,6 +47,10 @@
 					<artifactId>kryo</artifactId>
 					<groupId>com.esotericsoftware.kryo</groupId>
 				</exclusion>
+				<exclusion>
+					<artifactId>org.slf4j</artifactId>
+					<groupId>slf4j-log4j12</groupId>
+				</exclusion>
 			</exclusions>
 			-->
 		</dependency>
@@ -58,7 +62,6 @@
 			<version>2.20</version>
 		</dependency>
 -->
-		
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -70,6 +73,8 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.16</version>
 		</dependency>
+<!--
+-->
 
 		<!--  JUNIT DEPENDENCY FOR TESTING -->
 		<dependency>
