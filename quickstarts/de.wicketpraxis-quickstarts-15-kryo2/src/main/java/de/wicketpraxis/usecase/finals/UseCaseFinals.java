@@ -9,5 +9,4 @@ public class UseCaseFinals extends AbstractStartPage
 	{
 		super("Finals", FinalsV1Page.class, FinalsV2Page.class);
 	}
-
 }

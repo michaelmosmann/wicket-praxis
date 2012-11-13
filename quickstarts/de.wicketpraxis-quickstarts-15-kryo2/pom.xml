@@ -20,7 +20,7 @@
 		</license>
 	</licenses>
 	<properties>
-		<wicket.version>1.5.8</wicket.version>
+		<wicket.version>1.5.9</wicket.version>
 		<jetty.version>7.5.0.v20110901</jetty.version>
 	</properties>
 	<dependencies>
@@ -40,20 +40,24 @@
 		<dependency>
 			<groupId>org.wicketstuff</groupId>
 			<artifactId>wicketstuff-serializer-kryo2</artifactId>
-			<version>1.5-SNAPSHOT</version>
+			<version>${wicket.version}</version>
+			<!--
 			<exclusions>
 				<exclusion>
 					<artifactId>kryo</artifactId>
 					<groupId>com.esotericsoftware.kryo</groupId>
 				</exclusion>
 			</exclusions>
+			-->
 		</dependency>
 
+<!--
 		<dependency>
 			<groupId>com.esotericsoftware.kryo</groupId>
 			<artifactId>kryo</artifactId>
 			<version>2.20</version>
 		</dependency>
+-->
 		
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
 		<dependency>
@@ -160,6 +164,7 @@
 		</plugins>
 	</build>
 
+<!--
 	<repositories>
 		<repository>
 			<id>wicketstuff-core-snapshots</id>
@@ -179,5 +184,5 @@
 			</snapshots>
 		</repository>
 	</repositories>
-
-	</project>
+-->
+</project>
