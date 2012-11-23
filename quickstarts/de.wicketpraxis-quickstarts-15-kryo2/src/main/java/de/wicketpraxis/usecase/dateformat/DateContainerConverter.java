@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.apache.wicket.WicketRuntimeException;
+import org.apache.wicket.util.convert.IConverter;
 import org.apache.wicket.util.convert.converter.AbstractConverter;
 import org.apache.wicket.util.string.Strings;
 
@@ -34,6 +35,9 @@ public class DateContainerConverter<T extends AbstractDateContainer> extends Abs
 			throw new WicketRuntimeException(e);
 		}
 	}
+
+	
+
 	
 	/**
 	 * @see org.apache.wicket.util.convert.IConverter#convertToObject(java.lang.String,Locale)
