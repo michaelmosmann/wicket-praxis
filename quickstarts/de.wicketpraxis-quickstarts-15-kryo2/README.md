@@ -22,3 +22,125 @@ Dann gab es recht schnell bei wicketstuff ein Projekt, dass Kryo in Wicket integ
 
 ## Setup
 
+Zuerst muss man sein Wicket-Projekt um eine Dependency erweitern:
+
+	<dependency>
+		<groupId>org.wicketstuff</groupId>
+		<artifactId>wicketstuff-serializer-kryo2</artifactId>
+		<version>${wicket.version}</version>
+	</dependency>
+	
+Dabei gibt es sowohl für Wicket 1.5 (ab Version 1.5.9) als auch für Wicket 6 (ab Version 6.2.1) eine Version in Maven Central.
+
+Dann ergänzen wir unsere WebApplication-Klasse in der init()-Methode um folgende Codezeilen:
+
+		// output of report of type sizes, sorted tree report (by size), aggregated tree 
+		ISerializedObjectTreeProcessor typeAndSortedTreeAndCollapsedSortedTreeProcessors = TreeProcessors.listOf(
+			new TypeSizeReport(), new SortedTreeSizeReport(), new SimilarNodeTreeTransformator(
+				new SortedTreeSizeReport()));
+
+		// strips class object writes from tree
+		TreeTransformator treeProcessors = new TreeTransformator(
+			typeAndSortedTreeAndCollapsedSortedTreeProcessors,
+			TreeTransformator.strip(new TypeFilter(Class.class)));
+
+		// serialization listener notified on every written object
+		ISerializationListener serializationListener = SerializationListeners.listOf(
+			new DefaultJavaSerializationValidator(), new AnalyzingSerializationListener(
+				new NativeTypesAsLabel(new ComponentIdAsLabel()), treeProcessors));
+
+		// customized serializer
+		InspectingKryoSerializer serializer = new InspectingKryoSerializer(Bytes.megabytes(30L),
+			serializationListener);
+
+		// set custom serializer as default
+		getFrameworkSettings().setSerializer(serializer);
+		
+		getStoreSettings().setAsynchronous(false);
+		getStoreSettings().setInmemoryCacheSize(0);
+		getPageSettings().setVersionPagesByDefault(true);
+
+Ab sofort wird für jede Seite, die serialisiert wird, eine detailierte Übersicht über die verwendeten Komponenten und den Speicherbedarf ausgegeben.
+
+## Beispielausgabe
+
+Wenn nun eine Seite von Wicket serialisiert wird, dann wird während des Schreibens des Objektgraphen die Anzahl der geschriebenen Bytes ermittelt und den passenden Objekten zugeteilt. Dabei gibt es gewisse Unschärfen. Wenn ein Objekt referenziert wird, wird nur das erste mal das Objekt selbst geschrieben. Jedes weitere mal wird nur eine Referenz auf das Objekt serialisiert, was natürlich viel weniger Platz in Anspruch nimmt. Insofern ist die Auswertung immer dann mit Vorsicht zu genießen, wenn ein Objekt an verschiedenen Stellen referenziert wird und nur einer den "Zuschlag" erhält.
+
+Die Ausgabe und der ganze Serialisierungsprozess ist hochgradig anpassbar. In der Beispielkonfiguration entsteht für eine Beispielseite folgendes Ergebnis:
+
+DEBUG - KryoSerializer             - Going to serialize: '[Page class = de.wicketpraxis.usecase.models.ModelsV1Page, id = 4, render count = 1]'
+DEBUG - TypeSizeReport             - 
+===================================================================
+|Type........................................................bytes|
+-------------------------------------------------------------------
+|de.wicketpraxis.usecase.models.ModelsV1Page...................133|
+|org.apache.wicket.markup.html.basic.Label.....................102|
+|java.lang.Integer..............................................21|
+|java.lang.String................................................9|
+|de.wicketpraxis.usecase.models.ModelsV1Page$1...................3|
+|de.wicketpraxis.usecase.models.ModelsV1Page$2...................3|
+|org.apache.wicket.request.mapper.parameter.PageParameters.......3|
+|[Ljava.lang.Object;.............................................2|
+===================================================================
+
+DEBUG - TreeSizeReport             - 
+===========================================================================================
+|  #|Type.............................................................%|.sum|.local|.child|
+-------------------------------------------------------------------------------------------
+| #0|de.wicketpraxis.usecase.models.ModelsV1Page(4)................100%|.276|...129|...147|
+| #4|  [Ljava.lang.Object;..........................................48%|.135|.....2|...133|
+|#12|    org.apache.wicket.markup.html.basic.Label(now2)............24%|..67|....51|....16|
+|#15|      java.lang.Integer(=1343434906)............................1%|...5|.....5|.....0|
+|#17|      java.lang.String("now2")..................................1%|...5|.....5|.....0|
+|#14|      org.apache.wicket.model.LoadableDetachableModel...........1%|...4|.....3|.....1|
+| #0|        de.wicketpraxis.usecase.models.ModelsV1Page(4)..........0%|...1|.....1|.....0|
+|#16|      java.lang.Integer(=-1)....................................0%|...1|.....1|.....0|
+| #0|      de.wicketpraxis.usecase.models.ModelsV1Page(4)............0%|...1|.....1|.....0|
+| #5|    org.apache.wicket.markup.html.basic.Label(now).............23%|..66|....51|....15|
+| #9|      java.lang.Integer(=1343434906)............................1%|...5|.....5|.....0|
+| #8|      org.apache.wicket.model.LoadableDetachableModel...........1%|...4|.....3|.....1|
+| #0|        de.wicketpraxis.usecase.models.ModelsV1Page(4)..........0%|...1|.....1|.....0|
+|#11|      java.lang.String("now")...................................1%|...4|.....4|.....0|
+|#10|      java.lang.Integer(=-1)....................................0%|...1|.....1|.....0|
+| #0|      de.wicketpraxis.usecase.models.ModelsV1Page(4)............0%|...1|.....1|.....0|
+|#18|  java.lang.Integer(=1342845082)................................1%|...5|.....5|.....0|
+|#22|  org.apache.wicket.request.mapper.parameter.PageParameters.....1%|...3|.....3|.....0|
+| #2|  java.lang.Integer(=1).........................................0%|...1|.....1|.....0|
+|#19|  java.lang.Integer(=-1)........................................0%|...1|.....1|.....0|
+|#20|  java.lang.Integer(=4).........................................0%|...1|.....1|.....0|
+|#23|  java.lang.Integer(=1).........................................0%|...1|.....1|.....0|
+===========================================================================================
+
+DEBUG - TreeSizeReport             - 
+============================================================================================
+|   #|Type.............................................................%|.sum|.local|.child|
+--------------------------------------------------------------------------------------------
+|  #0|de.wicketpraxis.usecase.models.ModelsV1Page(4)................100%|.276|...129|...147|
+|  #4|  [Ljava.lang.Object;..........................................48%|.135|.....2|...133|
+| #12|    org.apache.wicket.markup.html.basic.Label(now2)............24%|..67|....51|....16|
+|null|      java.lang.Integer(=1343434906|=-1)........................2%|...6|.....6|.....0|
+| #17|      java.lang.String("now2")..................................1%|...5|.....5|.....0|
+| #14|      org.apache.wicket.model.LoadableDetachableModel...........1%|...4|.....3|.....1|
+|  #0|        de.wicketpraxis.usecase.models.ModelsV1Page(4)..........0%|...1|.....1|.....0|
+|  #0|      de.wicketpraxis.usecase.models.ModelsV1Page(4)............0%|...1|.....1|.....0|
+|  #5|    org.apache.wicket.markup.html.basic.Label(now).............23%|..66|....51|....15|
+|null|      java.lang.Integer(=1343434906|=-1)........................2%|...6|.....6|.....0|
+|  #8|      org.apache.wicket.model.LoadableDetachableModel...........1%|...4|.....3|.....1|
+|  #0|        de.wicketpraxis.usecase.models.ModelsV1Page(4)..........0%|...1|.....1|.....0|
+| #11|      java.lang.String("now")...................................1%|...4|.....4|.....0|
+|  #0|      de.wicketpraxis.usecase.models.ModelsV1Page(4)............0%|...1|.....1|.....0|
+|null|  java.lang.Integer(=1|=1342845082|=-1|=4)......................3%|...9|.....9|.....0|
+| #22|  org.apache.wicket.request.mapper.parameter.PageParameters.....1%|...3|.....3|.....0|
+============================================================================================
+
+Die erste Tabelle enthält eine Aufschlüsselung nach Typen, die zweite Tabelle stellt den fast ungefilterten Komponentenbaum dar (die Klasse Component verwaltet Kindkomponenten und andere Dinge in einem Object-Array, weshalb im Baum [Ljava.lang.Object auftaucht). Die dritte Tabelle versucht gleiche Zweige zusammen zu fassen. Dabei werden die Größen aufadiert und die Labels (in Klammern dahinter) vereint. Die Angaben in den Klammern hinter den Klassennamen stellen ein Label für die Klasse dar. Bei Wicket-Komponenten ist das die Id, bei nativen Datentypen der Wert.
+
+Und das nächste Mal sehen wir uns an, was für interessante Entdeckungen man damit machen kann. Doch zuvor ein Hinweis. Das sollten sie so nie in Produktivumgebungen einsetzen. Auch kann es bei bestehenden Anwendung zu sehr sehr umfangreichen Ausgaben kommen, so dass man in einer IDE die Logausgabe vielleicht besser in eine Datei umlenkt.
+
+Viel Spass mit dem Experimentieren.
+
+Den Code für die Beispielen findet man unter https://github.com/michaelmosmann/wicket-praxis/tree/master/quickstarts/de.wicketpraxis-quickstarts-15-kryo2
+
+
+
+

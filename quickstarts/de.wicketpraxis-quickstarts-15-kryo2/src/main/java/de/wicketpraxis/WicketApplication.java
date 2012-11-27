@@ -66,11 +66,13 @@ public class WicketApplication extends WebApplication
 			new DefaultJavaSerializationValidator(), new AnalyzingSerializationListener(
 				new NativeTypesAsLabel(new ComponentIdAsLabel()), treeProcessors));
 
-
+		// customized serializer
 		InspectingKryoSerializer serializer = new InspectingKryoSerializer(Bytes.megabytes(30L),
 			serializationListener);
 
+		// set custom serializer as default
 		getFrameworkSettings().setSerializer(serializer);
+		
 		getStoreSettings().setAsynchronous(false);
 		getStoreSettings().setInmemoryCacheSize(0);
 		getPageSettings().setVersionPagesByDefault(true);
