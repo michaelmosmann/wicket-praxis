@@ -19,15 +19,6 @@ public class DateFormatV1Page extends WebPage
 		setStatelessHint(false);
 	}
 
-	static class DateModel extends LoadableDetachableModel<Date>
-	{
-		@Override
-		protected Date load()
-		{
-			return new Date();
-		}
-	}
-
 	static class DateToStringModel extends LoadableDetachableModel<String>
 	{
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");

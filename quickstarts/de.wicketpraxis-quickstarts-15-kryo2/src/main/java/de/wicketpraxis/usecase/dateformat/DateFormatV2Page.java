@@ -22,15 +22,6 @@ public class DateFormatV2Page extends WebPage
 		setStatelessHint(false);
 	}
 
-	static class DateModel extends LoadableDetachableModel<Date>
-	{
-		@Override
-		protected Date load()
-		{
-			return new Date();
-		}
-	}
-
 	static class DateLabel extends Label
 	{
 		public DateLabel(String id, IModel<Date> model)
