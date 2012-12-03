@@ -8,9 +8,9 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 
-public class ModelsV1Page extends WebPage
+public class ModelReadsModelPage extends WebPage
 {
-	public ModelsV1Page()
+	public ModelReadsModelPage()
 	{
 		final IModel<Date> dateModel = new LoadableDetachableModel<Date>()
 		{
