@@ -1,5 +1,6 @@
 package de.wicketpraxis;
 
+import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.serialize.ISerializer;
 import org.apache.wicket.serialize.java.JavaSerializer;
@@ -30,9 +31,12 @@ public class WicketApplication extends WebApplication
 	{
 		super.init();
 
-		getFrameworkSettings().setSerializer(new DevelopmentJavaSerializer(getApplicationKey()));
+		if (getConfigurationType()==RuntimeConfigurationType.DEVELOPMENT) {
+			getFrameworkSettings().setSerializer(new DevelopmentJavaSerializer(getApplicationKey()));
+		}
 		
 		getStoreSettings().setAsynchronous(false);
 		getStoreSettings().setInmemoryCacheSize(0);
-		getPageSettings().setVersionPagesByDefault(true);	}
+		getPageSettings().setVersionPagesByDefault(true);
+	}
 }
