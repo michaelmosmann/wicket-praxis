@@ -27,5 +27,6 @@ public class FinalsV1Page extends WebPage
 	
 	static class Irrelevant implements Serializable {
 		String text="this could be something big.";
+		byte[] veryBig=new byte[1024];
 	}
 }

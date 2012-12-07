@@ -9,7 +9,7 @@ public class FinalsV2Page extends WebPage
 {
 	public FinalsV2Page()
 	{
-		//final Irrelevant irrelevantToLabel=new Irrelevant();
+		final Irrelevant irrelevantToLabel=new Irrelevant();
 		
 		add(new Label("label", "Fun"){
 			
@@ -27,5 +27,6 @@ public class FinalsV2Page extends WebPage
 	
 	static class Irrelevant implements Serializable {
 		String text="this could be something big.";
+		byte[] veryBig=new byte[1024];
 	}
 }
