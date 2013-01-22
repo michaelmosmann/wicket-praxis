@@ -34,9 +34,10 @@ public class CounterPanel extends Panel {
 		
 		if (e instanceof SetCounterEvent) {
 			SetCounterEvent sk=(SetCounterEvent) e;
+			Integer lastValue = counterModel.getObject();
 			counterModel.setObject(sk.getNewCounter());
+			sk.respondWith(lastValue);
 			sk.update(label);
-			sk.respondWith(true);
 			
 			System.out.println("Path: "+sk.asPath());
 		}

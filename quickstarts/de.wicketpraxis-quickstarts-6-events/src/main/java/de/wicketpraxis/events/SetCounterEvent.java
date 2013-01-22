@@ -1,6 +1,6 @@
 package de.wicketpraxis.events;
 
-public class SetCounterEvent extends AbstractEvent<Boolean,AbstractChangeCounterEvent<?>> {
+public class SetCounterEvent extends AbstractEvent<Integer,AbstractChangeCounterEvent<?>> {
 
 	private final int _newCounter;
 

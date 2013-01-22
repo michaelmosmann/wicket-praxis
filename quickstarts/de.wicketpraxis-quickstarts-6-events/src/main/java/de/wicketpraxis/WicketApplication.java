@@ -51,24 +51,15 @@ public class WicketApplication extends WebApplication {
 			}
 			currentCounter = currentCounter + changeEvent.getChange();
 
-			Boolean set = new SetCounterEvent(changeEvent,currentCounter).send();
-			if (set == null && !set) {
-				changeEvent.respondWith(null);
-			} else {
-				changeEvent.respondWith(currentCounter);
-			}
+			Integer lastValue= new SetCounterEvent(changeEvent,currentCounter).send();
+			changeEvent.respondWith(currentCounter);
 		}
 		
 		if (e instanceof ResetCounterEvent) {
 			ResetCounterEvent resetEvent = (ResetCounterEvent) e;
 			
-			Boolean set = new SetCounterEvent(resetEvent,0).send();
-			if (set == null && !set) {
-				
-			} else {
-				resetEvent.respondWith(0);
-			}
-			
+			Integer lastValue=new SetCounterEvent(resetEvent,0).send();
+			resetEvent.respondWith(0);
 		}
 	}
 }
