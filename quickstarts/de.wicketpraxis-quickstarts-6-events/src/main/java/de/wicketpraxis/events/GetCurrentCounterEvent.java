@@ -1,10 +1,15 @@
 package de.wicketpraxis.events;
 
 
-public class GetCurrentCounterEvent extends AbstractEvent<Integer> {
 
-	public GetCurrentCounterEvent(IEventBus eventBus) {
-		super(eventBus);
+public class GetCurrentCounterEvent extends AbstractEvent<Integer,ChangeCounterEvent> {
+
+	public GetCurrentCounterEvent(ChangeCounterEvent source) {
+		super(source);
 	}
 
+	@Override
+	public String toString() {
+		return "GetCurrentCounter";
+	}
 }

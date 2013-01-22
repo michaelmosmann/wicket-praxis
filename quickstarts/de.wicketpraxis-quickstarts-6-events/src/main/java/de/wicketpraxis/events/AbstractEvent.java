@@ -1,30 +1,57 @@
 package de.wicketpraxis.events;
 
-import org.apache.wicket.Component;
+import java.util.ArrayList;
+import java.util.List;
 
-public abstract class AbstractEvent<T> {
+import org.apache.wicket.Component;
+import org.apache.wicket.WicketRuntimeException;
+
+public abstract class AbstractEvent<T,S extends AbstractEvent<?, ?>> {
 
 	private final IEventBus _eventBus;
+	
+	boolean _hasResponse=false;
 	T _response;
+	private S _source;
 
-	public AbstractEvent(IEventBus eventBus) {
+	protected AbstractEvent(IEventBus eventBus) {
 		_eventBus = eventBus;
+	}
+
+	protected AbstractEvent(S source) {
+		_eventBus = source._eventBus.asReply();
+		_source=source;
 	}
 	
 	public T send() {
 		_eventBus.send(this);
+		if (!_hasResponse) throw new WicketRuntimeException("Nobody did respond to Event "+asPath());
 		return _response;
 	}
 	
 	public void respondWith(T response) {
 		_response=response;
+		_hasResponse=true;
 	}
 	
 	public void update(Component component) {
 		_eventBus.updater().update(component);
 	}
+	
+	public S getSource() {
+		return _source;
+	}
+	
+	public List<AbstractEvent<?,?>> asPath() {
+		ArrayList<AbstractEvent<?, ?>> ret = new ArrayList<AbstractEvent<?,?>>();
+		asPath(ret);
+		return ret;
+	}
 
-	public IEventBus asReply() {
-		return _eventBus.asReply();
+	private void asPath(ArrayList<AbstractEvent<?, ?>> list) {
+		if (_source!=null) {
+			_source.asPath(list);
+		}
+		list.add(this);
 	}
 }

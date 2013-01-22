@@ -18,9 +18,9 @@ public class Events {
 		return new ComponentEventBus(source,target);
 	}
 	
-	public static AbstractEvent<?> asEvent(IEvent<?> event) {
+	public static AbstractEvent<?,?> asEvent(IEvent<?> event) {
 		if (event.getPayload() instanceof AbstractEvent) {
-			return (AbstractEvent<?>) event.getPayload();
+			return (AbstractEvent<?,?>) event.getPayload();
 		}
 		return null;
 	}
@@ -38,7 +38,7 @@ public class Events {
 		}
 
 		@Override
-		public void send(AbstractEvent<?> event) {
+		public void send(AbstractEvent<?,?> event) {
 			_source.send(_source, Broadcast.BUBBLE, event);
 		}
 		
@@ -64,7 +64,7 @@ public class Events {
 		}
 
 		@Override
-		public void send(AbstractEvent<?> event) {
+		public void send(AbstractEvent<?,?> event) {
 			_page.send(_page, Broadcast.BREADTH, event);
 		}
 		

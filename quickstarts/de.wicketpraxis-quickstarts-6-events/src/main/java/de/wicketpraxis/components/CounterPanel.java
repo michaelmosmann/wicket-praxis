@@ -9,7 +9,7 @@ import org.apache.wicket.model.Model;
 import de.wicketpraxis.events.AbstractEvent;
 import de.wicketpraxis.events.Events;
 import de.wicketpraxis.events.GetCurrentCounterEvent;
-import de.wicketpraxis.events.LinkClickedEvent;
+import de.wicketpraxis.events.ChangeCounterEvent;
 import de.wicketpraxis.events.SetCounterEvent;
 
 
@@ -30,18 +30,22 @@ public class CounterPanel extends Panel {
 	@Override
 	public void onEvent(IEvent<?> event) {
 		
-		AbstractEvent<?> e=Events.asEvent(event);
+		AbstractEvent<?,?> e=Events.asEvent(event);
 		
 		if (e instanceof SetCounterEvent) {
 			SetCounterEvent sk=(SetCounterEvent) e;
 			counterModel.setObject(sk.getNewCounter());
 			sk.update(label);
 			sk.respondWith(true);
+			
+			System.out.println("Path: "+sk.asPath());
 		}
 		
 		if (e instanceof GetCurrentCounterEvent) {
 			GetCurrentCounterEvent cc=(GetCurrentCounterEvent) e;
 			cc.respondWith(counterModel.getObject());
+			
+			System.out.println("Path: "+cc.asPath());
 		}
 		
 		

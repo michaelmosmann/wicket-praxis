@@ -8,7 +8,8 @@ import de.wicketpraxis.events.AbstractEvent;
 import de.wicketpraxis.events.Events;
 import de.wicketpraxis.events.GetCurrentCounterEvent;
 import de.wicketpraxis.events.IEventBus;
-import de.wicketpraxis.events.LinkClickedEvent;
+import de.wicketpraxis.events.ChangeCounterEvent;
+import de.wicketpraxis.events.ResetCounterEvent;
 import de.wicketpraxis.events.SetCounterEvent;
 
 /**
@@ -39,22 +40,35 @@ public class WicketApplication extends WebApplication {
 
 	@Override
 	public void onEvent(IEvent<?> event) {
-		AbstractEvent<?> e = Events.asEvent(event);
-		if (e instanceof LinkClickedEvent) {
-			LinkClickedEvent le = (LinkClickedEvent) e;
+		AbstractEvent<?,?> e = Events.asEvent(event);
+		
+		if (e instanceof ChangeCounterEvent) {
+			ChangeCounterEvent changeEvent = (ChangeCounterEvent) e;
 
-			Integer currentCounter = new GetCurrentCounterEvent(e.asReply()).send();
+			Integer currentCounter = new GetCurrentCounterEvent(changeEvent).send();
 			if (currentCounter == null) {
 				currentCounter = 0;
 			}
-			currentCounter = currentCounter + le.getCounter();
+			currentCounter = currentCounter + changeEvent.getChange();
 
-			Boolean set = new SetCounterEvent(e.asReply(),currentCounter).send();
+			Boolean set = new SetCounterEvent(changeEvent,currentCounter).send();
 			if (set == null && !set) {
-				le.respondWith(null);
+				changeEvent.respondWith(null);
 			} else {
-				le.respondWith(currentCounter);
+				changeEvent.respondWith(currentCounter);
 			}
+		}
+		
+		if (e instanceof ResetCounterEvent) {
+			ResetCounterEvent resetEvent = (ResetCounterEvent) e;
+			
+			Boolean set = new SetCounterEvent(resetEvent,0).send();
+			if (set == null && !set) {
+				
+			} else {
+				resetEvent.respondWith(0);
+			}
+			
 		}
 	}
 }

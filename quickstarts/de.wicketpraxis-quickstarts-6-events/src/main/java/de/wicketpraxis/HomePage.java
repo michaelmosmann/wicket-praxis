@@ -5,7 +5,8 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
 
 import de.wicketpraxis.components.CounterPanel;
-import de.wicketpraxis.components.LinkPanel;
+import de.wicketpraxis.components.ChangeCounterPanel;
+import de.wicketpraxis.components.ResetCounterPanel;
 
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
@@ -17,8 +18,9 @@ public class HomePage extends WebPage {
 
 		// TODO Add your page's components here
 		add(new CounterPanel("counter"));
-		add(new LinkPanel("add",1));
-		add(new LinkPanel("sub",-1));
+		add(new ChangeCounterPanel("add",1));
+		add(new ChangeCounterPanel("sub",-1));
+		add(new ResetCounterPanel("reset"));
 
     }
 }

@@ -8,19 +8,19 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
 import de.wicketpraxis.events.Events;
-import de.wicketpraxis.events.LinkClickedEvent;
+import de.wicketpraxis.events.ChangeCounterEvent;
 
 
-public class LinkPanel extends Panel {
+public class ChangeCounterPanel extends Panel {
 
-	public LinkPanel(String id, final int change) {
+	public ChangeCounterPanel(String id, final int change) {
 		super(id);
 		
 		AjaxLink<Void> link = new AjaxLink<Void>("link") {
 			
 			@Override
 			public void onClick(AjaxRequestTarget target) {
-				Integer newCounter=new LinkClickedEvent(Events.from(this,target),change).send();
+				Integer newCounter=new ChangeCounterEvent(Events.from(this,target),change).send();
 				System.out.println("New Counter: "+newCounter);
 			}
 		};
