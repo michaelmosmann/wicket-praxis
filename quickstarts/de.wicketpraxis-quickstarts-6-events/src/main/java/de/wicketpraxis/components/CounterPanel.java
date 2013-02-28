@@ -35,7 +35,9 @@ public class CounterPanel extends Panel {
 		if (e instanceof SetCounterEvent) {
 			SetCounterEvent sk=(SetCounterEvent) e;
 			Integer lastValue = counterModel.getObject();
+			label.modelChanging();
 			counterModel.setObject(sk.getNewCounter());
+			label.modelChanged();
 			sk.respondWith(lastValue);
 			sk.update(label);
 			

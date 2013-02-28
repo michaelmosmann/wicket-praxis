@@ -1,8 +1,12 @@
 package de.wicketpraxis;
 
+import org.apache.wicket.DefaultPageManagerProvider;
 import org.apache.wicket.event.IEvent;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.pageStore.IDataStore;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.session.ISessionStore;
+import org.apache.wicket.util.IProvider;
 
 import de.wicketpraxis.events.AbstractEvent;
 import de.wicketpraxis.events.Events;
