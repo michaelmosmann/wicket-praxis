@@ -1,7 +1,6 @@
 package de.wicketpraxis.seoajax;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
@@ -19,7 +18,7 @@ public abstract class AjaxBookmarkablePageLink<T, P extends WebPage> extends Aja
 
 		// use pushState if possible
 		// see https://github.com/defunkt/jquery-pjax
-		
+
 		add(new AttributeModifier("href", new LoadableDetachableModel<String>() {
 
 			@Override
